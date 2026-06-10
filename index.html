@@ -163,8 +163,13 @@ h1 em{font-style:italic; font-weight:400; color:var(--accent)}
 #about .grid{display:grid; grid-template-columns:380px 1fr; gap:72px; align-items:start}
 .photoplate{position:sticky; top:96px}
 .photoplate .frame{border:1px solid var(--line); padding:14px; background:var(--elev); border-radius:4px; box-shadow:var(--shadow)}
-.photoplate img{border-radius:2px; filter:saturate(.92) contrast(1.02)}
-.photoplate figcaption{font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); padding:12px 4px 2px; display:flex; justify-content:space-between}
+.pstack{position:relative; aspect-ratio:4/5; overflow:hidden; border-radius:2px; background:var(--page)}
+.pimg{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 22%; opacity:0; transition:opacity 1.4s ease; filter:saturate(.92) contrast(1.02)}
+.pimg.on{opacity:1}
+.photoplate figcaption{font-family:var(--mono); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); padding:12px 4px 2px; display:flex; justify-content:space-between; align-items:center}
+.pdots{display:flex; gap:7px}
+.pdots i{width:5.5px; height:5.5px; border-radius:50%; background:var(--line); cursor:pointer; transition:background .3s, transform .3s}
+.pdots i.on{background:var(--accent); transform:scale(1.25)}
 .prose p{margin-bottom:1.35em; color:var(--ink-2)}
 .prose p b,.prose p strong{color:var(--ink); font-weight:500}
 .prose a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--accent); transition:color .2s}
@@ -212,6 +217,7 @@ blockquote.pull small{display:block; margin-top:10px; font-family:var(--mono); f
 .ft{font-family:var(--mono); font-size:9px; fill:var(--muted); letter-spacing:.08em}
 .fta{font-family:var(--mono); font-size:9px; fill:var(--accent); letter-spacing:.08em}
 .fts{font-family:var(--serif); font-style:italic; font-size:11.5px; fill:var(--ink-2)}
+.halo{paint-order:stroke; stroke:var(--elev); stroke-width:3.5px; stroke-linejoin:round}
 
 /* appendix (beyond the lab) */
 .appendix{margin-top:110px; border-top:1px solid var(--line); padding-top:54px}
@@ -429,7 +435,7 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
     <a class="wordmark" href="#hero">Pranshoo Upadhyay<span>.</span></a>
     <nav class="tabs" aria-label="Sections">
       <a class="tab" href="#about" data-sec="about"><i>01</i>About</a>
-      <a class="tab" href="#research" data-sec="research"><i>02</i>Research</a>
+      <a class="tab" href="#research" data-sec="research"><i>02</i>Research Interests</a>
       <a class="tab" href="#publications" data-sec="publications"><i>03</i>Publications</a>
       <a class="tab" href="#phd" data-sec="phd"><i>04</i>Ph.D. Guide</a>
       <a class="tab" href="#contact" data-sec="contact"><i>05</i>Contact</a>
@@ -446,7 +452,7 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
 
 <div id="mmenu">
   <a class="mitem" href="#about" style="transition-delay:.05s"><b>01</b>About</a>
-  <a class="mitem" href="#research" style="transition-delay:.1s"><b>02</b>Research</a>
+  <a class="mitem" href="#research" style="transition-delay:.1s"><b>02</b>Research Interests</a>
   <a class="mitem" href="#publications" style="transition-delay:.15s"><b>03</b>Publications</a>
   <a class="mitem" href="#phd" style="transition-delay:.2s"><b>04</b>Ph.D. Guide</a>
   <a class="mitem" href="#contact" style="transition-delay:.25s"><b>05</b>Contact</a>
@@ -497,8 +503,12 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
     <div class="grid">
       <figure class="photoplate rv">
         <div class="frame">
-          <img src="profile-web.jpg" alt="Pranshoo Upadhyay" width="825" height="1100">
-          <figcaption><span>The author</span><span>College Park, MD</span></figcaption>
+          <div class="pstack">
+            <img class="pimg on" src="p2.jpg" alt="Pranshoo Upadhyay">
+            <img class="pimg" src="p3.jpg" alt="Pranshoo Upadhyay, portrait II" loading="lazy">
+            <img class="pimg" src="p1.jpg" alt="Pranshoo Upadhyay, portrait III" loading="lazy">
+          </div>
+          <figcaption><span>The author · College Park, MD</span><span class="pdots" id="pdots"><i class="on"></i><i></i><i></i></span></figcaption>
         </div>
       </figure>
       <div class="prose">
@@ -529,7 +539,7 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
 <section class="sec" id="research">
   <div class="wrap">
     <div class="seclabel rv">§ 02 · The work</div>
-    <h2 class="sectitle rv">Research</h2>
+    <h2 class="sectitle rv">Research Interests</h2>
     <p class="secdek rv">The most interesting physics lives where particles can no longer be treated as independent. My methods are optical; my questions are many-body. Four threads, one fabric.</p>
     <div class="rule"></div>
 
@@ -551,23 +561,25 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
           <svg viewBox="0 0 400 330" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <pattern id="lat1" width="13" height="13" patternUnits="userSpaceOnUse"><circle cx="6.5" cy="6.5" r="1.15" class="fdot"/></pattern>
-              <pattern id="lat2" width="13" height="13" patternUnits="userSpaceOnUse" patternTransform="rotate(5 200 110)"><circle cx="6.5" cy="6.5" r="1.15" class="fdota" opacity=".55"/></pattern>
+              <pattern id="lat2" width="13" height="13" patternUnits="userSpaceOnUse"><circle cx="6.5" cy="6.5" r="1.15" class="fdota" opacity=".55"/></pattern>
+              <clipPath id="p1clip"><rect x="30" y="18" width="340" height="185"/></clipPath>
             </defs>
             <rect x="30" y="18" width="340" height="185" fill="url(#lat1)"/>
-            <rect x="30" y="18" width="340" height="185" fill="url(#lat2)"/>
+            <g clip-path="url(#p1clip)"><g id="p1g" transform="rotate(4 200 110)"><rect x="-12" y="-28" width="424" height="278" fill="url(#lat2)"/></g></g>
             <rect x="30" y="18" width="340" height="185" class="fl2"/>
-            <circle cx="200" cy="110" r="56" class="fad"/>
-            <text x="268" y="105" class="fta">moiré cell</text>
-            <text x="268" y="118" class="ft">λ ≫ a</text>
+            <circle id="p1c" cx="200" cy="110" r="48" class="fad"/>
+            <text x="276" y="100" class="fta halo">moiré cell</text>
+            <text x="276" y="113" class="ft halo">λ ≈ a/θ</text>
+            <text id="p1t" x="33" y="36" class="fta halo">θ = 4.0°</text>
             <text x="30" y="232" class="ft">single layer · wide band</text>
             <path d="M 40 290 Q 90 235 140 290" class="fl"/>
-            <text x="250" y="232" class="fta">twisted · flat band</text>
-            <path d="M 245 268 Q 270 258 295 266 Q 320 274 345 266" class="fa"/>
+            <text x="250" y="232" class="fta">twisted · the band flattens</text>
+            <path id="p1band" d="M 245 268 Q 270 258 295 266 Q 320 274 345 266" class="fa"/>
             <path d="M 245 290 L 345 290" class="fl2"/>
             <text x="40" y="312" class="ft">E(k) — kinetic energy wins</text>
             <text x="245" y="312" class="ft">U/W ≫ 1 — correlations win</text>
           </svg>
-          <figcaption class="platecap"><b>Plate I.</b> Two lattices at twist θ produce a superlattice of period λ ≈ a/θ; the mini-bands it folds are nearly flat, so interactions dominate.</figcaption>
+          <figcaption class="platecap"><b>Plate I (live).</b> The twist angle breathes; watch the moiré cell grow as θ shrinks — and the right-hand band flatten in sync. Small θ, flat bands, strong correlations.</figcaption>
         </figure>
       </article>
 
@@ -589,25 +601,27 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
             <line x1="40" y1="110" x2="250" y2="110" class="fl"/>
             <text x="40" y="48" class="ft">WSe₂</text>
             <text x="40" y="130" class="ft">WS₂</text>
-            <circle cx="130" cy="60" r="6" class="fdot"/>
-            <text x="124" y="44" class="ft">e⁻</text>
-            <circle cx="160" cy="110" r="6" class="fdoto"/>
-            <text x="155" y="132" class="fta">h⁺</text>
-            <ellipse cx="145" cy="85" rx="44" ry="34" class="fad"/>
-            <text x="262" y="80" class="fts">interlayer exciton</text>
-            <text x="262" y="96" class="ft">dipolar · long-lived</text>
-            <g>
-              <circle cx="60" cy="205" r="7" class="fdot"/><circle cx="100" cy="205" r="7" class="fdot"/><circle cx="140" cy="205" r="7" class="fdot"/><circle cx="180" cy="205" r="7" class="fdoto"/><circle cx="220" cy="205" r="7" class="fdot"/><circle cx="260" cy="205" r="7" class="fdot"/><circle cx="300" cy="205" r="7" class="fdot"/>
-              <path d="M 172 190 Q 160 178 148 190" class="fa" marker-end="none"/>
-              <path d="M 188 190 Q 200 178 212 190" class="fa"/>
-              <text x="40" y="240" class="ft">Mott lattice, ν = 1 — one hole hops freely between electrons</text>
+            <g id="p2x">
+              <circle cx="145" cy="60" r="6" class="fdot"/>
+              <text x="139" y="44" class="ft">e⁻</text>
+              <circle cx="145" cy="110" r="6" class="fdoto"/>
+              <text x="139" y="132" class="fta">h⁺</text>
+              <ellipse cx="145" cy="85" rx="34" ry="33" class="fad"/>
             </g>
+            <text x="262" y="80" class="fts">interlayer exciton</text>
+            <text x="262" y="96" class="ft">dipolar · drifting</text>
+            <g opacity=".55">
+              <circle cx="60" cy="205" r="10" class="fl2"/><circle cx="100" cy="205" r="10" class="fl2"/><circle cx="140" cy="205" r="10" class="fl2"/><circle cx="180" cy="205" r="10" class="fl2"/><circle cx="220" cy="205" r="10" class="fl2"/><circle cx="260" cy="205" r="10" class="fl2"/><circle cx="300" cy="205" r="10" class="fl2"/>
+            </g>
+            <g id="p2row"></g>
+            <text x="40" y="240" class="ft">Mott lattice, ν = 1 — watch the hole hop between electrons</text>
             <path d="M 60 305 Q 120 303 160 300 Q 185 297 200 268 Q 215 297 240 300 Q 290 304 340 305" class="fa"/>
             <line x1="200" y1="312" x2="200" y2="262" class="fl2"/>
+            <circle id="p2p" cx="200" cy="268" r="4" class="fdota"/>
             <text x="206" y="270" class="fta">ν = 1 · giant diffusion</text>
             <text x="60" y="324" class="ft">exciton diffusivity vs. filling — Science (2026)</text>
           </svg>
-          <figcaption class="platecap"><b>Plate II.</b> An interlayer exciton (top) embedded in a correlated lattice (middle). Near the Mott state its diffusion is enhanced by orders of magnitude (bottom).</figcaption>
+          <figcaption class="platecap"><b>Plate II (live).</b> An interlayer exciton drifts above a correlated lattice while the lone hole performs its random walk between electrons — the non-monogamous hopping behind the giant diffusion (beacon, bottom).</figcaption>
         </figure>
       </article>
 
@@ -630,24 +644,26 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
             <g class="fl2"><line x1="56" y1="42" x2="64" y2="34"/><line x1="86" y1="42" x2="94" y2="34"/><line x1="116" y1="42" x2="124" y2="34"/><line x1="146" y1="42" x2="154" y2="34"/><line x1="176" y1="42" x2="184" y2="34"/><line x1="206" y1="42" x2="214" y2="34"/><line x1="236" y1="42" x2="244" y2="34"/><line x1="266" y1="42" x2="274" y2="34"/><line x1="296" y1="42" x2="304" y2="34"/><line x1="326" y1="42" x2="334" y2="34"/></g>
             <text x="356" y="54" class="ft">mirror</text>
             <text x="356" y="164" class="ft">mirror</text>
-            <path d="M 60 105 Q 95 55 130 105 Q 165 155 200 105 Q 235 55 270 105 Q 305 155 340 105" class="fa"/>
+            <path id="p3w" d="M 60 105 Q 95 55 130 105 Q 165 155 200 105 Q 235 55 270 105 Q 305 155 340 105" class="fa"/>
             <line x1="70" y1="105" x2="330" y2="105" class="fl"/>
+            <circle id="p3xd" cx="135" cy="105" r="4.5" class="fdota"/>
             <text x="74" y="98" class="ft">TMD layer</text>
-            <text x="240" y="78" class="fta">vacuum field</text>
+            <text x="240" y="78" class="fta">vacuum field — breathing</text>
             <line x1="60" y1="305" x2="60" y2="200" class="fl2"/>
             <line x1="60" y1="305" x2="350" y2="305" class="fl2"/>
             <text x="44" y="196" class="ft">E</text>
             <text x="356" y="308" class="ft">k</text>
             <path d="M 80 295 L 290 215" class="fl2" stroke-dasharray="3 4"/>
             <line x1="80" y1="250" x2="340" y2="250" class="fl2" stroke-dasharray="3 4"/>
-            <path d="M 80 293 Q 185 285 225 262 Q 290 228 295 218" class="fa" fill="none"/>
+            <path id="p3up" d="M 80 293 Q 185 285 225 262 Q 290 228 295 218" class="fa" fill="none"/>
             <path d="M 82 252 Q 150 250 195 242 Q 260 230 335 228" class="fa" fill="none" opacity=".75"/>
+            <circle id="p3d" cx="80" cy="293" r="4.5" class="fdota"/>
             <text x="118" y="237" class="fta">UP / LP — polaritons</text>
             <text x="250" y="268" class="ft">exciton</text>
             <text x="120" y="290" class="ft">photon</text>
             <text x="270" y="296" class="ft">σ± ↔ valley K / K′</text>
           </svg>
-          <figcaption class="platecap"><b>Plate III.</b> A TMD layer between cavity mirrors: exciton and photon hybridize into polariton branches (anticrossing, bottom) — matter dressed by the vacuum.</figcaption>
+          <figcaption class="platecap"><b>Plate III (live).</b> The cavity's vacuum field oscillates against the TMD sheet while a polariton state slides along the upper branch — photon-like at one end, exciton-like at the other.</figcaption>
         </figure>
       </article>
 
@@ -667,24 +683,29 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
           <svg viewBox="0 0 400 330" xmlns="http://www.w3.org/2000/svg">
             <line x1="52" y1="290" x2="52" y2="40" class="fl2"/>
             <text x="40" y="34" class="ft">t</text>
-            <path d="M 110 290 C 110 240 190 240 190 190 C 190 140 110 140 110 90 L 110 50" class="fl"/>
-            <path d="M 190 290 C 190 240 110 240 110 190 C 110 140 190 140 190 90 L 190 50" class="fa"/>
-            <circle cx="110" cy="290" r="4.5" class="fdot"/>
-            <circle cx="190" cy="290" r="4.5" class="fdota"/>
-            <circle cx="110" cy="50" r="4.5" class="fdota"/>
-            <circle cx="190" cy="50" r="4.5" class="fdot"/>
+            <path id="p4pa" d="M 110 290 C 110 240 190 240 190 190 C 190 140 110 140 110 90 L 110 50" class="fl"/>
+            <path id="p4pb" d="M 190 290 C 190 240 110 240 110 190 C 110 140 190 140 190 90 L 190 50" class="fa"/>
+            <circle id="p4da" cx="110" cy="290" r="5" class="fdot"/>
+            <circle id="p4db" cx="190" cy="290" r="5" class="fdota"/>
             <text x="120" y="196" class="fta">braid</text>
             <text x="60" y="316" class="ft">exchange ⇒ ψ → e^(iθ)ψ, θ ∉ {0, π}</text>
-            <line x1="255" y1="290" x2="255" y2="60" class="fl2"/>
+            <g transform="translate(322 104)">
+              <circle r="24" class="fl2"/>
+              <line x1="0" y1="-24" x2="0" y2="-19" class="fl2"/>
+              <g id="p4n"><line x1="0" y1="0" x2="0" y2="-18" class="fa"/><circle r="2.2" class="fdota"/></g>
+              <text x="-30" y="40" class="ft">θ/exchange = 2π/3</text>
+              <text id="p4t" x="-30" y="53" class="fta">exchanges: 0</text>
+            </g>
+            <line x1="255" y1="290" x2="255" y2="170" class="fl2"/>
             <line x1="255" y1="290" x2="382" y2="290" class="fl2"/>
-            <text x="240" y="56" class="ft">σxy</text>
+            <text x="240" y="174" class="ft">σxy</text>
             <text x="372" y="306" class="ft">n</text>
-            <path d="M 258 268 L 285 268 L 295 230 L 322 230 L 332 192 L 360 192" class="fa"/>
-            <line x1="255" y1="230" x2="295" y2="230" class="fl2" stroke-dasharray="2 4"/>
-            <text x="300" y="222" class="fta">ν = ⅔ e²/h</text>
+            <path d="M 258 282 L 285 282 L 295 252 L 322 252 L 332 222 L 360 222" class="fa"/>
+            <line x1="255" y1="252" x2="295" y2="252" class="fl2" stroke-dasharray="2 4"/>
+            <text x="300" y="246" class="fta">ν = ⅔ e²/h</text>
             <text x="262" y="314" class="ft">FQAH staircase · B = 0</text>
           </svg>
-          <figcaption class="platecap"><b>Plate IV.</b> Anyon worldlines braiding in spacetime (left); fractionally quantized Hall plateaus at zero magnetic field (right) — statistics beyond bosons and fermions.</figcaption>
+          <figcaption class="platecap"><b>Plate IV (live).</b> Two anyons braid in spacetime while the phase dial accumulates 2π/3 per exchange — statistics that are neither +1 nor −1. Right: fractional Hall plateaus at zero field.</figcaption>
         </figure>
       </article>
 
@@ -1101,8 +1122,8 @@ const ctx = cv.getContext('2d');
 const twist = document.getElementById('twist');
 const twistread = document.getElementById('twistread');
 function cssv(n){ return getComputedStyle(root).getPropertyValue(n).trim(); }
-function drawMoire(){
-  const th = parseFloat(twist.value);
+function drawMoire(thOver){
+  const th = typeof thOver === 'number' ? thOver : parseFloat(twist.value);
   const W = cv.width, H = cv.height, cx = W/2, cy = H/2;
   ctx.clearRect(0,0,W,H);
   const a = 30, r = 3.1, span = Math.ceil(W*0.78/a);
@@ -1123,13 +1144,14 @@ function drawMoire(){
   const lam = 1/(2*Math.sin(th*Math.PI/360));
   twistread.textContent = 'θ = ' + th.toFixed(1) + '° · λ ≈ ' + lam.toFixed(1) + 'a';
 }
-twist.addEventListener('input', drawMoire);
+let lastMoire = 0;
+twist.addEventListener('input', ()=>{ lastMoire = performance.now(); drawMoire(); });
 (function(){
   let dragging = false, lx = 0;
-  cv.addEventListener('pointerdown', e=>{ dragging = true; lx = e.clientX; cv.setPointerCapture(e.pointerId); });
+  cv.addEventListener('pointerdown', e=>{ dragging = true; lx = e.clientX; lastMoire = performance.now(); cv.setPointerCapture(e.pointerId); });
   cv.addEventListener('pointermove', e=>{
     if(!dragging) return;
-    const dx = e.clientX - lx; lx = e.clientX;
+    const dx = e.clientX - lx; lx = e.clientX; lastMoire = performance.now();
     twist.value = Math.min(10, Math.max(1, parseFloat(twist.value) + dx*0.02)).toFixed(2);
     drawMoire();
   });
@@ -1173,119 +1195,364 @@ document.querySelectorAll('.ghead').forEach(h=>{
   });
 });
 
+/* ============ LIVING FIGURES ============ */
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* rotating portrait */
+const pimgs = [...document.querySelectorAll('.pimg')];
+const pdots = [...document.querySelectorAll('#pdots i')];
+let pcur = 0, ptimer = null;
+function showP(i){
+  pcur = i;
+  pimgs.forEach((im,k)=> im.classList.toggle('on', k===i));
+  pdots.forEach((d,k)=> d.classList.toggle('on', k===i));
+}
+function armP(){ if(ptimer) clearInterval(ptimer); if(!RM) ptimer = setInterval(()=> showP((pcur+1)%pimgs.length), 5200); }
+pdots.forEach((d,k)=> d.addEventListener('click', ()=>{ showP(k); armP(); }));
+armP();
+
+/* visibility-gated animation engine */
+const vmap = new Map();
+const vio = new IntersectionObserver(es=> es.forEach(e=> vmap.set(e.target, e.isIntersecting)), {threshold:.05});
+function watch(el){ if(el){ vio.observe(el); vmap.set(el, false); } return el; }
+const p1g = document.getElementById('p1g'), p1c = document.getElementById('p1c'), p1t = document.getElementById('p1t'), p1band = document.getElementById('p1band');
+const p2x = document.getElementById('p2x'), p2row = document.getElementById('p2row'), p2p = document.getElementById('p2p');
+const p3w = document.getElementById('p3w'), p3xd = document.getElementById('p3xd'), p3up = document.getElementById('p3up'), p3d = document.getElementById('p3d');
+const p4pa = document.getElementById('p4pa'), p4pb = document.getElementById('p4pb'), p4da = document.getElementById('p4da'), p4db = document.getElementById('p4db'), p4n = document.getElementById('p4n'), p4t = document.getElementById('p4t');
+const svg1 = watch(p1g && p1g.closest('svg'));
+const svg2 = watch(p2row && p2row.closest('svg'));
+const svg3 = watch(p3w && p3w.closest('svg'));
+const svg4 = watch(p4pa && p4pa.closest('svg'));
+watch(cv);
+
+/* plate II — build lattice occupants */
+const SITES = [60,100,140,180,220,260,300], SY = 205;
+let holeSite = 3; const occ = [];
+if(p2row){
+  for(let i=0;i<7;i++){
+    const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('cy', SY); c.setAttribute('r', i===holeSite ? 6.2 : 6.8);
+    c.setAttribute('class', i===holeSite ? 'fdoto' : 'fdot');
+    c.setAttribute('cx', SITES[i]);
+    c.dataset.x = SITES[i]; c.dataset.tx = SITES[i];
+    p2row.appendChild(c); occ.push(c);
+  }
+}
+let lastHop = 0;
+/* plate III/IV path lengths */
+const L3 = p3up ? p3up.getTotalLength() : 0;
+const La = p4pa ? p4pa.getTotalLength() : 0;
+const Lb = p4pb ? p4pb.getTotalLength() : 0;
+let p4prev = 0, braids = 0;
+
+const TSTART = performance.now();
+function liveTick(now){
+  try{
+  const t = (now - TSTART)/1000;
+  /* I — twist breathes; moiré cell and band respond */
+  if(svg1 && vmap.get(svg1)){
+    const th = 4.5 + 3.2*Math.sin(t*0.42);
+    p1g.setAttribute('transform', 'rotate(' + th.toFixed(2) + ' 200 110)');
+    p1c.setAttribute('r', Math.max(30, Math.min(86, 150/th)).toFixed(1));
+    p1t.textContent = 'θ = ' + th.toFixed(1) + '°';
+    const A = (th - 1.2)*2.1;
+    p1band.setAttribute('d', 'M 245 ' + (266 + A*0.5).toFixed(1) + ' Q 270 ' + (264 - A).toFixed(1) + ' 295 ' + (266 + A*0.7).toFixed(1) + ' Q 320 ' + (266 + A*1.1).toFixed(1) + ' 345 ' + (264 - A*0.4).toFixed(1));
+  }
+  /* II — exciton drifts; hole random-walks the Mott lattice */
+  if(svg2 && vmap.get(svg2)){
+    p2x.setAttribute('transform', 'translate(' + (42*Math.sin(t*0.45)).toFixed(1) + ' 0)');
+    if(t - lastHop > 0.85){
+      lastHop = t;
+      const dir = holeSite===0 ? 1 : (holeSite===6 ? -1 : (Math.random()<.5 ? -1 : 1));
+      const k = holeSite + dir;
+      const a = occ[holeSite], b = occ[k];
+      a.dataset.tx = SITES[k]; b.dataset.tx = SITES[holeSite];
+      occ[holeSite] = b; occ[k] = a; holeSite = k;
+    }
+    occ.forEach(c=>{
+      const x = parseFloat(c.dataset.x), tx = parseFloat(c.dataset.tx);
+      const nx = x + (tx - x)*0.16; c.dataset.x = nx; c.setAttribute('cx', nx.toFixed(1));
+    });
+    p2p.setAttribute('r', (3.5 + 2.2*Math.abs(Math.sin(t*2.4))).toFixed(2));
+    p2p.setAttribute('opacity', (0.35 + 0.65*Math.abs(Math.cos(t*2.4))).toFixed(2));
+  }
+  /* III — standing vacuum field; polariton state slides the branch */
+  if(svg3 && vmap.get(svg3)){
+    const ph = Math.cos(t*2.1);
+    let d = '';
+    for(let x=60; x<=340; x+=7){
+      const y = 105 + 22*Math.sin((x-60)/280*Math.PI*2)*ph;
+      d += (d ? ' L ' : 'M ') + x + ' ' + y.toFixed(1);
+    }
+    p3w.setAttribute('d', d);
+    p3xd.setAttribute('r', (3 + 2.6*Math.abs(ph)).toFixed(2));
+    if(L3){
+      const fr = (Math.sin(t*0.55) + 1)/2;
+      const pt = p3up.getPointAtLength(L3*fr);
+      p3d.setAttribute('cx', pt.x.toFixed(1)); p3d.setAttribute('cy', pt.y.toFixed(1));
+    }
+  }
+  /* IV — anyons braid; the dial accumulates 2π/3 per exchange */
+  if(svg4 && vmap.get(svg4) && La){
+    const fr = (t*0.12) % 1;
+    if(fr < p4prev) braids++;
+    p4prev = fr;
+    const pa = p4pa.getPointAtLength(La*fr);
+    const pb = p4pb.getPointAtLength(Lb*fr);
+    p4da.setAttribute('cx', pa.x.toFixed(1)); p4da.setAttribute('cy', pa.y.toFixed(1));
+    p4db.setAttribute('cx', pb.x.toFixed(1)); p4db.setAttribute('cy', pb.y.toFixed(1));
+    const ang = ((braids + fr)*240) % 360;
+    p4n.setAttribute('transform', 'rotate(' + ang.toFixed(1) + ')');
+    p4t.textContent = 'exchanges: ' + Math.floor((braids + fr)*2);
+  }
+  /* hero moiré — gentle drift when idle */
+  if(vmap.get(cv) && now - lastMoire > 5500){
+    drawMoire(Math.min(10, Math.max(1, parseFloat(twist.value) + 0.4*Math.sin(t*0.5))));
+  }
+  }catch(e){ /* one bad frame must never kill the loop */ }
+  requestAnimationFrame(liveTick);
+}
+if(!RM) requestAnimationFrame(liveTick);
+
 /* ============ PUBLICATIONS DATA ============ */
 const FIG = {
 mott: `<svg viewBox="0 0 380 300" xmlns="http://www.w3.org/2000/svg">
-<path d="M 30 80 Q 50 30 70 80 Q 90 130 110 80 Q 130 30 150 80 Q 170 130 190 80 Q 210 30 230 80 Q 250 130 270 80 Q 290 30 310 80" class="fl"/>
-<circle cx="50" cy="72" r="6" class="fdot"/><circle cx="130" cy="72" r="6" class="fdot"/><circle cx="210" cy="72" r="6" class="fdot"/><circle cx="290" cy="72" r="6" class="fdot"/>
-<circle cx="170" cy="106" r="6" class="fdoto"/>
-<path d="M 162 120 Q 130 138 98 120" class="fa"/><path d="M 178 120 Q 210 138 242 120" class="fa"/>
-<text x="30" y="22" class="ft">MOTT STATE · ν = 1 — electrons pinned, one hole loose</text>
-<text x="118" y="152" class="fta">the hole hops non-monogamously</text>
-<line x1="30" y1="180" x2="310 " y2="180" class="fad"/>
-<text x="318" y="184" class="ft">V_h ≈ flat</text>
-<line x1="40" y1="272" x2="40" y2="205" class="fl2"/><line x1="40" y1="272" x2="340" y2="272" class="fl2"/>
-<text x="24" y="202" class="ft">D</text><text x="344" y="276" class="ft">ν</text>
-<path d="M 50 266 Q 120 262 160 252 Q 185 244 196 214 Q 207 244 232 254 Q 280 268 330 266" class="fa"/>
-<line x1="196" y1="272" x2="196" y2="208" class="fl2" stroke-dasharray="2 4"/>
-<text x="204" y="218" class="fta">×10³ at ν = 1</text>
-<text x="50" y="292" class="ft">exciton diffusivity vs. lattice filling</text>
+<text x="20" y="18" class="ft">(a) interlayer excitons in the WSe₂ / WS₂ moiré landscape</text>
+<path d="M 24 46 Q 36 36 48 46 T 72 46 T 96 46 T 120 46 T 144 46 T 168 46" class="fl"/>
+<path d="M 24 82 Q 36 72 48 82 T 72 82 T 96 82 T 120 82 T 144 82 T 168 82" class="fl"/>
+<text x="176" y="49" class="ft">WSe₂ · e⁻</text>
+<text x="176" y="85" class="ft">WS₂ · h⁺</text>
+<g>
+  <circle cx="60" cy="38" r="4.5" class="fdot"/>
+  <circle cx="60" cy="74" r="4.5" class="fdoto"/>
+  <line x1="60" y1="42" x2="60" y2="70" class="fad"/>
+  <animateTransform attributeName="transform" type="translate" values="0 0; 48 0; 0 0" dur="7s" repeatCount="indefinite"/>
+</g>
+<circle cx="132" cy="38" r="4.5" class="fdot"/>
+<circle cx="132" cy="74" r="4.5" class="fdoto"/>
+<line x1="132" y1="42" x2="132" y2="70" class="fad"/>
+<text x="256" y="44" class="fta">permanent dipole</text>
+<text x="256" y="58" class="ft">trapped in moiré wells</text>
+<text x="20" y="114" class="ft">(b) ν &lt; 1 — monogamous</text>
+<circle cx="40" cy="144" r="6" class="fdot"/>
+<circle cx="76" cy="144" r="6" class="fdoto"/>
+<line x1="46" y1="144" x2="70" y2="144" class="fa"/>
+<circle cx="112" cy="144" r="6" class="fdot"/>
+<text x="30" y="170" class="ft">bound to one electron</text>
+<text x="206" y="114" class="ft">ν = 1 (Mott) — non-monogamous</text>
+<circle cx="216" cy="144" r="6" class="fdot"/>
+<circle cx="256" cy="144" r="6" class="fdot"/>
+<circle cx="296" cy="144" r="6" class="fdot"/>
+<circle cx="336" cy="144" r="6" class="fdot"/>
+<circle cy="144" r="5.2" class="fdoto"><animate attributeName="cx" values="236;276;316;276;236" keyTimes="0;.25;.5;.75;1" dur="3.4s" repeatCount="indefinite"/></circle>
+<text x="212" y="170" class="ft">one hole, shared — it hops freely</text>
+<text x="20" y="198" class="ft">(c) diffusivity vs. moiré filling</text>
+<line x1="40" y1="280" x2="40" y2="206" class="fl2"/>
+<line x1="40" y1="280" x2="350" y2="280" class="fl2"/>
+<text x="24" y="210" class="ft">D</text>
+<text x="354" y="284" class="ft">ν</text>
+<path d="M 50 274 Q 100 270 140 266 Q 175 260 196 220 Q 203 212 210 220 Q 226 260 252 268 Q 300 274 340 274" class="fa"/>
+<line x1="124" y1="280" x2="124" y2="272" class="fl2"/>
+<line x1="160" y1="280" x2="160" y2="272" class="fl2"/>
+<line x1="203" y1="280" x2="203" y2="274" class="fl2"/>
+<text x="118" y="294" class="ft">⅓</text>
+<text x="154" y="294" class="ft">⅔</text>
+<text x="199" y="294" class="ft">1</text>
+<text x="230" y="294" class="ft">← generalized Wigner crystals</text>
+<circle cx="203" cy="216" r="4" class="fdota"><animate attributeName="r" values="3;7;3" dur="2.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;.25;1" dur="2.2s" repeatCount="indefinite"/></circle>
+<text x="214" y="216" class="fta">×10³ — giant diffusion</text>
 </svg>`,
 twist: `<svg viewBox="0 0 380 300" xmlns="http://www.w3.org/2000/svg">
-<g class="fl"><path d="M 80 40 L 120 40 L 140 75 L 120 110 L 80 110 L 60 75 Z"/></g>
-<g class="fa" transform="rotate(14 100 75)"><path d="M 80 40 L 120 40 L 140 75 L 120 110 L 80 110 L 60 75 Z"/></g>
-<path d="M 158 60 A 40 40 0 0 1 158 92" class="fad"/>
-<text x="168" y="80" class="fta">θ</text>
-<text x="216" y="68" class="fts">twisted bilayer WSe₂</text>
-<text x="216" y="86" class="ft">K–K excitons + interlayer states</text>
-<line x1="50" y1="262" x2="50" y2="150" class="fl2"/><line x1="50" y1="262" x2="340" y2="262" class="fl2"/>
-<text x="32" y="148" class="ft">PL</text><text x="344" y="266" class="ft">E</text>
-<path d="M 70 258 Q 120 254 150 230 Q 170 210 182 232 Q 195 254 230 256 Q 290 258 330 258" class="fl"/>
-<path d="M 70 258 Q 110 254 134 226 Q 152 204 166 228 Q 180 252 220 255 Q 290 258 330 258" class="fa"/>
-<path d="M 196 196 L 162 196" class="fa" marker-end="none"/><text x="200" y="200" class="fta">red shift with θ</text>
-<text x="70" y="288" class="ft">emission spectra at two twist angles</text>
+<text x="20" y="18" class="ft">(a) twisted bilayer WSe₂</text>
+<g class="fl">
+  <path d="M 50 76 L 72 64 L 94 76 L 94 100 L 72 112 L 50 100 Z"/>
+  <path d="M 94 76 L 116 64 L 138 76 L 138 100 L 116 112 L 94 100 Z"/>
+  <path d="M 72 112 L 94 100 L 116 112 L 116 136 L 94 148 L 72 136 Z"/>
+</g>
+<g class="fa" opacity=".85">
+  <path d="M 50 76 L 72 64 L 94 76 L 94 100 L 72 112 L 50 100 Z"/>
+  <path d="M 94 76 L 116 64 L 138 76 L 138 100 L 116 112 L 94 100 Z"/>
+  <path d="M 72 112 L 94 100 L 116 112 L 116 136 L 94 148 L 72 136 Z"/>
+  <animateTransform attributeName="transform" type="rotate" values="6 94 106; 16 94 106; 6 94 106" dur="8s" repeatCount="indefinite"/>
+</g>
+<path d="M 152 86 A 36 36 0 0 1 150 118" class="fad"/>
+<text x="160" y="106" class="fta">θ</text>
+<text x="20" y="174" class="ft">large twist re-arranges the</text>
+<text x="20" y="188" class="ft">interlayer registry</text>
+<text x="206" y="18" class="ft">(b) photoluminescence vs. θ</text>
+<line x1="212" y1="148" x2="212" y2="34" class="fl2"/>
+<line x1="212" y1="148" x2="366" y2="148" class="fl2"/>
+<text x="196" y="38" class="ft">PL</text>
+<text x="358" y="160" class="ft">E</text>
+<path d="M 220 146 Q 252 142 268 120 Q 278 102 288 120 Q 298 142 330 146 L 362 146" class="fl"/>
+<g>
+  <path d="M 296 146 Q 312 138 320 122 Q 326 112 332 122 Q 340 138 354 146" class="fa"/>
+  <animateTransform attributeName="transform" type="translate" values="0 0; -24 0; 0 0" dur="6s" repeatCount="indefinite"/>
+</g>
+<text x="244" y="96" class="ft">K–K X⁰</text>
+<text x="240" y="170" class="fta">high-E peaks red-shift ←</text>
+<text x="20" y="216" class="ft">(c) at cryogenic T, lower-lying dark states quench them</text>
+<line x1="40" y1="248" x2="120" y2="248" class="fl"/>
+<text x="126" y="251" class="ft">bright X⁰</text>
+<line x1="40" y1="268" x2="120" y2="268" class="fad"/>
+<text x="126" y="272" class="fta">dark X_D — the sink</text>
+<path d="M 80 250 L 80 264" class="fa"/>
+<text x="232" y="252" class="fts">interlayer excitons</text>
+<text x="232" y="268" class="fts">set the shift</text>
 </svg>`,
 res2: `<svg viewBox="0 0 380 300" xmlns="http://www.w3.org/2000/svg">
-<text x="40" y="34" class="ft">odd N — centrosymmetric stack broken</text>
-<g class="fl"><rect x="60" y="50" width="120" height="13"/><rect x="60" y="72" width="120" height="13"/><rect x="60" y="94" width="120" height="13"/></g>
-<text x="190" y="84" class="ft">3L</text>
-<g class="fa"><rect x="60" y="150" width="120" height="13"/><rect x="60" y="172" width="120" height="13"/></g>
-<text x="190" y="168" class="fta">2L</text>
-<text x="40" y="140" class="ft">even N — inversion symmetry restored</text>
-<line x1="250" y1="262" x2="250" y2="40" class="fl2"/>
-<text x="258" y="46" class="ft">Raman shift</text>
-<line x1="262" y1="90" x2="330" y2="90" class="fl"/><line x1="262" y1="130" x2="330" y2="130" class="fl"/><line x1="262" y1="200" x2="330" y2="200" class="fl"/>
-<line x1="262" y1="166" x2="330" y2="166" class="fa"/>
-<text x="336" y="170" class="fta">B-mode</text>
-<text x="336" y="94" class="ft">A-modes</text>
-<text x="252" y="290" class="ft">extra modes flag layer parity</text>
-<text x="40" y="220" class="ft">DFT + experiment:</text>
-<text x="40" y="238" class="ft">crystal symmetry is</text>
-<text x="40" y="256" class="fta">layer-parity dependent</text>
+<text x="20" y="18" class="ft">(a) ReS₂ — distorted 1T phase, Re₄ chains</text>
+<rect x="24" y="32" width="150" height="26" class="fl"/>
+<polyline points="30,50 44,38 58,50 72,38 86,50 100,38 114,50 128,38 142,50 156,38 168,46" class="fl2"/>
+<rect x="24" y="64" width="150" height="26" class="fl"/>
+<polyline points="30,82 44,70 58,82 72,70 86,82 100,70 114,82 128,70 142,82 156,70 168,78" class="fl2"/>
+<g>
+  <rect x="24" y="96" width="150" height="26" class="fl"/>
+  <polyline points="30,114 44,102 58,114 72,102 86,114 100,102 114,114 128,102 142,114 156,102 168,110" class="fl2"/>
+  <animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.45;.5;.95;1" dur="8s" repeatCount="indefinite"/>
+</g>
+<text x="182" y="50" class="ft">L1</text>
+<text x="182" y="82" class="ft">L2</text>
+<g><text x="182" y="114" class="ft">L3</text><animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.45;.5;.95;1" dur="8s" repeatCount="indefinite"/></g>
+<g>
+  <circle cx="99" cy="77" r="3" class="fdoto"/>
+  <text x="208" y="80" class="fta">⊙ inversion center</text>
+  <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.45;.5;.95;1" dur="8s" repeatCount="indefinite"/>
+</g>
+<g><text x="24" y="146" class="fta">N = 3 · odd — inversion broken</text><animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;.45;.5;.95;1" dur="8s" repeatCount="indefinite"/></g>
+<g><text x="24" y="146" class="fta">N = 2 · even — centrosymmetric</text><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.45;.5;.95;1" dur="8s" repeatCount="indefinite"/></g>
+<text x="20" y="184" class="ft">(b) the Raman spectrum follows the parity</text>
+<line x1="40" y1="268" x2="40" y2="194" class="fl2"/>
+<line x1="40" y1="268" x2="350" y2="268" class="fl2"/>
+<text x="354" y="272" class="ft">cm⁻¹</text>
+<line x1="80" y1="268" x2="80" y2="212" class="fl"/>
+<line x1="150" y1="268" x2="150" y2="202" class="fl"/>
+<line x1="262" y1="268" x2="262" y2="218" class="fl"/>
+<text x="60" y="204" class="ft">A-type modes — always present</text>
+<g>
+  <line x1="196" y1="268" x2="196" y2="222" class="fa"/>
+  <line x1="310" y1="268" x2="310" y2="228" class="fa"/>
+  <text x="240" y="216" class="fta">B-type — even N only</text>
+  <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;.45;.5;.95;1" dur="8s" repeatCount="indefinite"/>
+</g>
+<text x="40" y="290" class="ft">first-principles DFT + experiment: crystal symmetry is layer-parity dependent</text>
 </svg>`,
 tuffc: `<svg viewBox="0 0 380 300" xmlns="http://www.w3.org/2000/svg">
-<rect x="40" y="120" width="70" height="44" class="fl"/><text x="56" y="146" class="ft">source</text>
-<rect x="270" y="120" width="70" height="44" class="fl"/><text x="286" y="146" class="ft">drain</text>
-<line x1="110" y1="164" x2="270" y2="164" class="fl"/>
-<rect x="120" y="96" width="140" height="20" class="fa"/><text x="146" y="110" class="fta">VO₂ · PTM</text>
-<rect x="120" y="68" width="140" height="20" class="fl"/><text x="142" y="82" class="ft">FE · NC layer</text>
-<rect x="120" y="40" width="140" height="20" class="fl2"/><text x="166" y="54" class="ft">gate</text>
-<line x1="40" y1="200" x2="340" y2="200" class="fl2"/>
-<line x1="70" y1="282" x2="70" y2="216" class="fl2"/><line x1="70" y1="282" x2="350" y2="282" class="fl2"/>
-<text x="52" y="216" class="ft">I_D</text><text x="354" y="286" class="ft">V_G</text>
-<path d="M 84 278 L 150 276 L 168 234 L 330 228" class="fa"/>
-<path d="M 330 232 L 186 238 L 170 278 L 84 280" class="fl"/>
-<text x="200" y="262" class="fta">SS &lt; 60 mV/dec · tunable hysteresis</text>
-<text x="84" y="296" class="ft">logic + memory in one hybrid device</text>
+<text x="20" y="18" class="ft">(a) ferroelectric-NC + phase-transition hybrid FET</text>
+<rect x="30" y="148" width="200" height="26" class="fl2"/>
+<text x="96" y="166" class="ft">Si body</text>
+<rect x="30" y="124" width="44" height="24" class="fl"/>
+<text x="38" y="140" class="ft">n+ S</text>
+<rect x="186" y="124" width="44" height="24" class="fl"/>
+<text x="192" y="140" class="ft">n+ D</text>
+<line x1="74" y1="148" x2="186" y2="148" class="fa"/>
+<rect x="84" y="106" width="92" height="14" class="fl2"/>
+<text x="100" y="117" class="ft">dielectric</text>
+<rect x="84" y="88" width="92" height="14" class="fa"/>
+<text x="90" y="99" class="fta">FE HfZrO — NC</text>
+<rect x="84" y="70" width="92" height="14" class="fl"/>
+<text x="112" y="81" class="ft">gate</text>
+<g>
+  <rect x="240" y="124" width="30" height="24" class="fa"/>
+  <animate attributeName="fill-opacity" values="0;.3;0" dur="3s" repeatCount="indefinite"/>
+</g>
+<rect x="240" y="124" width="30" height="24" class="fl"/>
+<text x="240" y="166" class="ft">VO₂ — PTM</text>
+<text x="240" y="180" class="fta">insulator ⇄ metal</text>
+<line x1="270" y1="136" x2="294" y2="136" class="fl"/>
+<text x="298" y="140" class="ft">D′</text>
+<text x="20" y="208" class="ft">(b) transfer — steep switching with a tunable memory window</text>
+<line x1="56" y1="284" x2="56" y2="220" class="fl2"/>
+<line x1="56" y1="284" x2="350" y2="284" class="fl2"/>
+<text x="38" y="224" class="ft">I_D</text>
+<text x="354" y="288" class="ft">V_G</text>
+<path d="M 70 280 L 150 278 L 168 234 L 332 228" class="fa"/>
+<path d="M 332 232 L 196 238 L 178 280 L 70 282" class="fl"/>
+<circle r="3.5" class="fdota"><animateMotion path="M 70 280 L 150 278 L 168 234 L 332 228 L 332 232 L 196 238 L 178 280 L 70 282 Z" dur="6s" repeatCount="indefinite"/></circle>
+<text x="210" y="260" class="fta">SS &lt; 60 mV/dec</text>
+<text x="210" y="274" class="ft">hysteresis = memory window</text>
 </svg>`,
 ted: `<svg viewBox="0 0 380 300" xmlns="http://www.w3.org/2000/svg">
-<path d="M 70 200 L 70 120 L 110 96 L 150 120 L 150 200" class="fl"/>
-<path d="M 70 120 L 110 96 L 150 120" class="fl"/>
-<rect x="58" y="86" width="104" height="22" rx="3" class="fa" transform="rotate(-2 110 97)"/>
-<text x="74" y="78" class="fta">NC wrap-around gate</text>
-<text x="92" y="178" class="ft">fin</text>
-<path d="M 40 222 L 200 222" class="fl2"/>
-<text x="40" y="244" class="ft">3D FinFET — body factor and</text>
-<text x="40" y="260" class="ft">transport factor tuned together</text>
-<line x1="240" y1="262" x2="240" y2="60" class="fl2"/><line x1="240" y1="262" x2="354" y2="262" class="fl2"/>
-<text x="222" y="64" class="ft">SS</text><text x="358" y="266" class="ft">I_D</text>
-<line x1="240" y1="120" x2="354" y2="120" class="fad"/>
-<text x="258" y="112" class="ft">60 mV/dec limit</text>
-<path d="M 252 96 Q 290 210 348 232" class="fa"/>
-<text x="262" y="240" class="fta">sub-60 across decades</text>
+<text x="20" y="18" class="ft">(a) FinFET with a ferroelectric NC wrap gate</text>
+<path d="M 60 196 L 60 110 L 92 92 L 124 110 L 124 196" class="fl"/>
+<path d="M 60 110 L 92 92 L 124 110" class="fl"/>
+<path d="M 92 92 L 92 178" class="fl2"/>
+<g>
+  <rect x="44" y="96" width="96" height="18" rx="2" class="fa" transform="rotate(-2 92 105)"/>
+  <animate attributeName="stroke-opacity" values="1;.45;1" dur="3.5s" repeatCount="indefinite"/>
+</g>
+<text x="148" y="102" class="fta">doped-HfO₂ FE layer</text>
+<text x="148" y="116" class="ft">amplifies surface potential</text>
+<text x="48" y="216" class="ft">fin — body factor and transport</text>
+<text x="48" y="230" class="ft">factor improved together</text>
+<text x="206" y="120" class="ft">(b) transfer characteristics</text>
+<line x1="220" y1="250" x2="220" y2="134" class="fl2"/>
+<line x1="220" y1="250" x2="362" y2="250" class="fl2"/>
+<text x="200" y="138" class="ft">log I_D</text>
+<text x="350" y="262" class="ft">V_G</text>
+<path d="M 230 242 Q 262 240 276 212 Q 288 186 322 178 L 354 174" class="fl2" stroke-dasharray="3 4"/>
+<path d="M 238 244 Q 262 242 270 204 Q 276 170 310 158 L 354 152" class="fa"/>
+<circle r="3.5" class="fdota"><animateMotion path="M 238 244 Q 262 242 270 204 Q 276 170 310 158 L 354 152 L 310 158 Q 276 170 270 204 Q 262 242 238 244" dur="5s" repeatCount="indefinite"/></circle>
+<text x="220" y="272" class="ft">baseline (dashed) vs. PT-NC FinFET</text>
+<text x="220" y="286" class="fta">SS ≪ 60 mV/dec · I_off ↓ · I_on ↑</text>
+<text x="20" y="262" class="ft">VO₂ (correlated) + doped-HfO₂</text>
+<text x="20" y="276" class="ft">(ferroelectric), simultaneously</text>
 </svg>`,
 mej: `<svg viewBox="0 0 380 300" xmlns="http://www.w3.org/2000/svg">
-<text x="40" y="34" class="ft">band bending with NC gate stack</text>
-<path d="M 50 80 L 150 80 Q 200 80 215 120 L 215 180 Q 215 215 260 215 L 340 215" class="fl"/>
-<path d="M 50 120 L 140 120 Q 185 120 200 155 L 200 200 Q 202 245 250 245 L 340 245" class="fl2"/>
-<path d="M 162 64 L 162 100" class="fa"/><text x="170" y="86" class="fta">steeper barrier collapse</text>
-<line x1="50" y1="160" x2="120" y2="160" class="fad"/><text x="54" y="152" class="ft">E_F</text>
-<line x1="70" y1="282" x2="70" y2="216" class="fl2"/><line x1="70" y1="282" x2="200 " y2="282" class="fl2"/>
-<text x="52" y="220" class="ft">I_D</text><text x="204" y="286" class="ft">V_G</text>
-<path d="M 80 278 L 120 274 L 134 232 L 190 228" class="fa"/>
-<text x="218" y="120" class="ft"> </text>
-<text x="226" y="278" class="fta">design guidelines for</text>
-<text x="226" y="294" class="fta">low-power logic</text>
+<text x="20" y="18" class="ft">(a) negative capacitance — internal amplification</text>
+<line x1="56" y1="32" x2="56" y2="116" class="fl"/>
+<line x1="44" y1="52" x2="68" y2="52" class="fl"/>
+<line x1="44" y1="60" x2="68" y2="60" class="fl"/>
+<text x="76" y="60" class="fta">C_FE &lt; 0</text>
+<line x1="44" y1="90" x2="68" y2="90" class="fl"/>
+<line x1="44" y1="98" x2="68" y2="98" class="fl"/>
+<text x="76" y="98" class="ft">C_MOS</text>
+<circle cx="56" cy="75" r="2.5" class="fdota"/>
+<g><text x="86" y="79" class="fta">ψ_s &gt; V_G</text><animate attributeName="opacity" values=".35;1;.35" dur="2.6s" repeatCount="indefinite"/></g>
+<text x="206" y="18" class="ft">(b) resulting transfer</text>
+<line x1="220" y1="116" x2="220" y2="40" class="fl2"/>
+<line x1="220" y1="116" x2="354" y2="116" class="fl2"/>
+<text x="204" y="44" class="ft">I_D</text>
+<text x="358" y="120" class="ft">V_G</text>
+<path d="M 228 112 L 264 110 L 276 62 L 344 56" class="fa"/>
+<text x="284" y="88" class="fta">sub-60 mV/dec</text>
+<text x="20" y="148" class="ft">(c) the channel barrier collapses faster than V_G alone allows — watch it breathe</text>
+<path class="fl" d="M 40 196 L 120 196 Q 165 196 180 224 L 180 248 Q 182 276 226 276 L 330 276">
+  <animate attributeName="d" values="M 40 196 L 120 196 Q 165 196 180 224 L 180 248 Q 182 276 226 276 L 330 276; M 40 196 L 120 196 Q 165 196 180 240 L 180 258 Q 182 282 226 282 L 330 282; M 40 196 L 120 196 Q 165 196 180 224 L 180 248 Q 182 276 226 276 L 330 276" dur="5s" repeatCount="indefinite"/>
+</path>
+<line x1="40" y1="242" x2="330" y2="242" class="fad"/>
+<text x="44" y="236" class="ft">E_F</text>
+<text x="336" y="280" class="ft">E_C</text>
+<text x="40" y="296" class="ft">source barrier · channel — design guidelines for low-power logic</text>
 </svg>`,
 teem: `<svg viewBox="0 0 380 300" xmlns="http://www.w3.org/2000/svg">
 <line x1="60" y1="262" x2="60" y2="50" class="fl2"/><line x1="60" y1="262" x2="350" y2="262" class="fl2"/>
 <text x="42" y="54" class="ft">I_D</text><text x="354" y="266" class="ft">V_G</text>
-<path d="M 80 258 L 150 254 L 172 130 L 330 110" class="fl"/>
-<path d="M 80 258 L 138 254 L 158 130 L 330 104" class="fa"/>
-<path d="M 80 258 L 126 252 L 146 130 L 330 98" class="fl2"/>
-<text x="120" y="106" class="ft">V_D ↑</text>
-<path d="M 168 200 L 148 200" class="fa"/><text x="176" y="204" class="fta">ΔV_T — DIBL</text>
-<text x="64" y="290" class="ft">threshold shift across drain bias — physics of V_T in NC-FETs</text>
+<path d="M 80 258 L 168 254 L 190 120 L 344 100" class="fl2"/>
+<path d="M 80 258 L 154 253 L 176 118 L 344 94" class="fl"/>
+<path d="M 80 258 L 140 252 L 162 116 L 344 88" class="fa"/>
+<text x="296" y="82" class="fta">V_D = 1.0 V</text>
+<text x="296" y="110" class="ft">V_D = 0.5 V</text>
+<text x="296" y="128" class="ft">V_D = 0.05 V</text>
+<g>
+  <line x1="162" y1="262" x2="162" y2="116" class="fad"/>
+  <animate attributeName="opacity" values="1;.15;1" dur="3s" repeatCount="indefinite"/>
+</g>
+<line x1="190" y1="262" x2="190" y2="120" class="fl2" stroke-dasharray="2 3"/>
+<path d="M 165 240 L 187 240" class="fa"/>
+<text x="134" y="234" class="fta">ΔV_T</text>
+<text x="22" y="18" class="ft">transfer curves vs. drain bias — extracting V_T and DIBL</text>
+<text x="64" y="290" class="ft">DIBL = ΔV_T / ΔV_D — the NC layer reshapes V_T and its drain sensitivity</text>
 </svg>`
 };
 const PUBS = [
-{tag:'SCIENCE', cloth:'#7E2A23', year:'2026', title:'Giant exciton diffusion near an electronic Mott insulator', ref:'Science 391, 394–398 (2026)', doi:'https://www.science.org/doi/10.1126/science.ads5266', fig:FIG.mott, figcap:'Fig. — Mott state: N electrons, one free hole. The exciton’s bond hops non-monogamously; the hole potential is nearly flat, and diffusion grows by orders of magnitude.', abstract:'We embed a dilute gas of interlayer excitons in a moiré WSe₂/WS₂ system and tune the fermionic populations. This system hosts several electronic correlated states including generalized Wigner crystals and a Mott insulator. Surprisingly, near the Mott state we observe an orders-of-magnitude increase in exciton diffusion — an unexpected enhancement in an insulating state. This results from a characteristic change in exciton coupling from monogamous to non-monogamous behavior, where a single hole hops freely between many electrons.'},
-{tag:'ACS OMEGA', cloth:'#8A5F28', year:'2022', title:'Twist dependent tuning of excitonic emissions in bilayer WSe₂', ref:'ACS Omega 7(7), 6412–6418 (2022)', doi:'https://doi.org/10.1021/acsomega.1c07219', fig:FIG.twist, figcap:'Fig. — the twist angle between WSe₂ layers shifts the photoluminescence spectrum; interlayer excitons are implicated.', abstract:'When two vertically stacked WSe₂ layers are rotated relative to each other, intriguing physics emerges. With large twist angles, we observe a non-intuitive red shift of higher energy peaks around the K-K exciton peak. These high energy peaks remain unresolved at cryogenic temperatures as they get quenched due to lower lying dark exciton states. We investigate the reason for such PL shift and indicate the role of interlayer excitons.'},
-{tag:'PHYS REV B', cloth:'#2E4763', year:'2022', title:'Layer parity dependent Raman-active modes and crystal symmetry in ReS₂', ref:'Phys. Rev. B 105, 045416 (2022)', doi:'https://doi.org/10.1103/PhysRevB.105.045416', fig:FIG.res2, figcap:'Fig. — even-layered ReS₂ shows additional B-type Raman modes that odd layers lack: a clean spectroscopic flag of layer parity.', abstract:'Several misconceptions prevailing in the literature regarding crystal symmetry, layer-dependent vibrational characteristics, and interlayer coupling of ReS₂ are resolved. Layer dependency may not be present due to comparatively weak interlayer coupling, but layer-parity dependency is present in the crystal symmetry confirmed by First-principles DFT calculations. Our experiments and DFT show a clear Raman signature of inversion symmetry breaking in odd-layer (except monolayer) ReS₂.'},
-{tag:'IEEE TUFFC', cloth:'#2F5240', year:'2022', title:'Ferroelectric Negative Capacitance Assisted Phase-Transition Field Effect Transistor', ref:'IEEE Trans. Ultrason. Ferroelectr. Freq. Control 69(2), 863–869 (2022)', doi:'https://doi.org/10.1109/TUFFC.2021.3130194', fig:FIG.tuffc, figcap:'Fig. — NC + VO₂ hybrid FET schematic and its I–V: sub-60 mV/dec switching with precisely tunable hysteresis.', abstract:'Based on previous work, we further investigate this hybrid device. Tuning the operating range of each component (NC and PTM) along with proper capacitance matching is necessary. Once achieved, interesting device behavior is seen — hysteresis, SS, drain-coupling, and differential gain can be precisely controlled at different operating voltage regions. This hybrid device is capable of working in both logic as well as memory applications.'},
-{tag:'IEEE TED', cloth:'#4D3A5E', year:'2021', title:'Design and Analysis of Improved Phase-Transition FinFET Utilizing Negative Capacitance', ref:'IEEE Trans. Electron Devices 68(2), 853–859 (2021)', doi:'https://doi.org/10.1109/TED.2020.3043222', fig:FIG.ted, figcap:'Fig. — 3D FinFET with a ferroelectric NC wrap-around gate: ultra-low subthreshold swing with higher on-current than baseline.', abstract:'A novel hybrid FET design for low-power and high-speed operation is introduced. By simultaneous operation of strongly correlated material VO₂ and ferroelectric material doped-HfO₂, we successfully tune both the body and transport factor of sub-threshold swing. This results in ultra-low SS with much lower off-current and higher on-current compared to baseline FET.'},
-{tag:'MICROELEC. J.', cloth:'#6E4A2F', year:'2022', title:'Insights into the operation of negative capacitance FinFET for low power logic applications', ref:'Microelectronics Journal 119, 105321 (2022)', doi:'https://doi.org/10.1016/j.mejo.2021.105321', fig:FIG.mej, figcap:'Fig. — band bending under the NC gate stack and the resulting steep transfer characteristic.', abstract:'Analytical and simulation-based insights into the operation of negative capacitance FinFET are provided for low-power logic applications. The study examines the interplay between ferroelectric negative capacitance and conventional device physics, revealing important design guidelines for achieving sub-60 mV/decade sub-threshold swing while maintaining adequate on-current and minimizing short-channel effects.'},
-{tag:'TRANS. EEM', cloth:'#3A3F45', year:'2021', title:'Insight into Threshold Voltage and Drain Induced Barrier Lowering in Negative Capacitance FET', ref:'Trans. Electr. Electron. Mater. 22, 267–273 (2021)', doi:'https://doi.org/10.1007/s42341-020-00230-y', fig:FIG.teem, figcap:'Fig. — transfer curves across drain bias: the threshold-voltage shift captures DIBL behavior in NC-FETs.', abstract:'A detailed analysis of threshold voltage behavior and drain-induced barrier lowering (DIBL) in negative capacitance field-effect transistors is presented. The study provides physical insights into how the ferroelectric negative capacitance layer modifies the threshold voltage characteristics and short-channel behavior, offering practical guidelines for device optimization in low-power digital circuit applications.'}
+{tag:'SCIENCE', cloth:'#7E2A23', year:'2026', title:'Giant exciton diffusion near an electronic Mott insulator', ref:'Science 391, 394–398 (2026)', doi:'https://www.science.org/doi/10.1126/science.ads5266', fig:FIG.mott, figcap:'Fig. — (a) dipolar interlayer excitons drift through the moiré wells; (b) monogamous vs. non-monogamous binding; (c) diffusivity vs. filling — ×10³ at the Mott state, with the generalized-Wigner fractions marked.', abstract:'We embed a dilute gas of interlayer excitons in a moiré WSe₂/WS₂ system and tune the fermionic populations. This system hosts several electronic correlated states including generalized Wigner crystals and a Mott insulator. Surprisingly, near the Mott state we observe an orders-of-magnitude increase in exciton diffusion — an unexpected enhancement in an insulating state. This results from a characteristic change in exciton coupling from monogamous to non-monogamous behavior, where a single hole hops freely between many electrons.'},
+{tag:'ACS OMEGA', cloth:'#8A5F28', year:'2022', title:'Twist dependent tuning of excitonic emissions in bilayer WSe₂', ref:'ACS Omega 7(7), 6412–6418 (2022)', doi:'https://doi.org/10.1021/acsomega.1c07219', fig:FIG.twist, figcap:'Fig. — (a) twisted bilayer, θ in motion; (b) the high-energy PL peaks red-shift with twist; (c) at cryogenic T the lower-lying dark excitons quench them. Interlayer excitons set the shift.', abstract:'When two vertically stacked WSe₂ layers are rotated relative to each other, intriguing physics emerges. With large twist angles, we observe a non-intuitive red shift of higher energy peaks around the K-K exciton peak. These high energy peaks remain unresolved at cryogenic temperatures as they get quenched due to lower lying dark exciton states. We investigate the reason for such PL shift and indicate the role of interlayer excitons.'},
+{tag:'PHYS REV B', cloth:'#2E4763', year:'2022', title:'Layer parity dependent Raman-active modes and crystal symmetry in ReS₂', ref:'Phys. Rev. B 105, 045416 (2022)', doi:'https://doi.org/10.1103/PhysRevB.105.045416', fig:FIG.res2, figcap:'Fig. — (a) ReS₂ stacks with Re₄ chains — watch the third layer come and go: the inversion center exists only at even N; (b) the B-type Raman modes switch on with it.', abstract:'Several misconceptions prevailing in the literature regarding crystal symmetry, layer-dependent vibrational characteristics, and interlayer coupling of ReS₂ are resolved. Layer dependency may not be present due to comparatively weak interlayer coupling, but layer-parity dependency is present in the crystal symmetry confirmed by First-principles DFT calculations. Our experiments and DFT show a clear Raman signature of inversion symmetry breaking in odd-layer (except monolayer) ReS₂.'},
+{tag:'IEEE TUFFC', cloth:'#2F5240', year:'2022', title:'Ferroelectric Negative Capacitance Assisted Phase-Transition Field Effect Transistor', ref:'IEEE Trans. Ultrason. Ferroelectr. Freq. Control 69(2), 863–869 (2022)', doi:'https://doi.org/10.1109/TUFFC.2021.3130194', fig:FIG.tuffc, figcap:'Fig. — (a) FE-NC gate stack with a VO₂ phase-transition element pulsing between insulator and metal; (b) the dot traces the hysteretic, sub-60 mV/dec transfer loop — logic and memory in one device.', abstract:'Based on previous work, we further investigate this hybrid device. Tuning the operating range of each component (NC and PTM) along with proper capacitance matching is necessary. Once achieved, interesting device behavior is seen — hysteresis, SS, drain-coupling, and differential gain can be precisely controlled at different operating voltage regions. This hybrid device is capable of working in both logic as well as memory applications.'},
+{tag:'IEEE TED', cloth:'#4D3A5E', year:'2021', title:'Design and Analysis of Improved Phase-Transition FinFET Utilizing Negative Capacitance', ref:'IEEE Trans. Electron Devices 68(2), 853–859 (2021)', doi:'https://doi.org/10.1109/TED.2020.3043222', fig:FIG.ted, figcap:'Fig. — (a) fin wrapped by a doped-HfO₂ ferroelectric gate; (b) steeper-than-Boltzmann switching against the dashed baseline — lower I_off, higher I_on.', abstract:'A novel hybrid FET design for low-power and high-speed operation is introduced. By simultaneous operation of strongly correlated material VO₂ and ferroelectric material doped-HfO₂, we successfully tune both the body and transport factor of sub-threshold swing. This results in ultra-low SS with much lower off-current and higher on-current compared to baseline FET.'},
+{tag:'MICROELEC. J.', cloth:'#6E4A2F', year:'2022', title:'Insights into the operation of negative capacitance FinFET for low power logic applications', ref:'Microelectronics Journal 119, 105321 (2022)', doi:'https://doi.org/10.1016/j.mejo.2021.105321', fig:FIG.mej, figcap:'Fig. — (a) a negative series capacitance amplifies the surface potential; (b) the resulting sub-60 mV/dec transfer; (c) the channel barrier collapsing under NC action.', abstract:'Analytical and simulation-based insights into the operation of negative capacitance FinFET are provided for low-power logic applications. The study examines the interplay between ferroelectric negative capacitance and conventional device physics, revealing important design guidelines for achieving sub-60 mV/decade sub-threshold swing while maintaining adequate on-current and minimizing short-channel effects.'},
+{tag:'TRANS. EEM', cloth:'#3A3F45', year:'2021', title:'Insight into Threshold Voltage and Drain Induced Barrier Lowering in Negative Capacitance FET', ref:'Trans. Electr. Electron. Mater. 22, 267–273 (2021)', doi:'https://doi.org/10.1007/s42341-020-00230-y', fig:FIG.teem, figcap:'Fig. — transfer curves at three drain biases; the threshold shift ΔV_T quantifies drain-induced barrier lowering in NC-FETs.', abstract:'A detailed analysis of threshold voltage behavior and drain-induced barrier lowering (DIBL) in negative capacitance field-effect transistors is presented. The study provides physical insights into how the ferroelectric negative capacitance layer modifies the threshold voltage characteristics and short-channel behavior, offering practical guidelines for device optimization in low-power digital circuit applications.'}
 ];
 
 /* ============ BOOK MODAL ============ */
@@ -1317,6 +1584,7 @@ function openBook(i){
       '</div>' +
       '<div class="cback"></div>' +
     '</div>';
+  if(RM) bookbody.querySelectorAll('animate,animateTransform,animateMotion').forEach(a=>a.remove());
   lastFocus = document.activeElement;
   veil.classList.add('open');
   document.body.style.overflow = 'hidden';
