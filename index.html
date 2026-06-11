@@ -302,6 +302,8 @@ blockquote.pull small{display:block; margin-top:10px; font-family:var(--mono); f
 }
 .vol .vyear{font-family:var(--mono); font-size:8px; color:var(--foil); opacity:.85}
 .vol.tall{height:268px; width:62px}
+.vdivider{width:1px; align-self:stretch; background:var(--line); margin:0 12px; flex:0 0 auto}
+.shelfnote{font-family:var(--mono); font-size:9.5px; letter-spacing:.08em; color:var(--muted); margin-top:26px; line-height:1.7}
 .shelfhint{font-family:var(--mono); font-size:10px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-top:40px; display:flex; align-items:center; gap:10px}
 .shelfhint::before{content:"☞"; font-size:14px; color:var(--accent)}
 
@@ -620,7 +622,7 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
           <h3>Excitons &amp; Bose–Fermi mixtures — when bosons live on a correlated lattice</h3>
           <div class="prose">
             <p>Shine light on these stacks and you create interlayer excitons: an electron in one layer bound to a hole in the other. They are long-lived, carry a permanent electric dipole, and wander the moiré landscape as interacting bosons. But calling them "bosons" undersells them — they are composite particles, and their fermionic insides leak into everything: their interactions, their statistics, their dynamics.</p>
-            <p>The regime I find irresistible is the Bose–Fermi Hubbard mixture: a dilute gas of excitons threading a correlated electron lattice, each species reshaping the other. In our recent work (<em>Science</em>, 2026) we watched exciton diffusion grow by orders of magnitude precisely at the Mott state — an insulator, of all places — because the exciton's hole stops being monogamous to a single electron and starts hopping freely among many. Transport, valley polarization, and nonequilibrium response of these dressed bosons are exactly the observables where correlation physics announces itself.</p>
+            <p>The regime I find irresistible is the Bose–Fermi Hubbard mixture: a dilute gas of excitons threading a correlated electron lattice, each species reshaping the other. In our recent work (<em>Science</em>, 2026) we watched exciton diffusion grow by orders of magnitude precisely at the Mott state — an insulator, of all places — because the exciton's hole stops being monogamous to a single electron and starts hopping freely among many. It builds on our group's earlier demonstration of an <em>excitonic</em> Mott insulator in the same platform (<em>Nat. Commun.</em>, 2024), where the bosons themselves jam into incompressibility. Transport, valley polarization, and nonequilibrium response of these dressed bosons are exactly the observables where correlation physics announces itself.</p>
           </div>
           <div class="tagrow"><span class="tag">interlayer excitons</span><span class="tag">Bose–Fermi Hubbard</span><span class="tag">exciton transport</span><span class="tag">polaron physics</span></div>
         </div>
@@ -632,10 +634,10 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
             <text x="40" y="48" class="ft">WSe₂</text>
             <text x="40" y="130" class="ft">WS₂</text>
             <g id="p2x">
-              <circle cx="145" cy="60" r="6" class="fdot"/>
-              <text x="139" y="44" class="ft">e⁻</text>
-              <circle cx="145" cy="110" r="6" class="fdoto"/>
-              <text x="139" y="132" class="fta">h⁺</text>
+              <circle cx="145" cy="60" r="6" class="fdoto"/>
+              <text x="139" y="44" class="fta">h⁺</text>
+              <circle cx="145" cy="110" r="6" class="fdot"/>
+              <text x="139" y="132" class="ft">e⁻</text>
               <ellipse cx="145" cy="85" rx="34" ry="33" class="fad"/>
             </g>
             <text x="262" y="80" class="fts">interlayer exciton</text>
@@ -662,9 +664,9 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
           <h3>Light-induced phases — quantum optics as a knob on matter</h3>
           <div class="prose">
             <p>Light is usually the probe. I want it to be the control. Strong spin–orbit coupling in TMDs locks spin to valley, and the two valleys answer to opposite circular polarizations — so a beam of light can address a pseudospin natively, no magnets required. Drive coherently and you can dress bands, split valleys via the optical Stark effect, and steer magnetic order on femtosecond timescales: Floquet engineering with a purpose.</p>
-            <p>Push further and you don't even need the drive. Place the crystal in an optical cavity and the vacuum itself — the mere possibility of a photon — hybridizes with excitons to form polaritons, part light, part matter, with interactions inherited from one parent and speed from the other. Cavity-dressed correlated states, polariton fluids riding on Mott insulators, optical access to phases that equilibrium forbids: this is the bosonic-and-fermionic playground my Ph.D. lives in.</p>
+            <p>Push further and you don't even need the drive. Place the crystal in an optical cavity and the vacuum itself — the mere possibility of a photon — hybridizes with excitons to form polaritons, part light, part matter. Cavity-dressed correlated states and polariton fluids riding on Mott insulators are where this field is heading, and I follow that frontier closely. My own work lives one step before it: using light to create, probe, and steer Bose–Fermi mixtures out of equilibrium — pumping bosons into a fermionic lattice, driving the balance between them, and watching transport and order respond in real time.</p>
           </div>
-          <div class="tagrow"><span class="tag">cavity QED</span><span class="tag">polaritons</span><span class="tag">Floquet engineering</span><span class="tag">valley optics</span></div>
+          <div class="tagrow"><span class="tag">nonequilibrium dynamics</span><span class="tag">optical control</span><span class="tag">Floquet engineering</span><span class="tag">valley optics</span></div>
         </div>
         <figure class="plate rv">
           <div class="platehead"><span>Plate III — dressing matter with light</span><b>§ 02.3</b></div>
@@ -704,7 +706,7 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
           <h3>The fractional frontier — anyons &amp; quantum statistics beyond the binary</h3>
           <div class="prose">
             <p>Every particle you've ever met is a boson or a fermion. In two dimensions, nature permits a third answer. Moiré platforms have begun hosting fractional quantum anomalous Hall states — fractional Chern insulators at zero magnetic field — whose elementary excitations are anyons: quasiparticles carrying fractional charge and exchange statistics that interpolate between the two familiar families. Swap two of them and the wavefunction picks up a phase that is neither +1 nor −1; their history is braided into their quantum state.</p>
-            <p>This is where my two worlds collide. The same valley and spin degrees of freedom, the same optical probes, the same excitonic sensors I use on Mott physics can be turned on fractional states: how do anyons scatter, propagate, and respond out of equilibrium? Can an exciton feel fractional charge? The phase diagram of moiré matter is still being written — and the strangest chapters, I suspect, are the unwritten ones.</p>
+            <p>This is where my two worlds collide. The same valley and spin degrees of freedom, the same optical probes, the same excitonic sensors I use on Mott physics can be turned on topological states — in work I contributed to, our group read out quantum anomalous Hall order in twisted WSe₂ purely optically, through attractive-polaron spectroscopy (<em>PRX</em>, 2026). The fractional rung of that ladder is the open question: how do anyons scatter, propagate, and respond out of equilibrium? Can an exciton feel fractional charge? The phase diagram of moiré matter is still being written — and the strangest chapters, I suspect, are the unwritten ones.</p>
           </div>
           <div class="tagrow"><span class="tag">FQAH states</span><span class="tag">anyons</span><span class="tag">fractional Chern insulators</span><span class="tag">braiding</span></div>
         </div>
@@ -762,21 +764,40 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
               <h4><b>A·02</b>Existing frameworks</h4>
               <p>Two great traditions divide the literature. In the dualist line: <a href="https://archive.org/details/thesamkhyaphilos00sinhuoft/mode/2up" target="_blank" rel="noopener">Samkhya philosophy</a> (pure consciousness, <em>Purusa</em>, separate from <em>Prakriti</em> — matter, including mind), <a href="https://archive.org/details/history-of-the-dvaita-school-of-vedanta-and-its-literature-b.-n.-k.-sharma/mode/2up" target="_blank" rel="noopener">Dvaita Vedanta</a>, and Descartes' mind–body duality. In the monist line: <a href="https://archive.org/details/advaitavedantaanintroductionarvindsharmamlbd_202004/mode/2up" target="_blank" rel="noopener">Advaita Vedanta</a> (only <em>brahman</em>, as in the Mandukya Upanishad), materialism (brain interactions create everything), and quantum theories of mind — most famously the <a href="https://doi.org/10.1016/j.plrev.2013.08.002" target="_blank" rel="noopener">Orch OR theory</a> of Penrose &amp; Hameroff, built on quantum processes in neuronal microtubules. Lately, many scientists have drifted toward <a href="https://philosophynow.org/issues/121/The_Case_For_Panpsychism" target="_blank" rel="noopener">panpsychism</a>: everything is conscious, and emergent consciousness of life can be studied from conscious elementary constituents.</p>
               <figure class="dgm">
-                <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="20" y="26" width="160" height="86" rx="3" class="fl2"/>
-                  <text x="36" y="18" class="ft">DVAITA · DUALISM</text>
-                  <circle cx="70" cy="64" r="22" class="fl"/>
-                  <circle cx="132" cy="64" r="22" class="fa"/>
-                  <text x="48" y="68" class="ft">mind</text>
-                  <text x="116" y="68" class="fta">body</text>
-                  <text x="40" y="102" class="ft">two separate realities</text>
-                  <rect x="220" y="26" width="160" height="86" rx="3" class="fl2"/>
-                  <text x="236" y="18" class="ft">ADVAITA · MONISM</text>
-                  <circle cx="300" cy="64" r="26" class="fl"/>
-                  <circle cx="300" cy="64" r="13" class="fa"/>
-                  <text x="266" y="104" class="ft">one underlying reality</text>
-                  <text x="192" y="68" class="fts">vs</text>
-                  <text x="120" y="140" class="ft">↑ panpsychism — a rising third reading</text>
+                <svg viewBox="0 0 400 185" xmlns="http://www.w3.org/2000/svg">
+                  <text x="32" y="20" class="ft">DVAITA · DUALISM</text>
+                  <g>
+                    <circle cx="66" cy="64" r="23" class="fl"/>
+                    <text x="49" y="68" class="ft">mind</text>
+                    <animateTransform attributeName="transform" type="translate" values="0 0; -6 0; 0 0" dur="7s" repeatCount="indefinite"/>
+                  </g>
+                  <g>
+                    <circle cx="126" cy="64" r="23" class="fa"/>
+                    <text x="111" y="68" class="fta">body</text>
+                    <animateTransform attributeName="transform" type="translate" values="0 0; 6 0; 0 0" dur="7s" repeatCount="indefinite"/>
+                  </g>
+                  <text x="32" y="112" class="ft">two realities — forever apart</text>
+                  <line x1="200" y1="20" x2="200" y2="100" class="fl2"/>
+                  <text x="193" y="64" class="fts">vs</text>
+                  <text x="248" y="20" class="ft">ADVAITA · MONISM</text>
+                  <circle cx="310" cy="64" r="30" class="fl"/>
+                  <text x="288" y="110" class="ft" style="display:none"></text>
+                  <circle cx="310" cy="64" r="13" class="fa">
+                    <animate attributeName="r" values="13;28;13" dur="7s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="1;.25;1" dur="7s" repeatCount="indefinite"/>
+                  </circle>
+                  <text x="248" y="112" class="ft">one reality — brahman;</text>
+                  <text x="248" y="125" class="ft">the seeming two dissolve</text>
+                  <line x1="32" y1="140" x2="368" y2="140" class="fl2" stroke-dasharray="2 5"/>
+                  <g><circle cx="70" cy="158" r="2.4" class="fdota"><animate attributeName="opacity" values=".15;1;.15" dur="3.6s" begin="0s" repeatCount="indefinite"/></circle></g>
+                  <g><circle cx="105" cy="158" r="2.4" class="fdota"><animate attributeName="opacity" values=".15;1;.15" dur="3.6s" begin=".45s" repeatCount="indefinite"/></circle></g>
+                  <g><circle cx="140" cy="158" r="2.4" class="fdota"><animate attributeName="opacity" values=".15;1;.15" dur="3.6s" begin=".9s" repeatCount="indefinite"/></circle></g>
+                  <g><circle cx="175" cy="158" r="2.4" class="fdota"><animate attributeName="opacity" values=".15;1;.15" dur="3.6s" begin="1.35s" repeatCount="indefinite"/></circle></g>
+                  <g><circle cx="210" cy="158" r="2.4" class="fdota"><animate attributeName="opacity" values=".15;1;.15" dur="3.6s" begin="1.8s" repeatCount="indefinite"/></circle></g>
+                  <g><circle cx="245" cy="158" r="2.4" class="fdota"><animate attributeName="opacity" values=".15;1;.15" dur="3.6s" begin="2.25s" repeatCount="indefinite"/></circle></g>
+                  <g><circle cx="280" cy="158" r="2.4" class="fdota"><animate attributeName="opacity" values=".15;1;.15" dur="3.6s" begin="2.7s" repeatCount="indefinite"/></circle></g>
+                  <g><circle cx="315" cy="158" r="2.4" class="fdota"><animate attributeName="opacity" values=".15;1;.15" dur="3.6s" begin="3.15s" repeatCount="indefinite"/></circle></g>
+                  <text x="58" y="180" class="ft">panpsychism — everything faintly conscious · a rising third way</text>
                 </svg>
                 <figcaption>Two opposing traditions on the nature of consciousness — and the modern drift between them.</figcaption>
               </figure>
@@ -784,40 +805,84 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
               <h4><b>A·03</b>What consciousness is not</h4>
               <p>Questions like <em>"how reddish is the red?"</em> mislead the notion. Awareness of surroundings is something our individual minds, created by our brains, can handle. Note that everything around us is, at bottom, a field — matter fields, EM fields — and quantum theory makes it all probabilistic. That is where consciousness enters: the fundamental entity that sources life, defines the future, connects minds, makes dreaming possible. It is <em>not</em> the waking state. Neuroscientists can switch specific feelings on and off by stimulating points in the brain — but tampering with a circuit component doesn't make that component the power supply. The circuit still runs on something.</p>
               <figure class="dgm">
-                <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="120" y="12" width="160" height="26" rx="13" class="fa"/>
-                  <text x="148" y="29" class="fta">SOURCE · the field</text>
-                  <line x1="200" y1="38" x2="200" y2="58" class="fad"/>
-                  <rect x="40" y="58" width="320" height="64" rx="4" class="fl2"/>
-                  <text x="52" y="52" class="ft">BRAIN / MIND — the circuit</text>
-                  <rect x="56" y="72" width="52" height="34" rx="3" class="fl"/><text x="66" y="92" class="ft">vision</text>
-                  <rect x="118" y="72" width="52" height="34" rx="3" class="fl"/><text x="127" y="92" class="ft">touch</text>
-                  <rect x="180" y="72" width="58" height="34" rx="3" class="fl"/><line x1="184" y1="76" x2="234" y2="102" class="fa"/><line x1="234" y1="76" x2="184" y2="102" class="fa"/><text x="186" y="92" class="ft">emotion</text>
-                  <rect x="248" y="72" width="52" height="34" rx="3" class="fl"/><text x="253" y="92" class="ft">memory</text>
-                  <rect x="310" y="72" width="42" height="34" rx="3" class="fl"/><text x="316" y="92" class="ft">motion</text>
-                  <text x="96" y="140" class="ft">tamper with a component — the circuit still runs · source ≠ component</text>
+                <svg viewBox="0 0 400 190" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="120" y="10" width="160" height="26" rx="13" class="fa"/>
+                  <text x="143" y="27" class="fta">SOURCE — the field</text>
+                  <line x1="200" y1="36" x2="200" y2="62" class="fa" stroke-dasharray="3 4">
+                    <animate attributeName="stroke-dashoffset" from="14" to="0" dur="1s" repeatCount="indefinite"/>
+                  </line>
+                  <text x="208" y="54" class="ft">coupling</text>
+                  <rect x="34" y="62" width="332" height="78" rx="5" class="fl2"/>
+                  <text x="44" y="56" class="ft">BRAIN / MIND — the circuit</text>
+                  <line x1="54" y1="80" x2="346" y2="80" class="fl" stroke-dasharray="2 5">
+                    <animate attributeName="stroke-dashoffset" from="14" to="0" dur=".9s" repeatCount="indefinite"/>
+                  </line>
+                  <line x1="80" y1="80" x2="80" y2="96" class="fl2"/>
+                  <rect x="56" y="96" width="48" height="30" rx="3" class="fl"/><text x="64" y="114" class="ft">vision</text>
+                  <line x1="143" y1="80" x2="143" y2="96" class="fl2"/>
+                  <rect x="119" y="96" width="48" height="30" rx="3" class="fl"/><text x="128" y="114" class="ft">touch</text>
+                  <line x1="206" y1="80" x2="206" y2="96" class="fl2" opacity=".25"/>
+                  <rect x="182" y="96" width="48" height="30" rx="3" class="fl" opacity=".45"/>
+                  <text x="187" y="114" class="ft" opacity=".5">emotion</text>
+                  <g class="fa">
+                    <line x1="186" y1="100" x2="226" y2="122"/>
+                    <line x1="226" y1="100" x2="186" y2="122"/>
+                    <animate attributeName="opacity" values="1;.2;1" dur="1.6s" repeatCount="indefinite"/>
+                  </g>
+                  <line x1="269" y1="80" x2="269" y2="96" class="fl2"/>
+                  <rect x="245" y="96" width="48" height="30" rx="3" class="fl"/><text x="250" y="114" class="ft">memory</text>
+                  <line x1="332" y1="80" x2="332" y2="96" class="fl2"/>
+                  <rect x="308" y="96" width="48" height="30" rx="3" class="fl"/><text x="315" y="114" class="ft">motion</text>
+                  <text x="44" y="160" class="ft">stimulate or silence one module — the bus still hums, the supply still feeds it</text>
+                  <text x="44" y="178" class="fta">source ≠ component: switching senses off says nothing about what powers them</text>
                 </svg>
-                <figcaption>Switching brain functions off is circuit surgery; it says nothing about the supply.</figcaption>
+                <figcaption>Neuroscience can toggle the modules; the question of the supply stays open.</figcaption>
               </figure>
 
               <h4><b>A·04</b>A physics analogy — the conscious field</h4>
               <p>A particle has mass only by interacting with the Higgs field; photons and gluons opt out and stay massless. Similarly, it could be a conscious <em>field</em> that minds interact with to gain access to reality. From QFT we know every distinct interaction births a distinct quasiparticle — phonons, plasmons, magnons. <strong>"Soul" could be the quasiparticle of the mind–consciousness interaction.</strong> Mind, body, soul, thoughts, decisions, experiences: personal. Consciousness: universal. And as nanoscale interactions need the right conditions to strengthen, the mind–field coupling has its own favorable conditions — what Vedanta and Buddhism describe as accessing levels of consciousness through yoga, meditation, and lifestyle. In a coma, the coupling is weak and the world fades; at death, the mind loses the power to couple at all.</p>
               <figure class="dgm">
-                <svg viewBox="0 0 400 170" xmlns="http://www.w3.org/2000/svg">
-                  <ellipse cx="200" cy="85" rx="178" ry="70" class="fad"/>
-                  <text x="118" y="26" class="fta">UNIVERSAL CONSCIOUSNESS FIELD</text>
-                  <circle cx="120" cy="85" r="26" class="fl"/><text x="103" y="82" class="ft">mind A</text>
-                  <circle cx="200" cy="100" r="26" class="fl"/><text x="184" y="97" class="ft">mind B</text>
-                  <circle cx="280" cy="80" r="26" class="fl"/><text x="263" y="77" class="ft">mind C</text>
-                  <circle cx="120" cy="59" r="3.5" class="fdota"/>
-                  <circle cx="200" cy="74" r="3.5" class="fdota"/>
-                  <circle cx="280" cy="54" r="3.5" class="fdota"/>
-                  <text x="98" y="106" class="fta" font-size="8">soul</text>
-                  <text x="180" y="121" class="fta" font-size="8">soul</text>
-                  <text x="260" y="101" class="fta" font-size="8">soul</text>
-                  <text x="60" y="160" class="ft">soul = quasiparticle of the mind ⇄ field interaction (cf. Higgs mechanism)</text>
+                <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="200" cy="92" r="4" class="fdota"/>
+                  <circle cx="200" cy="92" r="8" fill="none" class="fa" opacity="0">
+                    <animate attributeName="r" values="8;78" dur="6s" begin="0s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values=".7;0" dur="6s" begin="0s" repeatCount="indefinite"/>
+                  </circle>
+                  <circle cx="200" cy="92" r="8" fill="none" class="fa" opacity="0">
+                    <animate attributeName="r" values="8;78" dur="6s" begin="2s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values=".7;0" dur="6s" begin="2s" repeatCount="indefinite"/>
+                  </circle>
+                  <circle cx="200" cy="92" r="8" fill="none" class="fa" opacity="0">
+                    <animate attributeName="r" values="8;78" dur="6s" begin="4s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values=".7;0" dur="6s" begin="4s" repeatCount="indefinite"/>
+                  </circle>
+                  <text x="146" y="16" class="fta">UNIVERSAL CONSCIOUSNESS FIELD</text>
+                  <circle cx="66" cy="74" r="21" class="fl"/>
+                  <text x="50" y="78" class="ft">mind A</text>
+                  <line x1="87" y1="78" x2="170" y2="88" class="fa" stroke-dasharray="3 4">
+                    <animate attributeName="stroke-dashoffset" from="14" to="0" dur="1.1s" repeatCount="indefinite"/>
+                  </line>
+                  <circle cx="128" cy="83" r="3.4" class="fdota">
+                    <animate attributeName="r" values="2.6;4.4;2.6" dur="2.2s" repeatCount="indefinite"/>
+                  </circle>
+                  <text x="40" y="112" class="fta">strong coupling</text>
+                  <text x="40" y="125" class="ft">meditation · yoga · lifestyle</text>
+                  <circle cx="334" cy="74" r="21" class="fl"/>
+                  <text x="318" y="78" class="ft">mind B</text>
+                  <line x1="313" y1="78" x2="230" y2="88" class="fl" stroke-dasharray="3 5" opacity=".6"/>
+                  <circle cx="272" cy="83" r="2.6" class="fdota" opacity=".7"/>
+                  <text x="292" y="112" class="ft">everyday coupling</text>
+                  <circle cx="200" cy="168" r="21" class="fl" opacity=".45"/>
+                  <text x="184" y="172" class="ft" opacity=".6">mind C</text>
+                  <line x1="200" y1="147" x2="200" y2="112" class="fl2" opacity=".25"/>
+                  <circle cx="200" cy="130" r="2" class="fdoto" opacity=".4">
+                    <animate attributeName="opacity" values=".4;.1;.4" dur="3s" repeatCount="indefinite"/>
+                  </circle>
+                  <text x="232" y="166" class="ft">weak coupling — coma;</text>
+                  <text x="232" y="179" class="ft">severed at death</text>
+                  <text x="58" y="196" class="ft">soul = the quasiparticle born at each mind ⇄ field junction (cf. mass via the Higgs field)</text>
                 </svg>
-                <figcaption>Minds are personal; the field is universal; the coupling point is what traditions named the soul.</figcaption>
+                <figcaption>Minds are personal; the field is universal; the coupling point is what the traditions named the soul — and its strength is trainable.</figcaption>
               </figure>
 
               <h4><b>A·05</b>Open questions worth asking</h4>
@@ -859,20 +924,32 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
   <div class="wrap">
     <div class="seclabel rv">§ 03 · The library</div>
     <h2 class="sectitle rv">Publications</h2>
-    <p class="secdek rv">Seven peer-reviewed volumes and counting. Pull one off the shelf — each opens to its figure and abstract. The full catalogue lives on <a href="https://scholar.google.com/citations?user=3Z49t-MAAAAJ&hl=en" target="_blank" rel="noopener" style="color:var(--ink);border-bottom:1px solid var(--accent);text-decoration:none">Google Scholar</a>.</p>
+    <p class="secdek rv">Nine peer-reviewed volumes and counting. Pull one off the shelf — each opens to its figure and abstract. The full catalogue lives on <a href="https://scholar.google.com/citations?user=3Z49t-MAAAAJ&hl=en" target="_blank" rel="noopener" style="color:var(--ink);border-bottom:1px solid var(--accent);text-decoration:none">Google Scholar</a>.</p>
 
     <div class="shelfwrap rv">
-      <div class="shelflabel"><b>Ph.D. research</b><span>· University of Maryland</span></div>
-      <div class="shelf" style="margin-bottom:74px">
+      <div class="shelflabel"><b>Ph.D. research</b><span>· University of Maryland — first author &amp; contributions</span></div>
+      <div class="shelf" style="margin-bottom:0">
         <button class="vol tall" data-pub="0" style="--cloth:#7E2A23" aria-label="Open: Giant exciton diffusion near an electronic Mott insulator">
           <span class="vtag">Science</span>
           <span class="vtitle">Giant exciton diffusion near a Mott insulator</span>
           <span class="vyear">2026</span>
         </button>
+        <div class="vdivider" aria-hidden="true"></div>
+        <button class="vol" data-pub="7" style="--cloth:#20584A" aria-label="Open: Excitonic Mott insulator in a Bose-Fermi-Hubbard system">
+          <span class="vtag">Nat Comm</span>
+          <span class="vtitle">Excitonic Mott insulator — Bose–Fermi–Hubbard</span>
+          <span class="vyear">2024</span>
+        </button>
+        <button class="vol" data-pub="8" style="--cloth:#5E3148" aria-label="Open: Probing Quantum Anomalous Hall States in Twisted Bilayer WSe2">
+          <span class="vtag">PRX</span>
+          <span class="vtitle">Optical probe of QAH order in twisted WSe₂</span>
+          <span class="vyear">2026</span>
+        </button>
       </div>
+      <div class="shelfnote">Left of the rule — first-author work. Right — additional contributions within the Ph.D. (Hafezi group).</div>
 
-      <div class="shelflabel"><b>Undergraduate research</b><span>· IIITDM Jabalpur &amp; IIT Madras</span></div>
-      <div class="shelf">
+      <div class="shelflabel" style="margin-top:64px"><b>Post-undergraduate</b><span>· IIT Madras — 2DMRI research internship</span></div>
+      <div class="shelf" style="margin-bottom:74px">
         <button class="vol" data-pub="1" style="--cloth:#8A5F28" aria-label="Open: Twist dependent tuning of excitonic emissions in bilayer WSe2">
           <span class="vtag">ACS</span>
           <span class="vtitle">Twist-tuned excitons in bilayer WSe₂</span>
@@ -883,6 +960,10 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
           <span class="vtitle">Layer-parity Raman modes in ReS₂</span>
           <span class="vyear">2022</span>
         </button>
+      </div>
+
+      <div class="shelflabel"><b>Undergraduate</b><span>· IIITDM Jabalpur</span></div>
+      <div class="shelf">
         <button class="vol" data-pub="3" style="--cloth:#2F5240" aria-label="Open: Ferroelectric Negative Capacitance Assisted Phase-Transition FET">
           <span class="vtag">IEEE</span>
           <span class="vtitle">NC-assisted phase-transition FET</span>
@@ -1350,46 +1431,51 @@ mott: `<svg viewBox="0 0 380 300" xmlns="http://www.w3.org/2000/svg">
 <text x="20" y="18" class="ft">(a) interlayer excitons in the WSe₂ / WS₂ moiré landscape</text>
 <path d="M 24 46 Q 36 36 48 46 T 72 46 T 96 46 T 120 46 T 144 46 T 168 46" class="fl"/>
 <path d="M 24 82 Q 36 72 48 82 T 72 82 T 96 82 T 120 82 T 144 82 T 168 82" class="fl"/>
-<text x="176" y="49" class="ft">WSe₂ · e⁻</text>
-<text x="176" y="85" class="ft">WS₂ · h⁺</text>
+<text x="176" y="49" class="ft">WSe₂ · h⁺</text>
+<text x="176" y="85" class="ft">WS₂ · e⁻</text>
 <g>
-  <circle cx="60" cy="38" r="4.5" class="fdot"/>
-  <circle cx="60" cy="74" r="4.5" class="fdoto"/>
+  <circle cx="60" cy="38" r="4.5" class="fdoto"/>
+  <circle cx="60" cy="74" r="4.5" class="fdot"/>
   <line x1="60" y1="42" x2="60" y2="70" class="fad"/>
   <animateTransform attributeName="transform" type="translate" values="0 0; 48 0; 0 0" dur="7s" repeatCount="indefinite"/>
 </g>
-<circle cx="132" cy="38" r="4.5" class="fdot"/>
-<circle cx="132" cy="74" r="4.5" class="fdoto"/>
+<circle cx="132" cy="38" r="4.5" class="fdoto"/>
+<circle cx="132" cy="74" r="4.5" class="fdot"/>
 <line x1="132" y1="42" x2="132" y2="70" class="fad"/>
-<text x="256" y="44" class="fta">permanent dipole</text>
-<text x="256" y="58" class="ft">trapped in moiré wells</text>
-<text x="20" y="114" class="ft">(b) ν &lt; 1 — monogamous</text>
-<circle cx="40" cy="144" r="6" class="fdot"/>
-<circle cx="76" cy="144" r="6" class="fdoto"/>
-<line x1="46" y1="144" x2="70" y2="144" class="fa"/>
-<circle cx="112" cy="144" r="6" class="fdot"/>
-<text x="30" y="170" class="ft">bound to one electron</text>
-<text x="206" y="114" class="ft">ν = 1 (Mott) — non-monogamous</text>
-<circle cx="216" cy="144" r="6" class="fdot"/>
-<circle cx="256" cy="144" r="6" class="fdot"/>
-<circle cx="296" cy="144" r="6" class="fdot"/>
-<circle cx="336" cy="144" r="6" class="fdot"/>
-<circle cy="144" r="5.2" class="fdoto"><animate attributeName="cx" values="236;276;316;276;236" keyTimes="0;.25;.5;.75;1" dur="3.4s" repeatCount="indefinite"/></circle>
-<text x="212" y="170" class="ft">one hole, shared — it hops freely</text>
-<text x="20" y="198" class="ft">(c) diffusivity vs. moiré filling</text>
+<text x="252" y="40" class="fta">hole above, electron below:</text>
+<text x="252" y="54" class="ft">a permanent dipole, trapped</text>
+<text x="252" y="68" class="ft">in the moiré wells</text>
+<text x="20" y="112" class="ft">(b) ν &lt; 1 — monogamous</text>
+<circle cx="38" cy="146" r="4.5" class="fdoto"/>
+<circle cx="56" cy="146" r="4.5" class="fdot"/>
+<ellipse cx="47" cy="146" rx="19" ry="12" class="fad"/>
+<line x1="68" y1="146" x2="90" y2="146" class="fa"/>
+<circle cx="97" cy="146" r="6" class="fdot"/>
+<text x="112" y="150" class="ft">⊕ one electron</text>
+<text x="22" y="172" class="ft">tied to one partner — heavy, slow</text>
+<text x="206" y="112" class="ft">ν = 1 (Mott) — non-monogamous</text>
+<circle cx="216" cy="146" r="6" class="fdot"/>
+<circle cx="256" cy="146" r="6" class="fdot"/>
+<circle cx="296" cy="146" r="6" class="fdot"/>
+<circle cx="336" cy="146" r="6" class="fdot"/>
+<line x1="244" y1="138" x2="226" y2="144" class="fa"><animate attributeName="opacity" values="1;0;0;0;1" keyTimes="0;.2;.5;.8;1" dur="3.4s" repeatCount="indefinite"/></line>
+<line x1="268" y1="138" x2="286" y2="144" class="fa"><animate attributeName="opacity" values="0;1;0;1;0" keyTimes="0;.25;.5;.75;1" dur="3.4s" repeatCount="indefinite"/></line>
+<circle cy="132" r="5.2" class="fdoto"><animate attributeName="cx" values="236;276;316;276;236" keyTimes="0;.25;.5;.75;1" dur="3.4s" repeatCount="indefinite"/></circle>
+<text x="206" y="172" class="ft">its hole re-pairs freely — light, fast</text>
+<text x="20" y="198" class="ft">(c) exciton diffusivity vs. electronic filling</text>
 <line x1="40" y1="280" x2="40" y2="206" class="fl2"/>
 <line x1="40" y1="280" x2="350" y2="280" class="fl2"/>
 <text x="24" y="210" class="ft">D</text>
 <text x="354" y="284" class="ft">ν</text>
-<path d="M 50 274 Q 100 270 140 266 Q 175 260 196 220 Q 203 212 210 220 Q 226 260 252 268 Q 300 274 340 274" class="fa"/>
-<line x1="124" y1="280" x2="124" y2="272" class="fl2"/>
-<line x1="160" y1="280" x2="160" y2="272" class="fl2"/>
+<path d="M 50 272 L 130 271 L 168 269 Q 192 266 198 224 Q 203 214 208 224 Q 214 266 238 269 L 340 271" class="fa"/>
+<line x1="124" y1="280" x2="124" y2="273" class="fl2"/>
+<line x1="160" y1="280" x2="160" y2="273" class="fl2"/>
 <line x1="203" y1="280" x2="203" y2="274" class="fl2"/>
 <text x="118" y="294" class="ft">⅓</text>
 <text x="154" y="294" class="ft">⅔</text>
 <text x="199" y="294" class="ft">1</text>
-<text x="230" y="294" class="ft">← generalized Wigner crystals</text>
-<circle cx="203" cy="216" r="4" class="fdota"><animate attributeName="r" values="3;7;3" dur="2.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;.25;1" dur="2.2s" repeatCount="indefinite"/></circle>
+<text x="224" y="294" class="ft">1 — Mott · ⅓ ⅔ — Wigner</text>
+<circle cx="203" cy="218" r="4" class="fdota"><animate attributeName="r" values="3;7;3" dur="2.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;.25;1" dur="2.2s" repeatCount="indefinite"/></circle>
 <text x="214" y="216" class="fta">×10³ — giant diffusion</text>
 </svg>`,
 twist: `<svg viewBox="0 0 380 300" xmlns="http://www.w3.org/2000/svg">
@@ -1573,16 +1659,88 @@ teem: `<svg viewBox="0 0 380 300" xmlns="http://www.w3.org/2000/svg">
 <text x="134" y="234" class="fta">ΔV_T</text>
 <text x="22" y="18" class="ft">transfer curves vs. drain bias — extracting V_T and DIBL</text>
 <text x="64" y="290" class="ft">DIBL = ΔV_T / ΔV_D — the NC layer reshapes V_T and its drain sensitivity</text>
+</svg>`,
+natcomm: `<svg viewBox="0 0 380 300" xmlns="http://www.w3.org/2000/svg">
+<text x="20" y="18" class="ft">(a) a lattice for bosons — one exciton per moiré site</text>
+<g class="fl2"><circle cx="48" cy="62" r="12"/><circle cx="88" cy="62" r="12"/><circle cx="128" cy="62" r="12"/><circle cx="168" cy="62" r="12"/><circle cx="208" cy="62" r="12"/><circle cx="248" cy="62" r="12"/></g>
+<g><circle cx="48" cy="58" r="3" class="fdoto"/><circle cx="48" cy="67" r="3" class="fdot"/></g>
+<g><circle cx="88" cy="58" r="3" class="fdoto"/><circle cx="88" cy="67" r="3" class="fdot"/></g>
+<g><circle cx="128" cy="58" r="3" class="fdoto"/><circle cx="128" cy="67" r="3" class="fdot"/></g>
+<g><circle cx="168" cy="58" r="3" class="fdoto"/><circle cx="168" cy="67" r="3" class="fdot"/></g>
+<g><circle cx="208" cy="58" r="3" class="fdoto"/><circle cx="208" cy="67" r="3" class="fdot"/></g>
+<g>
+  <circle cx="0" cy="-5" r="3" class="fdoto"/><circle cx="0" cy="4" r="3" class="fdota"/>
+  <animateTransform attributeName="transform" type="translate" values="128 18; 128 44; 128 18" keyTimes="0;.5;1" dur="3s" repeatCount="indefinite"/>
+  <animate attributeName="opacity" values="1;1;.15" keyTimes="0;.55;1" dur="3s" repeatCount="indefinite"/>
+</g>
+<text x="262" y="46" class="fta">no vacancy — a second</text>
+<text x="262" y="60" class="ft">exciton on a site costs</text>
+<text x="262" y="74" class="fta">U_XX ≈ 30 meV (X₂ vs X₁)</text>
+<text x="20" y="108" class="ft">site saturated — the extra boson bounces off</text>
+<text x="20" y="140" class="ft">(b) diffusion vs. pump — the bosons jam</text>
+<line x1="40" y1="252" x2="40" y2="152" class="fl2"/>
+<line x1="40" y1="252" x2="200" y2="252" class="fl2"/>
+<text x="24" y="156" class="ft">D</text>
+<text x="160" y="266" class="ft">pump · n_X</text>
+<path d="M 52 172 Q 90 178 118 204 Q 148 232 190 240" class="fa"/>
+<circle r="3.5" class="fdota"><animateMotion path="M 52 172 Q 90 178 118 204 Q 148 232 190 240 Q 148 232 118 204 Q 90 178 52 172" dur="6s" repeatCount="indefinite"/></circle>
+<text x="64" y="232" class="fta">incompressible —</text>
+<text x="64" y="246" class="fta">an excitonic Mott state</text>
+<text x="228" y="140" class="ft">(c) two species, one lattice</text>
+<rect x="248" y="160" width="44" height="92" class="fl2"/>
+<rect x="248" y="206" width="44" height="46" class="fl"/>
+<rect x="248" y="160" width="44" height="46" class="fa"/>
+<text x="298" y="188" class="fta">ν_X · excitons</text>
+<text x="298" y="232" class="ft">ν_e · electrons</text>
+<text x="240" y="272" class="ft">they compete for the same</text>
+<text x="240" y="286" class="ft">sites: a Bose–Fermi–Hubbard</text>
+<text x="240" y="300" class="ft">system, realized</text>
+</svg>`,
+prx: `<svg viewBox="0 0 380 300" xmlns="http://www.w3.org/2000/svg">
+<text x="20" y="18" class="ft">(a) twisted WSe₂ — 2°, dual-gated</text>
+<line x1="30" y1="34" x2="150" y2="34" class="fa"/>
+<text x="156" y="38" class="ft">top gate</text>
+<g class="fl"><path d="M 50 62 L 70 52 L 90 62 L 90 82 L 70 92 L 50 82 Z"/><path d="M 90 62 L 110 52 L 130 62 L 130 82 L 110 92 L 90 82 Z"/></g>
+<g class="fa" opacity=".8"><path d="M 50 62 L 70 52 L 90 62 L 90 82 L 70 92 L 50 82 Z"/><path d="M 90 62 L 110 52 L 130 62 L 130 82 L 110 92 L 90 82 Z"/><animateTransform attributeName="transform" type="rotate" values="2 90 72; 5 90 72; 2 90 72" dur="7s" repeatCount="indefinite"/></g>
+<line x1="30" y1="110" x2="150" y2="110" class="fa"/>
+<text x="156" y="114" class="ft">bottom gate</text>
+<text x="20" y="134" class="ft">filling ν and field D,</text>
+<text x="20" y="147" class="ft">tuned independently</text>
+<text x="206" y="18" class="ft">(b) attractive-polaron spectroscopy</text>
+<line x1="214" y1="118" x2="214" y2="34" class="fl2"/>
+<line x1="214" y1="118" x2="362" y2="118" class="fl2"/>
+<text x="198" y="38" class="ft">E</text>
+<text x="356" y="130" class="ft">ν</text>
+<path d="M 222 76 L 268 76 Q 290 76 306 64 L 354 56" class="fa"/>
+<path d="M 222 80 L 268 80 Q 290 80 306 94 L 354 102" class="fl"/>
+<text x="318" y="48" class="fta">σ⁺</text>
+<text x="318" y="114" class="ft">σ⁻</text>
+<line x1="290" y1="118" x2="290" y2="40" class="fl2" stroke-dasharray="2 3"/>
+<text x="282" y="132" class="ft">ν = 1</text>
+<g><text x="226" y="50" class="fta">splitting ⇒ TRS breaks</text><animate attributeName="opacity" values=".3;1;.3" dur="2.6s" repeatCount="indefinite"/></g>
+<text x="20" y="166" class="ft">(c) what the splitting reveals at ν = 1</text>
+<rect x="40" y="180" width="150" height="44" class="fa"/>
+<rect x="190" y="180" width="150" height="44" class="fl2"/>
+<text x="56" y="198" class="fta">QAH ferromagnet</text>
+<text x="56" y="214" class="fta">C = 1 · zero-field Hall</text>
+<text x="212" y="198" class="ft">antiferromagnet</text>
+<text x="212" y="214" class="ft">C = 0</text>
+<circle cy="232" r="4" class="fdota"><animate attributeName="cx" values="115;265;115" dur="6s" repeatCount="indefinite"/></circle>
+<line x1="40" y1="232" x2="340" y2="232" class="fl2"/>
+<text x="120" y="250" class="ft">displacement field D switches the order →</text>
+<text x="40" y="276" class="ft">Streda analysis: C = 1 — topology, read out with light</text>
 </svg>`
 };
 const PUBS = [
-{tag:'SCIENCE', cloth:'#7E2A23', year:'2026', title:'Giant exciton diffusion near an electronic Mott insulator', ref:'Science 391, 394–398 (2026)', doi:'https://www.science.org/doi/10.1126/science.ads5266', fig:FIG.mott, figcap:'Fig. — (a) dipolar interlayer excitons drift through the moiré wells; (b) monogamous vs. non-monogamous binding; (c) diffusivity vs. filling — ×10³ at the Mott state, with the generalized-Wigner fractions marked.', abstract:'We embed a dilute gas of interlayer excitons in a moiré WSe₂/WS₂ system and tune the fermionic populations. This system hosts several electronic correlated states including generalized Wigner crystals and a Mott insulator. Surprisingly, near the Mott state we observe an orders-of-magnitude increase in exciton diffusion — an unexpected enhancement in an insulating state. This results from a characteristic change in exciton coupling from monogamous to non-monogamous behavior, where a single hole hops freely between many electrons.'},
+{tag:'SCIENCE', cloth:'#7E2A23', year:'2026', title:'Giant exciton diffusion near an electronic Mott insulator', ref:'Science 391, 394–398 (2026)', doi:'https://www.science.org/doi/10.1126/science.ads5266', fig:FIG.mott, figcap:'Fig. — (a) interlayer excitons — hole in WSe₂, electron in WS₂ — trapped in the moiré wells; (b) below ν = 1 each exciton is tied to one electron; at the Mott state its hole re-pairs freely among all of them; (c) diffusivity vs. filling — ×10³ at ν = 1.', abstract:'We embed a dilute gas of interlayer excitons in a moiré WSe₂/WS₂ system and tune the fermionic populations. This system hosts several electronic correlated states including generalized Wigner crystals and a Mott insulator. Surprisingly, near the Mott state we observe an orders-of-magnitude increase in exciton diffusion — an unexpected enhancement in an insulating state. This results from a characteristic change in exciton coupling from monogamous to non-monogamous behavior, where a single hole hops freely between many electrons.'},
 {tag:'ACS OMEGA', cloth:'#8A5F28', year:'2022', title:'Twist dependent tuning of excitonic emissions in bilayer WSe₂', ref:'ACS Omega 7(7), 6412–6418 (2022)', doi:'https://doi.org/10.1021/acsomega.1c07219', fig:FIG.twist, figcap:'Fig. — (a) twisted bilayer, θ in motion; (b) the high-energy PL peaks red-shift with twist; (c) at cryogenic T the lower-lying dark excitons quench them. Interlayer excitons set the shift.', abstract:'When two vertically stacked WSe₂ layers are rotated relative to each other, intriguing physics emerges. With large twist angles, we observe a non-intuitive red shift of higher energy peaks around the K-K exciton peak. These high energy peaks remain unresolved at cryogenic temperatures as they get quenched due to lower lying dark exciton states. We investigate the reason for such PL shift and indicate the role of interlayer excitons.'},
 {tag:'PHYS REV B', cloth:'#2E4763', year:'2022', title:'Layer parity dependent Raman-active modes and crystal symmetry in ReS₂', ref:'Phys. Rev. B 105, 045416 (2022)', doi:'https://doi.org/10.1103/PhysRevB.105.045416', fig:FIG.res2, figcap:'Fig. — (a) ReS₂ stacks with Re₄ chains — watch the third layer come and go: the inversion center exists only at even N; (b) the B-type Raman modes switch on with it.', abstract:'Several misconceptions prevailing in the literature regarding crystal symmetry, layer-dependent vibrational characteristics, and interlayer coupling of ReS₂ are resolved. Layer dependency may not be present due to comparatively weak interlayer coupling, but layer-parity dependency is present in the crystal symmetry confirmed by First-principles DFT calculations. Our experiments and DFT show a clear Raman signature of inversion symmetry breaking in odd-layer (except monolayer) ReS₂.'},
 {tag:'IEEE TUFFC', cloth:'#2F5240', year:'2022', title:'Ferroelectric Negative Capacitance Assisted Phase-Transition Field Effect Transistor', ref:'IEEE Trans. Ultrason. Ferroelectr. Freq. Control 69(2), 863–869 (2022)', doi:'https://doi.org/10.1109/TUFFC.2021.3130194', fig:FIG.tuffc, figcap:'Fig. — (a) FE-NC gate stack with a VO₂ phase-transition element pulsing between insulator and metal; (b) the dot traces the hysteretic, sub-60 mV/dec transfer loop — logic and memory in one device.', abstract:'Based on previous work, we further investigate this hybrid device. Tuning the operating range of each component (NC and PTM) along with proper capacitance matching is necessary. Once achieved, interesting device behavior is seen — hysteresis, SS, drain-coupling, and differential gain can be precisely controlled at different operating voltage regions. This hybrid device is capable of working in both logic as well as memory applications.'},
 {tag:'IEEE TED', cloth:'#4D3A5E', year:'2021', title:'Design and Analysis of Improved Phase-Transition FinFET Utilizing Negative Capacitance', ref:'IEEE Trans. Electron Devices 68(2), 853–859 (2021)', doi:'https://doi.org/10.1109/TED.2020.3043222', fig:FIG.ted, figcap:'Fig. — (a) fin wrapped by a doped-HfO₂ ferroelectric gate; (b) steeper-than-Boltzmann switching against the dashed baseline — lower I_off, higher I_on.', abstract:'A novel hybrid FET design for low-power and high-speed operation is introduced. By simultaneous operation of strongly correlated material VO₂ and ferroelectric material doped-HfO₂, we successfully tune both the body and transport factor of sub-threshold swing. This results in ultra-low SS with much lower off-current and higher on-current compared to baseline FET.'},
 {tag:'MICROELEC. J.', cloth:'#6E4A2F', year:'2022', title:'Insights into the operation of negative capacitance FinFET for low power logic applications', ref:'Microelectronics Journal 119, 105321 (2022)', doi:'https://doi.org/10.1016/j.mejo.2021.105321', fig:FIG.mej, figcap:'Fig. — (a) a negative series capacitance amplifies the surface potential; (b) the resulting sub-60 mV/dec transfer; (c) the channel barrier collapsing under NC action.', abstract:'Analytical and simulation-based insights into the operation of negative capacitance FinFET are provided for low-power logic applications. The study examines the interplay between ferroelectric negative capacitance and conventional device physics, revealing important design guidelines for achieving sub-60 mV/decade sub-threshold swing while maintaining adequate on-current and minimizing short-channel effects.'},
-{tag:'TRANS. EEM', cloth:'#3A3F45', year:'2021', title:'Insight into Threshold Voltage and Drain Induced Barrier Lowering in Negative Capacitance FET', ref:'Trans. Electr. Electron. Mater. 22, 267–273 (2021)', doi:'https://doi.org/10.1007/s42341-020-00230-y', fig:FIG.teem, figcap:'Fig. — transfer curves at three drain biases; the threshold shift ΔV_T quantifies drain-induced barrier lowering in NC-FETs.', abstract:'A detailed analysis of threshold voltage behavior and drain-induced barrier lowering (DIBL) in negative capacitance field-effect transistors is presented. The study provides physical insights into how the ferroelectric negative capacitance layer modifies the threshold voltage characteristics and short-channel behavior, offering practical guidelines for device optimization in low-power digital circuit applications.'}
+{tag:'TRANS. EEM', cloth:'#3A3F45', year:'2021', title:'Insight into Threshold Voltage and Drain Induced Barrier Lowering in Negative Capacitance FET', ref:'Trans. Electr. Electron. Mater. 22, 267–273 (2021)', doi:'https://doi.org/10.1007/s42341-020-00230-y', fig:FIG.teem, figcap:'Fig. — transfer curves at three drain biases; the threshold shift ΔV_T quantifies drain-induced barrier lowering in NC-FETs.', abstract:'A detailed analysis of threshold voltage behavior and drain-induced barrier lowering (DIBL) in negative capacitance field-effect transistors is presented. The study provides physical insights into how the ferroelectric negative capacitance layer modifies the threshold voltage characteristics and short-channel behavior, offering practical guidelines for device optimization in low-power digital circuit applications.'},
+{tag:'NAT COMMUN', cloth:'#20584A', year:'2024', title:'Excitonic Mott insulator in a Bose–Fermi–Hubbard system of moiré WS₂/WSe₂ heterobilayer', ref:'Nat. Commun. 15, 2305 (2024) · contributing author', doi:'https://doi.org/10.1038/s41467-024-46616-x', fig:FIG.natcomm, figcap:'Fig. — (a) interlayer excitons fill the moiré lattice one per site; adding a second to a site costs U_XX ≈ 30 meV, so the extra boson bounces off; (b) diffusion is suppressed as pumping rises — the bosons jam into an incompressible excitonic Mott state; (c) electrons and excitons compete for the same sites.', abstract:'A strongly correlated state in which the optical excitations themselves become incompressible. In a moiré WS₂/WSe₂ device where the electronic filling (set by a gate) and the excitonic population (set by optical pumping) are tuned independently, interlayer excitons are driven into a Mott-insulating state of bosons: exciton diffusion is suppressed with increasing pump intensity — the opposite of a weakly interacting Bose gas. Single- and double-occupancy exciton states (X₁, X₂) are split by an on-site repulsion of roughly 30 meV, and doped electrons compete with excitons for the same moiré sites — a Bose–Fermi–Hubbard system realized in a semiconductor heterobilayer.'},
+{tag:'PHYS REV X', cloth:'#5E3148', year:'2026', title:'Probing Quantum Anomalous Hall States in Twisted Bilayer WSe₂ via Attractive Polaron Spectroscopy', ref:'Phys. Rev. X 16, 021037 (2026) · contributing author', doi:'https://doi.org/10.1103/PhysRevX.16.021037', fig:FIG.prx, figcap:'Fig. — (a) a dual-gated 2° twisted WSe₂ homobilayer; (b) polarization-resolved attractive-polaron spectroscopy: the σ⁺/σ⁻ responses split at hole filling ν = 1 — spontaneous time-reversal-symmetry breaking; (c) Streda analysis identifies the state as topological (C = 1), and a displacement field switches it between QAH ferromagnet and antiferromagnet.', abstract:'The first direct optical evidence of quantum anomalous Hall states in twisted bilayer WSe₂ with spontaneous ferromagnetism. Polarization-resolved attractive-polaron spectroscopy on a dual-gated, 2° twisted WSe₂ homobilayer reveals direct signatures of spontaneous time-reversal symmetry breaking at hole filling ν = 1. Together with a Chern-number measurement via Streda-formula analysis, the magnetized state is identified as topological, with C = 1. The topological and magnetic properties are tunable via a displacement field, between a QAH ferromagnetic state and an antiferromagnetic state — establishing twisted WSe₂ as an optically addressable platform for topological order and strong correlations.'}
 ];
 
 /* ============ BOOK MODAL ============ */
