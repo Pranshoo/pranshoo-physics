@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="paper">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Excavations — deep dives into critical physics · Pranshoo Upadhyay</title>
+<meta name="description" content="Excavations — deep dives into critical physics: foundational phenomena taught properly and excavated back to their true first works, including the people the textbooks forgot. An evolving observatory by Pranshoo Upadhyay.">
+<meta property="og:title" content="Excavations — deep dives into critical physics">
+<meta property="og:description" content="Foundational physics, re-read from the beginning. Deep dives and seminars by Pranshoo Upadhyay.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--serif:"Fraunces",Georgia,serif;--text:"Newsreader",Georgia,serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
+:root[data-theme=paper]{--bg:#F7F4EE;--elev:#FDFCF8;--page:#FBF9F3;--ink:#211E1A;--ink-2:#4D4943;--muted:#85806F;--line:rgba(33,30,26,.16);--line-soft:rgba(33,30,26,.08);--accent:#9E2B25;--accent-soft:rgba(158,43,37,.08);--gold:#8F7137;--shadow:0 18px 50px -18px rgba(33,30,26,.25);--grain:.5}
+:root[data-theme=ink]{--bg:#14161A;--elev:#1B1E24;--page:#1E2128;--ink:#E9E4D9;--ink-2:#B5AFA2;--muted:#7E7A6E;--line:rgba(233,228,217,.17);--line-soft:rgba(233,228,217,.08);--accent:#D2625B;--accent-soft:rgba(210,98,91,.1);--gold:#C2A268;--shadow:0 18px 50px -16px rgba(0,0,0,.6);--grain:.3}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.001s!important;transition-duration:.001s!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--text);font-size:18px;line-height:1.72;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;transition:background .45s,color .45s}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:var(--grain);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .04 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E")}
+::selection{background:var(--accent);color:#FDFCF8}
+a{color:inherit}
+.wrap{max-width:1140px;margin:0 auto;padding:0 28px;position:relative;z-index:1}
+/* topbar */
+.obar{position:sticky;top:0;z-index:40;height:60px;background:color-mix(in srgb,var(--bg) 86%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-soft)}
+.obar .row{max-width:1140px;margin:0 auto;padding:0 28px;height:100%;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.obar a.back{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+.obar a.back:hover{color:var(--accent)}
+.obar .wm{font-family:var(--serif);font-style:italic;font-weight:500;font-size:16px;text-decoration:none}
+.obar .wm span{color:var(--accent)}
+.tbtn{width:32px;height:32px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;background:none;cursor:pointer;transition:border-color .25s}
+.tbtn:hover{border-color:var(--accent)}
+.tbtn svg{width:14px;height:14px;stroke:var(--ink);fill:none;stroke-width:1.4}
+/* landing hero */
+.lhero{padding:84px 0 38px}
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.kick::after{content:"";height:1px;flex:0 0 56px;background:var(--accent);opacity:.5}
+h1.big{font-family:var(--serif);font-weight:500;font-size:clamp(46px,8vw,92px);line-height:1.0;letter-spacing:-.02em;margin-bottom:22px}
+.lhero p.manifesto{font-size:21px;font-style:italic;color:var(--ink-2);max-width:680px;line-height:1.6}
+.lhero p.note{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--muted);margin-top:24px;text-transform:uppercase}
+.filter{display:flex;gap:10px;flex-wrap:wrap;margin:46px 0 6px;border-top:1px solid var(--line-soft);padding-top:24px}
+.filter button{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);background:none;border-radius:99px;padding:8px 15px;cursor:pointer;transition:all .2s}
+.filter button:hover{border-color:var(--accent);color:var(--accent)}
+.filter button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+/* card grid */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;padding:34px 0 100px}
+a.card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:5px;background:var(--elev);padding:30px 30px 26px;text-decoration:none;transition:border-color .3s,transform .3s,box-shadow .3s;position:relative;overflow:hidden}
+a.card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:var(--shadow)}
+a.card .ctag{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);display:flex;justify-content:space-between;margin-bottom:16px}
+a.card .ctag b{font-weight:400;color:var(--muted)}
+a.card h2{font-family:var(--serif);font-weight:500;font-size:25px;line-height:1.18;letter-spacing:-.01em;margin-bottom:10px}
+a.card p{font-size:15.5px;color:var(--ink-2);line-height:1.6;flex:1}
+a.card .cfoot{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--muted);margin-top:20px;padding-top:14px;border-top:1px solid var(--line-soft);display:flex;justify-content:space-between}
+a.card .cfoot .arr{color:var(--accent);transition:transform .25s}
+a.card:hover .cfoot .arr{transform:translateX(4px)}
+.empty{padding:60px 0;color:var(--muted);font-style:italic}
+/* reader */
+.rmast{padding:64px 0 30px}
+.rmast .kind{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+.rmast h1{font-family:var(--serif);font-weight:500;font-size:clamp(33px,5vw,56px);line-height:1.08;letter-spacing:-.015em;margin-bottom:18px}
+.rmast .sub{font-size:21px;font-style:italic;color:var(--ink-2);max-width:760px;line-height:1.5}
+.rmast .meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--muted);margin-top:24px;display:flex;flex-wrap:wrap;gap:8px 20px;text-transform:uppercase}
+.aka{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+.aka i{font-family:var(--mono);font-style:normal;font-size:9.5px;letter-spacing:.06em;color:var(--muted);border:1px solid var(--line-soft);border-radius:99px;padding:4px 10px}
+.callout{border:1px solid var(--line-soft);border-left:2px solid var(--accent);background:var(--elev);border-radius:0 4px 4px 0;padding:18px 24px;margin:30px 0}
+.callout h4{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.callout p{font-size:15.5px;color:var(--ink-2)}
+.callout.warn{border-left-color:var(--gold)}
+.callout.warn h4{color:var(--gold)}
+.rgrid{display:grid;grid-template-columns:200px 1fr;gap:48px;align-items:start;padding-bottom:40px}
+.toc{position:sticky;top:84px;font-family:var(--mono);font-size:11px;line-height:1.5}
+.toc .tl{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.toc a{display:block;color:var(--muted);text-decoration:none;padding:6px 0 6px 12px;border-left:1px solid var(--line-soft);transition:color .2s,border-color .2s}
+.toc a:hover,.toc a.on{color:var(--accent);border-color:var(--accent)}
+article.body{min-width:0;max-width:760px}
+.sec{padding:14px 0 8px;scroll-margin-top:80px}
+.sec.verdict{border:1px solid var(--line);border-radius:6px;background:var(--elev);padding:8px 34px 24px;margin-top:30px}
+.prose h2{font-family:var(--serif);font-weight:500;font-size:clamp(25px,3.4vw,33px);line-height:1.18;letter-spacing:-.01em;margin:40px 0 16px}
+.prose h3{font-family:var(--serif);font-weight:600;font-size:20px;margin:30px 0 10px}
+.prose h4{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:24px 0 8px}
+.prose p{margin:0 0 1.25em;color:var(--ink-2)}
+.prose strong{color:var(--ink);font-weight:600}
+.prose em{font-style:italic}
+.prose a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--accent)}
+.prose a:hover{color:var(--accent)}
+.prose ul,.prose ol{margin:0 0 1.25em 1.3em;color:var(--ink-2)}
+.prose li{margin-bottom:.5em}
+.prose blockquote{margin:1.4em 0;padding:4px 0 4px 24px;border-left:2px solid var(--accent);font-style:italic;color:var(--ink)}
+.prose code{font-family:var(--mono);font-size:.86em;background:var(--accent-soft);padding:1px 5px;border-radius:3px}
+.prose pre{background:var(--elev);border:1px solid var(--line-soft);border-radius:5px;padding:16px;overflow:auto;margin:0 0 1.25em}
+.prose pre code{background:none;padding:0}
+.prose hr{border:none;border-top:1px solid var(--line-soft);margin:2em 0}
+.prose table{border-collapse:collapse;width:100%;margin:0 0 1.25em;font-size:15px}
+.prose th,.prose td{border:1px solid var(--line-soft);padding:8px 12px;text-align:left}
+.prose th{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.fig{margin:24px 0;padding:18px;border:1px solid var(--line-soft);border-radius:5px;background:var(--page);text-align:center;overflow-x:auto}
+.fig svg{max-width:100%;height:auto}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:6px 0}
+.mathraw{font-family:var(--mono);font-size:.82em;color:var(--ink-2);background:var(--accent-soft);padding:1px 5px;border-radius:3px}
+a.cite{color:var(--accent);text-decoration:none;font-size:.84em;vertical-align:super;border:none;padding:0 1px}
+a.cite:hover{text-decoration:underline}
+/* blocks: timeline / neglected / conflations / refs */
+.block{padding:46px 0 8px;border-top:1px solid var(--line-soft);margin-top:40px}
+.block>h3{font-family:var(--serif);font-weight:500;font-size:27px;margin-bottom:6px}
+.block>.lead{font-size:15px;color:var(--muted);font-style:italic;margin-bottom:26px}
+.tline{position:relative;margin-left:8px;padding-left:26px;border-left:1px solid var(--line)}
+.tline .ev{position:relative;padding:0 0 22px}
+.tline .ev::before{content:"";position:absolute;left:-31px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:1.5px solid var(--accent)}
+.tline .ev .yr{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--accent)}
+.tline .ev .what{font-size:15.5px;color:var(--ink);margin:2px 0}
+.tline .ev .who{font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+.ncards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.ncard{border:1px solid var(--line-soft);border-radius:5px;padding:20px 22px;background:var(--elev)}
+.ncard .nm{font-family:var(--serif);font-weight:600;font-size:17px;margin-bottom:4px}
+.ncard .ro{font-size:14.5px;color:var(--ink-2);margin-bottom:8px}
+.ncard .ev{font-family:var(--mono);font-size:10.5px;color:var(--muted);line-height:1.5}
+.conf{list-style:none}
+.conf li{padding:16px 0;border-bottom:1px solid var(--line-soft)}
+.conf .claim{font-family:var(--mono);font-size:13px;color:var(--ink);background:var(--accent-soft);border-radius:4px;padding:8px 12px;display:inline-block;margin-bottom:8px}
+.conf .clar{font-size:15px;color:var(--ink-2)}
+.conf .clar::before{content:"→ ";color:var(--accent)}
+.refs{list-style:none;counter-reset:r}
+.refs li{display:grid;grid-template-columns:34px 1fr;gap:6px;padding:11px 0;border-bottom:1px solid var(--line-soft);font-size:14px;scroll-margin-top:80px}
+.refs li .rn{font-family:var(--mono);font-size:11px;color:var(--accent)}
+.refs li .rt{color:var(--ink)}
+.refs li .ra{color:var(--muted);font-size:13px}
+.refs li a{color:var(--ink-2);text-decoration:none;border-bottom:1px solid var(--line)}
+.refs li a:hover{color:var(--accent);border-color:var(--accent)}
+.refs li .bk{font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line-soft);border-radius:99px;padding:2px 7px;margin-left:6px}
+/* footer */
+footer{border-top:1px solid var(--line);padding:28px 0 40px;margin-top:60px}
+footer .fr{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+footer em{font-family:var(--serif);font-style:italic;text-transform:none;font-size:12.5px}
+@media(max-width:880px){.grid{grid-template-columns:1fr}.rgrid{grid-template-columns:1fr;gap:8px}.toc{display:none}.ncards{grid-template-columns:1fr}body{font-size:16.5px}}
+</style>
+<script>
+(function(){var t;try{t=localStorage.getItem('pu-theme2')}catch(e){}
+document.documentElement.setAttribute('data-theme',(t==='ink'||t==='paper')?t:'paper');})();
+function _toggle(){var r=document.documentElement,n=r.getAttribute('data-theme')==='paper'?'ink':'paper';
+r.setAttribute('data-theme',n);try{localStorage.setItem('pu-theme2',n)}catch(e){}_icon();}
+function _icon(){var p=document.documentElement.getAttribute('data-theme')==='paper';
+var s=document.getElementById('ti');if(s)s.innerHTML=p?'<path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5z"/>':'<circle cx="12" cy="12" r="5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/>';}
+</script>
+</head>
+<body>
+<div class="obar"><div class="row">
+  <a class="back" href="../">← Pranshoo Upadhyay</a>
+  <a class="wm" href="../">Pranshoo Upadhyay<span>.</span></a>
+  <button class="tbtn" onclick="_toggle()" aria-label="Theme"><svg id="ti" viewBox="0 0 24 24"></svg></button>
+</div></div>
+<main class="wrap">
+  <section class="lhero">
+    <div class="kick">The Observatory · 11 dossiers</div>
+    <h1 class="big">Excavations<span style="color:var(--accent)">.</span></h1>
+    <p class="manifesto">Deep dives into critical physics — foundational phenomena taught properly, and excavated back to their true first works, including the people the textbooks forgot.</p>
+    <p class="note">Re-reading the literature from the beginning · refreshed by AETHER</p>
+    <div class="filter" id="filter"></div>
+  </section>
+  <section class="grid" id="grid"></section>
+</main>
+<footer><div class="wrap fr">
+  <span>© 2026 Pranshoo Upadhyay</span>
+  <em>"the most successful wrong theory in physics was once the consensus"</em>
+  <span>Set in Fraunces &amp; Newsreader</span>
+</div></footer>
+<script type="application/json" id="m">[{"slug": "photons-with-opinions-the-hanbury-browntwiss-intensity-inter", "kind": "seminar", "kind_tag": "SEMINAR", "title": "Photons with Opinions: The Hanbury Brown–Twiss Intensity Interferometer and Its Afterlives", "subtitle": "From Jodrell Bank antennas to g^(2)(0): a credit-corrected, regime-aware seminar dossier", "teaser": "From Jodrell Bank antennas to g^(2)(0): a credit-corrected, regime-aware seminar dossier", "date": "June 13, 2026", "domain": "quantum optics", "nsec": 7, "nref": 82}, {"slug": "berezinskiikosterlitzthouless-a-transition-without-an-order", "kind": "seminar", "kind_tag": "SEMINAR", "title": "Berezinskii–Kosterlitz–Thouless: A Transition Without an Order Parameter", "subtitle": "Vortex unbinding, the universal jump, and the long shadow of a missing initial", "teaser": "Vortex unbinding, the universal jump, and the long shadow of a missing initial", "date": "June 13, 2026", "domain": "statistical mechanics \u0026 thermodynamics", "nsec": 7, "nref": 82}, {"slug": "the-fluctuationdissipation-theorem-why-the-resistor-hums-at", "kind": "seminar", "kind_tag": "SEMINAR", "title": "The Fluctuation–Dissipation Theorem: Why the Resistor Hums at T", "subtitle": "From Einstein's D = μk_BT to Callen–Welton and the modern abuse of 'effective temperature'", "teaser": "From Einstein's D = μk_BT to Callen–Welton and the modern abuse of 'effective temperature'", "date": "June 12, 2026", "domain": "statistical mechanics \u0026 thermodynamics", "nsec": 7, "nref": 82}, {"slug": "the-metal-that-forgot-how-to-conduct", "kind": "seminar", "kind_tag": "SEMINAR", "title": "The Metal That Forgot How to Conduct", "subtitle": "Anderson localization — from a 1958 puzzle about doped silicon to a word that escaped its theorem", "teaser": "Anderson localization — from a 1958 puzzle about doped silicon to a word that escaped its theorem", "date": "June 12, 2026", "domain": "condensed matter", "nsec": 7, "nref": 82}, {"slug": "the-two-page-hamiltonian-jaynescummings-and-the-rotating-wav", "kind": "seminar", "kind_tag": "SEMINAR", "title": "The Two-Page Hamiltonian: Jaynes–Cummings and the Rotating-Wave Sleight of Hand", "subtitle": "From a 1963 polemic against field quantization to the Rosetta stone — and routine misuse — of strong-coupling QED", "teaser": "From a 1963 polemic against field quantization to the Rosetta stone — and routine misuse — of strong-coupling QED", "date": "June 11, 2026", "domain": "quantum optics", "nsec": 7, "nref": 82}, {"slug": "the-lattice-that-swallowed-the-recoil-mössbauers-zero-phonon", "kind": "seminar", "kind_tag": "SEMINAR", "title": "The Lattice That Swallowed the Recoil: Mössbauer's Zero-Phonon Channel", "subtitle": "How a 1958 Heidelberg cryostat run turned Lamb's 1939 neutron arithmetic into the sharpest spectroscopy ever built — and what the modern 'recoilless' vocabulary forgets to check.", "teaser": "How a 1958 Heidelberg cryostat run turned Lamb's 1939 neutron arithmetic into the sharpest spectroscopy ever built — and what the modern 'recoilless' vocabulary forgets to check.", "date": "June 11, 2026", "domain": "condensed matter / nuclear solid state", "nsec": 7, "nref": 82}, {"slug": "the-lie-that-told-the-truth-wigner-negativity-from-quasi-pro", "kind": "seminar", "kind_tag": "SEMINAR", "title": "The Lie That Told the Truth: Wigner Negativity from Quasi-Probability to Resource", "subtitle": "Phase-space negativity as witness, monotone, and frequently misused slogan", "teaser": "Phase-space negativity as witness, monotone, and frequently misused slogan", "date": "June 10, 2026", "domain": "quantum optics", "nsec": 7, "nref": 82}, {"slug": "the-logarithm-that-ate-perturbation-theory-kondo-screening-f", "kind": "seminar", "kind_tag": "SEMINAR", "title": "The Logarithm That Ate Perturbation Theory: Kondo Screening from Leiden 1934 to the Quantum-Dot Era", "subtitle": "A resistance minimum, an infrared catastrophe, and the first non-perturbative fixed point of many-body physics.", "teaser": "A resistance minimum, an infrared catastrophe, and the first non-perturbative fixed point of many-body physics.", "date": "June 10, 2026", "domain": "condensed matter", "nsec": 7, "nref": 82}, {"slug": "the-phase-around-the-flux-aharonovbohm-the-biprism-and-the-l", "kind": "deep", "kind_tag": "DEEP DIVE", "title": "The Phase Around the Flux: Aharonov–Bohm, the Biprism, and the Long Shadow of the Double Slit", "subtitle": "A monograph on a topological phase that was discovered four times and named once", "teaser": "A monograph on a topological phase that was discovered four times and named once", "date": "June 10, 2026", "domain": "", "nsec": 8, "nref": 55}, {"slug": "quantensprung-an-archaeology-of-the-discontinuous", "kind": "deep", "kind_tag": "DEEP DIVE", "title": "Quantensprung: An Archaeology of the Discontinuous", "subtitle": "From Bohr's stationary states to mid-flight reversal in circuit QED", "teaser": "From Bohr's stationary states to mid-flight reversal in circuit QED", "date": "June 10, 2026", "domain": "", "nsec": 9, "nref": 82}, {"slug": "superfluidity-a-cold-archaeology-of-the-two-fluid-quantum", "kind": "outlook", "kind_tag": "BRIEFING", "title": "Superfluidity: A Cold Archaeology of the Two-Fluid Quantum", "subtitle": "From Leiden's λ-point to the p-wave matrix order parameter — a forensic re-reading of the record.", "teaser": "From Leiden's λ-point to the p-wave matrix order parameter — a forensic re-reading of the record.", "date": "June 9, 2026", "domain": "", "nsec": 6, "nref": 82}]</script>
+<script>
+_icon();
+var M=JSON.parse(document.getElementById('m').textContent);
+var FILTERS=[['all','All']];
+['deep','seminar','outlook'].forEach(function(k){if(M.some(function(x){return x.kind===k;}))
+  FILTERS.push([k,{deep:'Deep Dives',seminar:'Seminars',outlook:'Briefings'}[k]]);});
+var cur='all';
+function esc(s){return (s==null?'':String(s)).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function draw(){
+  document.getElementById('filter').innerHTML=FILTERS.map(function(f){
+    return '<button class="'+(f[0]===cur?'on':'')+'" onclick="setF(\''+f[0]+'\')">'+f[1]+'</button>';}).join('');
+  var list=M.filter(function(x){return cur==='all'||x.kind===cur;});
+  document.getElementById('grid').innerHTML = list.length? list.map(function(x){
+    var foot=[x.nsec+' sections',x.nref+' refs'].join(' · ');
+    return '<a class="card" href="'+esc(x.slug)+'.html">'+
+      '<div class="ctag"><span>'+esc(x.kind_tag)+'</span><b>'+esc(x.date||'')+'</b></div>'+
+      '<h2>'+esc(x.title)+'</h2>'+
+      '<p>'+esc(x.subtitle||x.teaser||'')+'</p>'+
+      '<div class="cfoot"><span>'+esc(x.domain||foot)+'</span><span class="arr">read →</span></div></a>';
+  }).join('') : '<div class="empty">No dossiers yet — AETHER will populate this as it works.</div>';
+}
+function setF(k){cur=k;draw();}
+draw();
+</script>
+</body>
+</html>
