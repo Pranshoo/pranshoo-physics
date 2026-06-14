@@ -287,8 +287,9 @@ function build(){
       D.neglected.map(function(n){var ref=(n.ref?' <a class="cite" href="#ref-'+(+n.ref||0)+'">['+esc(n.ref)+']</a>':'');return '<div class="ncard"><div class="nm">'+esc(n.name)+ref+'</div><div class="ro">'+esc(n.role)+'</div>'+(n.evidence?'<div class="ev">'+esc(n.evidence)+'</div>':'')+'</div>';}).join('')+'</div>'+
       (D.credit_audit?'<div class="callout" style="margin-top:22px"><h4>Credit audit</h4><p>'+esc(D.credit_audit)+'</p></div>':'')+'</section>';
   }
+  var langHtml='';
   if(hasCF){
-    pre+='<section class="block" id="blk-language"><h3>Watch your language</h3><div class="lead">Claims that travel under this name but should not.</div><ul class="conf">'+
+    langHtml='<section class="block" id="blk-language"><h3>Watch your language</h3><div class="lead">Claims that travel under this name but should not.</div><ul class="conf">'+
       D.conflations.map(function(c){return '<li><span class="claim">'+esc(c.claim)+'</span><div class="clar">'+esc(c.clarification)+'</div></li>';}).join('')+'</ul></section>';
   }
   /* prose sections */
@@ -311,11 +312,11 @@ function build(){
   var tocItems=[];
   if(hasTL) tocItems.push('<a href="#blk-timeline">Origins timeline</a>');
   if(hasNG) tocItems.push('<a href="#blk-forgotten">The forgotten hands</a>');
-  if(hasCF) tocItems.push('<a href="#blk-language">Watch your language</a>');
   tocItems=tocItems.concat(D.sections.map(function(s){return '<a href="#sec-'+esc(s.id)+'">'+esc(s.title.replace(/^#+\s*/,''))+'</a>';}));
+  if(hasCF) tocItems.push('<a href="#blk-language">Watch your language</a>');
   if(D.references&&D.references.length) tocItems.push('<a href="#blk-refs">References</a>');
   var toc='<nav class="toc"><div class="tl">Contents</div>'+tocItems.join('')+'</nav>';
-  var body=pre+sectionsHtml+refsHtml;
+  var body=pre+sectionsHtml+langHtml+refsHtml;
   document.getElementById('main').innerHTML=H+'<div class="rgrid">'+toc+'<article class="body">'+body+'</article></div>';
   /* drag-to-scroll the timeline slider */
   var ts=document.getElementById('tslider');
