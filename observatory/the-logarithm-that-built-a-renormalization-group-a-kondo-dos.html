@@ -124,12 +124,22 @@ a.cite:hover{text-decoration:underline}
 .block{padding:46px 0 8px;border-top:1px solid var(--line-soft);margin-top:40px}
 .block>h3{font-family:var(--serif);font-weight:500;font-size:27px;margin-bottom:6px}
 .block>.lead{font-size:15px;color:var(--muted);font-style:italic;margin-bottom:26px}
-.tline{position:relative;margin-left:8px;padding-left:26px;border-left:1px solid var(--line)}
-.tline .ev{position:relative;padding:0 0 22px}
-.tline .ev::before{content:"";position:absolute;left:-31px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:1.5px solid var(--accent)}
-.tline .ev .yr{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--accent)}
-.tline .ev .what{font-size:15.5px;color:var(--ink);margin:2px 0}
-.tline .ev .who{font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+/* origins timeline — horizontal scrollable filmstrip ("slider") */
+.tslider{display:flex;gap:14px;overflow-x:auto;padding:10px 2px 16px;scroll-snap-type:x proximity;cursor:grab;
+  background:linear-gradient(var(--line),var(--line)) left bottom/100% 1px no-repeat;
+  -webkit-overflow-scrolling:touch}
+.tslider.grab{cursor:grabbing}
+.tslider::-webkit-scrollbar{height:6px}
+.tslider::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px}
+.tslider::-webkit-scrollbar-track{background:transparent}
+.tcard{position:relative;min-width:215px;max-width:240px;flex:0 0 auto;border:1px solid var(--line);border-radius:7px;background:var(--elev);padding:14px 16px 16px;scroll-snap-align:start}
+.tcard::after{content:"";position:absolute;left:16px;bottom:-16px;width:8px;height:8px;border-radius:50%;background:var(--bg);border:1.5px solid var(--accent)}
+.tcard .yr{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;color:var(--accent);font-weight:500}
+.tcard .ev{font-size:14px;color:var(--ink);margin:7px 0;line-height:1.42}
+.tcard .who{font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.5}
+.tcard .kd{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:9px}
+.tcard .kd .cite{vertical-align:baseline}
+.thint{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:12px;text-align:right}
 .ncards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .ncard{border:1px solid var(--line-soft);border-radius:5px;padding:20px 22px;background:var(--elev)}
 .ncard .nm{font-family:var(--serif);font-weight:600;font-size:17px;margin-bottom:4px}
@@ -262,33 +272,34 @@ function build(){
   if(D.why_big)H+='<div class="callout"><h4>Why it was big</h4><p>'+esc(D.why_big)+'</p></div>';
   if(D.abuse)H+='<div class="callout warn"><h4>Abuse alert</h4><p>'+esc(D.abuse)+'</p></div>';
   if(D.origin_story)H+='<div class="callout"><h4>Origin</h4><p>'+esc(D.origin_story)+'</p></div>';
-  /* toc + sections */
-  var toc='<nav class="toc"><div class="tl">Contents</div>'+
-    D.sections.map(function(s){return '<a href="#sec-'+esc(s.id)+'">'+esc(s.title.replace(/^#+\s*/,''))+'</a>';}).join('')+'</nav>';
-  var body=D.sections.map(function(s){
+  /* ---- special blocks, rendered BEFORE the prose (as in the app) ---- */
+  var hasTL=D.timeline&&D.timeline.length, hasNG=D.neglected&&D.neglected.length, hasCF=D.conflations&&D.conflations.length;
+  var pre='';
+  if(hasTL){
+    pre+='<section class="block" id="blk-timeline"><h3>Origins timeline</h3><div class="lead">How the field actually arrived — scroll through it, with the paper that marks each turn.</div>'+
+      '<div class="tslider" id="tslider">'+
+      D.timeline.map(function(t){var ref=(t.ref?' <a class="cite" href="#ref-'+(+t.ref||0)+'">['+esc(t.ref)+']</a>':'');
+        return '<div class="tcard"><div class="yr">'+esc(t.year)+'</div><div class="ev">'+esc(t.event)+'</div>'+((t.who||t.work)?'<div class="who">'+esc([t.who,t.work].filter(Boolean).join(' · '))+'</div>':'')+'<div class="kd">'+esc(t.kind||'')+ref+'</div></div>';}).join('')+
+      '</div><div class="thint">drag or scroll through time →</div></section>';
+  }
+  if(hasNG){
+    pre+='<section class="block" id="blk-forgotten"><h3>The forgotten hands</h3><div class="lead">People the textbooks dropped — a credit audit.</div><div class="ncards">'+
+      D.neglected.map(function(n){var ref=(n.ref?' <a class="cite" href="#ref-'+(+n.ref||0)+'">['+esc(n.ref)+']</a>':'');return '<div class="ncard"><div class="nm">'+esc(n.name)+ref+'</div><div class="ro">'+esc(n.role)+'</div>'+(n.evidence?'<div class="ev">'+esc(n.evidence)+'</div>':'')+'</div>';}).join('')+'</div>'+
+      (D.credit_audit?'<div class="callout" style="margin-top:22px"><h4>Credit audit</h4><p>'+esc(D.credit_audit)+'</p></div>':'')+'</section>';
+  }
+  if(hasCF){
+    pre+='<section class="block" id="blk-language"><h3>Watch your language</h3><div class="lead">Claims that travel under this name but should not.</div><ul class="conf">'+
+      D.conflations.map(function(c){return '<li><span class="claim">'+esc(c.claim)+'</span><div class="clar">'+esc(c.clarification)+'</div></li>';}).join('')+'</ul></section>';
+  }
+  /* prose sections */
+  var sectionsHtml=D.sections.map(function(s){
     var cls='sec'+(s.id==='verdict'?' verdict':'');
     return '<section class="'+cls+'" id="sec-'+esc(s.id)+'"><div class="prose">'+renderRich(s.markdown,nRefs)+'</div></section>';
   }).join('');
-  /* timeline */
-  if(D.timeline&&D.timeline.length){
-    body+='<div class="block"><h3>Origins, in order</h3><div class="lead">How the idea actually arrived — and through whose hands.</div><div class="tline">'+
-      D.timeline.map(function(t){return '<div class="ev"><div class="yr">'+esc(t.year)+(t.kind?' · '+esc(t.kind):'')+'</div><div class="what">'+esc(t.event)+'</div>'+((t.who||t.work)?'<div class="who">'+esc([t.who,t.work].filter(Boolean).join(' — '))+'</div>':'')+'</div>';}).join('')+'</div></div>';
-  }
-  /* neglected */
-  if(D.neglected&&D.neglected.length){
-    body+='<div class="block"><h3>The forgotten hands</h3><div class="lead">People the textbooks dropped — a credit audit.</div><div class="ncards">'+
-      D.neglected.map(function(n){return '<div class="ncard"><div class="nm">'+esc(n.name)+'</div><div class="ro">'+esc(n.role)+'</div>'+(n.evidence?'<div class="ev">'+esc(n.evidence)+'</div>':'')+'</div>';}).join('')+'</div>';
-    if(D.credit_audit)body+='<div class="callout" style="margin-top:24px"><h4>Credit audit</h4><p>'+esc(D.credit_audit)+'</p></div>';
-    body+='</div>';
-  }
-  /* conflations */
-  if(D.conflations&&D.conflations.length){
-    body+='<div class="block"><h3>What gets conflated</h3><div class="lead">Claims that travel under this name but should not.</div><ul class="conf">'+
-      D.conflations.map(function(c){return '<li><span class="claim">'+esc(c.claim)+'</span><div class="clar">'+esc(c.clarification)+'</div></li>';}).join('')+'</ul></div>';
-  }
-  /* references */
+  /* references (kept at the end) */
+  var refsHtml='';
   if(D.references&&D.references.length){
-    body+='<div class="block"><h3>References</h3><div class="lead">Bibliography from real indexes (OpenAlex · Crossref · arXiv · Nobel archive). Verify before citing in print.</div><ol class="refs">'+
+    refsHtml='<div class="block" id="blk-refs"><h3>References</h3><div class="lead">Bibliography from real indexes (OpenAlex · Crossref · arXiv · Nobel archive). Verify before citing in print.</div><ol class="refs">'+
       D.references.map(function(r){
         var au=(r.authors||[]).slice(0,4).join(', ')+((r.authors||[]).length>4?' et al.':'');
         var vy=[r.venue,r.year].filter(Boolean).join(' · ');
@@ -296,7 +307,24 @@ function build(){
         return '<li id="ref-'+esc(r.n)+'"><span class="rn">'+esc(r.n)+'</span><span><span class="rt">'+t+'</span>'+(r.bucket?'<span class="bk">'+esc(r.bucket)+'</span>':'')+'<br><span class="ra">'+esc(au)+(vy?' — '+esc(vy):'')+'</span></span></li>';
       }).join('')+'</ol></div>';
   }
+  /* contents: the special blocks earn their place, then the sections, then refs */
+  var tocItems=[];
+  if(hasTL) tocItems.push('<a href="#blk-timeline">Origins timeline</a>');
+  if(hasNG) tocItems.push('<a href="#blk-forgotten">The forgotten hands</a>');
+  if(hasCF) tocItems.push('<a href="#blk-language">Watch your language</a>');
+  tocItems=tocItems.concat(D.sections.map(function(s){return '<a href="#sec-'+esc(s.id)+'">'+esc(s.title.replace(/^#+\s*/,''))+'</a>';}));
+  if(D.references&&D.references.length) tocItems.push('<a href="#blk-refs">References</a>');
+  var toc='<nav class="toc"><div class="tl">Contents</div>'+tocItems.join('')+'</nav>';
+  var body=pre+sectionsHtml+refsHtml;
   document.getElementById('main').innerHTML=H+'<div class="rgrid">'+toc+'<article class="body">'+body+'</article></div>';
+  /* drag-to-scroll the timeline slider */
+  var ts=document.getElementById('tslider');
+  if(ts){var dn=false,sx=0,sl=0;
+    ts.addEventListener('pointerdown',function(e){dn=true;sx=e.clientX;sl=ts.scrollLeft;ts.classList.add('grab');});
+    ts.addEventListener('pointermove',function(e){if(dn)ts.scrollLeft=sl-(e.clientX-sx);});
+    ts.addEventListener('pointerup',function(){dn=false;ts.classList.remove('grab');});
+    ts.addEventListener('pointerleave',function(){dn=false;ts.classList.remove('grab');});
+  }
   /* scrollspy on toc */
   var links=[].slice.call(document.querySelectorAll('.toc a'));
   var secs=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});

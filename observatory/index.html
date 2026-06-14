@@ -115,12 +115,22 @@ a.cite:hover{text-decoration:underline}
 .block{padding:46px 0 8px;border-top:1px solid var(--line-soft);margin-top:40px}
 .block>h3{font-family:var(--serif);font-weight:500;font-size:27px;margin-bottom:6px}
 .block>.lead{font-size:15px;color:var(--muted);font-style:italic;margin-bottom:26px}
-.tline{position:relative;margin-left:8px;padding-left:26px;border-left:1px solid var(--line)}
-.tline .ev{position:relative;padding:0 0 22px}
-.tline .ev::before{content:"";position:absolute;left:-31px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:1.5px solid var(--accent)}
-.tline .ev .yr{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--accent)}
-.tline .ev .what{font-size:15.5px;color:var(--ink);margin:2px 0}
-.tline .ev .who{font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+/* origins timeline — horizontal scrollable filmstrip ("slider") */
+.tslider{display:flex;gap:14px;overflow-x:auto;padding:10px 2px 16px;scroll-snap-type:x proximity;cursor:grab;
+  background:linear-gradient(var(--line),var(--line)) left bottom/100% 1px no-repeat;
+  -webkit-overflow-scrolling:touch}
+.tslider.grab{cursor:grabbing}
+.tslider::-webkit-scrollbar{height:6px}
+.tslider::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px}
+.tslider::-webkit-scrollbar-track{background:transparent}
+.tcard{position:relative;min-width:215px;max-width:240px;flex:0 0 auto;border:1px solid var(--line);border-radius:7px;background:var(--elev);padding:14px 16px 16px;scroll-snap-align:start}
+.tcard::after{content:"";position:absolute;left:16px;bottom:-16px;width:8px;height:8px;border-radius:50%;background:var(--bg);border:1.5px solid var(--accent)}
+.tcard .yr{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;color:var(--accent);font-weight:500}
+.tcard .ev{font-size:14px;color:var(--ink);margin:7px 0;line-height:1.42}
+.tcard .who{font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.5}
+.tcard .kd{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:9px}
+.tcard .kd .cite{vertical-align:baseline}
+.thint{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:12px;text-align:right}
 .ncards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .ncard{border:1px solid var(--line-soft);border-radius:5px;padding:20px 22px;background:var(--elev)}
 .ncard .nm{font-family:var(--serif);font-weight:600;font-size:17px;margin-bottom:4px}
