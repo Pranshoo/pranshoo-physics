@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="paper">
+<html lang="en" data-theme="ink">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1117,7 +1117,7 @@ document.getElementById('themebtn').addEventListener('click', ()=>{
 (function(){
   let saved = null;
   try{ saved = localStorage.getItem('pu-theme2'); }catch(e){}
-  applyTheme(saved === 'ink' || saved === 'paper' ? saved : 'paper');
+  applyTheme(saved === 'ink' || saved === 'paper' ? saved : 'ink');
 })();
 
 /* ============ MOBILE MENU ============ */
