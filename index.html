@@ -360,9 +360,9 @@ blockquote.pull small{display:block; margin-top:10px; font-family:var(--mono); f
 /* opening cover */
 .bcover{
   position:absolute; inset:0 50% 0 0; z-index:5; transform-origin:left center; transform-style:preserve-3d;
-  transition:transform 1.05s cubic-bezier(.7,.05,.3,1); border-radius:6px 10px 10px 6px;
+  transition:transform 1.05s cubic-bezier(.7,.05,.3,1), opacity .45s .62s; border-radius:6px 10px 10px 6px;
 }
-#bookveil.open .bcover{transform:rotateY(-178deg)}
+#bookveil.open .bcover{transform:rotateY(-178deg); opacity:0; pointer-events:none}
 .bcover .cfront,.bcover .cback{position:absolute; inset:0; backface-visibility:hidden; border-radius:4px}
 .bcover .cfront{
   --cloth:#555;
@@ -492,7 +492,7 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
     <nav class="tabs" aria-label="Sections">
       <a class="tab" href="#about" data-sec="about"><i>01</i>About</a>
       <a class="tab" href="#research" data-sec="research"><i>02</i>Research Interests</a>
-      <a class="tab" href="observatory/" data-sec="excavations"><i>03</i>Excavations ↗</a>
+      <a class="tab" href="observatory/index.html" data-sec="excavations"><i>03</i>Excavations ↗</a>
       <a class="tab" href="#publications" data-sec="publications"><i>04</i>Publications</a>
       <a class="tab" href="#phd" data-sec="phd"><i>05</i>Ph.D. Guide</a>
       <a class="tab" href="#contact" data-sec="contact"><i>06</i>Contact</a>
@@ -510,7 +510,7 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
 <div id="mmenu">
   <a class="mitem" href="#about" style="transition-delay:.05s"><b>01</b>About</a>
   <a class="mitem" href="#research" style="transition-delay:.1s"><b>02</b>Research Interests</a>
-  <a class="mitem" href="observatory/" style="transition-delay:.15s"><b>03</b>Excavations ↗</a>
+  <a class="mitem" href="observatory/index.html" style="transition-delay:.15s"><b>03</b>Excavations ↗</a>
   <a class="mitem" href="#publications" style="transition-delay:.2s"><b>04</b>Publications</a>
   <a class="mitem" href="#phd" style="transition-delay:.25s"><b>05</b>Ph.D. Guide</a>
   <a class="mitem" href="#contact" style="transition-delay:.3s"><b>06</b>Contact</a>
@@ -519,6 +519,7 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
 
 <!-- ============ HERO ============ -->
 <section id="hero">
+  <canvas class="fieldcanvas" id="hf-gl" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="heromast rv">
       <span>A physicist's notebook</span>
@@ -536,17 +537,8 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
           <a class="chip" href="https://www.researchgate.net/profile/Pranshoo-Upadhyay" target="_blank" rel="noopener">ResearchGate</a>
           <a class="chip" href="https://www.linkedin.com/in/pranshoo-upadhyay/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
-        <div class="scrollhint rv">The volume opens below</div>
+        <div class="cursorcue rv"><span class="dot"></span>move your cursor — the field responds</div>
       </div>
-      <figure class="plate rv" style="margin:0">
-        <div class="platehead"><span>Fig. 1 — twist two lattices</span><b>interactive</b></div>
-        <canvas id="moire" width="900" height="900" aria-label="Interactive moiré pattern: two lattices at a relative twist angle"></canvas>
-        <div class="moirectl">
-          <input type="range" id="twist" min="1" max="10" step="0.1" value="3" aria-label="Twist angle">
-          <span class="moireread" id="twistread">θ = 3.0° · λ ≈ 19a</span>
-        </div>
-        <figcaption class="platecap">Two identical atomic lattices, rotated by an angle <b>θ</b>. The slow beat that emerges — the <b>moiré superlattice</b> — is the stage for everything in §02. Drag the figure, or slide.</figcaption>
-      </figure>
     </div>
   </div>
 </section>
@@ -601,172 +593,19 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
     <p class="secdek rv">The most interesting physics lives where particles can no longer be treated as independent. My methods are optical; my questions are many-body. Four threads, one fabric.</p>
     <div class="rule"></div>
 
-    <div class="chapters">
-
-      <!-- CHAPTER I -->
-      <article class="chap rv">
-        <div class="chaptext">
-          <div class="chapnum">Chapter I</div>
-          <h3>Moiré quantum matter — flat bands, Mott physics &amp; electron crystals</h3>
-          <div class="prose">
-            <p>Stack two atomically thin semiconductors with a deliberate twist and an emergent superlattice appears, hundreds of times larger than the atomic spacing. That single knob does something profound: it flattens the electronic bands. When the kinetic energy <em>W</em> collapses below the Coulomb repulsion <em>U</em>, electrons stop behaving like a gas and start behaving like a society — they localize, order, and organize.</p>
-            <p>Moiré TMD heterostructures are, in effect, a quantum simulator of the Hubbard model that you can tune in a single device: bandwidth by twist angle, filling by a gate voltage, interactions by the dielectric environment. Sweep the filling factor and a whole zoo of correlated states walks by — Mott insulators at one electron per site, generalized Wigner crystals at fractional fillings, charge-density waves, and stripe phases. These are the textbook hard problems of condensed matter, realized in a flake of semiconductor you can hold on a chip.</p>
-          </div>
-          <div class="tagrow"><span class="tag">Hubbard simulator</span><span class="tag">Mott insulator</span><span class="tag">Wigner crystals</span><span class="tag">flat bands</span></div>
-        </div>
-        <figure class="plate rv">
-          <div class="platehead"><span>Plate I — the moiré superlattice</span><b>§ 02.1</b></div>
-          <svg viewBox="0 0 400 330" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="lat1" width="13" height="13" patternUnits="userSpaceOnUse"><circle cx="6.5" cy="6.5" r="1.15" class="fdot"/></pattern>
-              <pattern id="lat2" width="13" height="13" patternUnits="userSpaceOnUse"><circle cx="6.5" cy="6.5" r="1.15" class="fdota" opacity=".55"/></pattern>
-              <clipPath id="p1clip"><rect x="30" y="18" width="340" height="185"/></clipPath>
-            </defs>
-            <rect x="30" y="18" width="340" height="185" fill="url(#lat1)"/>
-            <g clip-path="url(#p1clip)"><g id="p1g" transform="rotate(4 200 110)"><rect x="-12" y="-28" width="424" height="278" fill="url(#lat2)"/></g></g>
-            <rect x="30" y="18" width="340" height="185" class="fl2"/>
-            <circle id="p1c" cx="200" cy="110" r="48" class="fad"/>
-            <text x="276" y="100" class="fta halo">moiré cell</text>
-            <text x="276" y="113" class="ft halo">λ ≈ a/θ</text>
-            <text id="p1t" x="33" y="36" class="fta halo">θ = 4.0°</text>
-            <text x="30" y="232" class="ft">single layer · wide band</text>
-            <path d="M 40 290 Q 90 235 140 290" class="fl"/>
-            <text x="250" y="232" class="fta">twisted · the band flattens</text>
-            <path id="p1band" d="M 245 268 Q 270 258 295 266 Q 320 274 345 266" class="fa"/>
-            <path d="M 245 290 L 345 290" class="fl2"/>
-            <text x="40" y="312" class="ft">E(k) — kinetic energy wins</text>
-            <text x="245" y="312" class="ft">U/W ≫ 1 — correlations win</text>
-          </svg>
-          <figcaption class="platecap"><b>Plate I (live).</b> The twist angle breathes; watch the moiré cell grow as θ shrinks — and the right-hand band flatten in sync. Small θ, flat bands, strong correlations.</figcaption>
-        </figure>
-      </article>
-
-      <!-- CHAPTER II -->
-      <article class="chap flip rv">
-        <div class="chaptext">
-          <div class="chapnum">Chapter II</div>
-          <h3>Excitons &amp; Bose–Fermi mixtures — when bosons live on a correlated lattice</h3>
-          <div class="prose">
-            <p>Shine light on these stacks and you create interlayer excitons: an electron in one layer bound to a hole in the other. They are long-lived, carry a permanent electric dipole, and wander the moiré landscape as interacting bosons. But calling them "bosons" undersells them — they are composite particles, and their fermionic insides leak into everything: their interactions, their statistics, their dynamics.</p>
-            <p>The regime I find irresistible is the Bose–Fermi Hubbard mixture: a dilute gas of excitons threading a correlated electron lattice, each species reshaping the other. In our recent work (<em>Science</em>, 2026) we watched exciton diffusion grow by orders of magnitude precisely at the Mott state — an insulator, of all places — because the exciton's hole stops being monogamous to a single electron and starts hopping freely among many. It builds on our group's earlier demonstration of an <em>excitonic</em> Mott insulator in the same platform (<em>Nat. Commun.</em>, 2024), where the bosons themselves jam into incompressibility. Transport, valley polarization, and nonequilibrium response of these dressed bosons are exactly the observables where correlation physics announces itself.</p>
-          </div>
-          <div class="tagrow"><span class="tag">interlayer excitons</span><span class="tag">Bose–Fermi Hubbard</span><span class="tag">exciton transport</span><span class="tag">polaron physics</span></div>
-        </div>
-        <figure class="plate rv">
-          <div class="platehead"><span>Plate II — a boson in a fermion crowd</span><b>§ 02.2</b></div>
-          <svg viewBox="0 0 400 330" xmlns="http://www.w3.org/2000/svg">
-            <line x1="40" y1="60" x2="250" y2="60" class="fl"/>
-            <line x1="40" y1="110" x2="250" y2="110" class="fl"/>
-            <text x="40" y="48" class="ft">WSe₂</text>
-            <text x="40" y="130" class="ft">WS₂</text>
-            <g id="p2x">
-              <circle cx="145" cy="60" r="6" class="fdoto"/>
-              <text x="139" y="44" class="fta">h⁺</text>
-              <circle cx="145" cy="110" r="6" class="fdot"/>
-              <text x="139" y="132" class="ft">e⁻</text>
-              <ellipse cx="145" cy="85" rx="34" ry="33" class="fad"/>
-            </g>
-            <text x="262" y="80" class="fts">interlayer exciton</text>
-            <text x="262" y="96" class="ft">dipolar · drifting</text>
-            <g opacity=".55">
-              <circle cx="60" cy="205" r="10" class="fl2"/><circle cx="100" cy="205" r="10" class="fl2"/><circle cx="140" cy="205" r="10" class="fl2"/><circle cx="180" cy="205" r="10" class="fl2"/><circle cx="220" cy="205" r="10" class="fl2"/><circle cx="260" cy="205" r="10" class="fl2"/><circle cx="300" cy="205" r="10" class="fl2"/>
-            </g>
-            <g id="p2row"></g>
-            <text x="40" y="240" class="ft">Mott lattice, ν = 1 — watch the hole hop between electrons</text>
-            <path d="M 60 305 Q 120 303 160 300 Q 185 297 200 268 Q 215 297 240 300 Q 290 304 340 305" class="fa"/>
-            <line x1="200" y1="312" x2="200" y2="262" class="fl2"/>
-            <circle id="p2p" cx="200" cy="268" r="4" class="fdota"/>
-            <text x="206" y="270" class="fta">ν = 1 · giant diffusion</text>
-            <text x="60" y="324" class="ft">exciton diffusivity vs. filling — Science (2026)</text>
-          </svg>
-          <figcaption class="platecap"><b>Plate II (live).</b> An interlayer exciton drifts above a correlated lattice while the lone hole performs its random walk between electrons — the non-monogamous hopping behind the giant diffusion (beacon, bottom).</figcaption>
-        </figure>
-      </article>
-
-      <!-- CHAPTER III -->
-      <article class="chap rv">
-        <div class="chaptext">
-          <div class="chapnum">Chapter III</div>
-          <h3>Light-induced phases — quantum optics as a knob on matter</h3>
-          <div class="prose">
-            <p>Light is usually the probe. I want it to be the control. Strong spin–orbit coupling in TMDs locks spin to valley, and the two valleys answer to opposite circular polarizations — so a beam of light can address a pseudospin natively, no magnets required. Drive coherently and you can dress bands, split valleys via the optical Stark effect, and steer magnetic order on femtosecond timescales: Floquet engineering with a purpose.</p>
-            <p>Push further and you don't even need the drive. Place the crystal in an optical cavity and the vacuum itself — the mere possibility of a photon — hybridizes with excitons to form polaritons, part light, part matter. Cavity-dressed correlated states and polariton fluids riding on Mott insulators are where this field is heading, and I follow that frontier closely. My own work lives one step before it: using light to create, probe, and steer Bose–Fermi mixtures out of equilibrium — pumping bosons into a fermionic lattice, driving the balance between them, and watching transport and order respond in real time.</p>
-          </div>
-          <div class="tagrow"><span class="tag">nonequilibrium dynamics</span><span class="tag">optical control</span><span class="tag">Floquet engineering</span><span class="tag">valley optics</span></div>
-        </div>
-        <figure class="plate rv">
-          <div class="platehead"><span>Plate III — dressing matter with light</span><b>§ 02.3</b></div>
-          <svg viewBox="0 0 400 330" xmlns="http://www.w3.org/2000/svg">
-            <line x1="50" y1="50" x2="350" y2="50" class="fl" stroke-width="3"/>
-            <line x1="50" y1="160" x2="350" y2="160" class="fl" stroke-width="3"/>
-            <g class="fl2"><line x1="56" y1="42" x2="64" y2="34"/><line x1="86" y1="42" x2="94" y2="34"/><line x1="116" y1="42" x2="124" y2="34"/><line x1="146" y1="42" x2="154" y2="34"/><line x1="176" y1="42" x2="184" y2="34"/><line x1="206" y1="42" x2="214" y2="34"/><line x1="236" y1="42" x2="244" y2="34"/><line x1="266" y1="42" x2="274" y2="34"/><line x1="296" y1="42" x2="304" y2="34"/><line x1="326" y1="42" x2="334" y2="34"/></g>
-            <text x="356" y="54" class="ft">mirror</text>
-            <text x="356" y="164" class="ft">mirror</text>
-            <path id="p3w" d="M 60 105 Q 95 55 130 105 Q 165 155 200 105 Q 235 55 270 105 Q 305 155 340 105" class="fa"/>
-            <line x1="70" y1="105" x2="330" y2="105" class="fl"/>
-            <circle id="p3xd" cx="135" cy="105" r="4.5" class="fdota"/>
-            <text x="74" y="98" class="ft">TMD layer</text>
-            <text x="240" y="78" class="fta">vacuum field — breathing</text>
-            <line x1="60" y1="305" x2="60" y2="200" class="fl2"/>
-            <line x1="60" y1="305" x2="350" y2="305" class="fl2"/>
-            <text x="44" y="196" class="ft">E</text>
-            <text x="356" y="308" class="ft">k</text>
-            <path d="M 80 295 L 290 215" class="fl2" stroke-dasharray="3 4"/>
-            <line x1="80" y1="250" x2="340" y2="250" class="fl2" stroke-dasharray="3 4"/>
-            <path id="p3up" d="M 80 293 Q 185 285 225 262 Q 290 228 295 218" class="fa" fill="none"/>
-            <path d="M 82 252 Q 150 250 195 242 Q 260 230 335 228" class="fa" fill="none" opacity=".75"/>
-            <circle id="p3d" cx="80" cy="293" r="4.5" class="fdota"/>
-            <text x="118" y="237" class="fta">UP / LP — polaritons</text>
-            <text x="250" y="268" class="ft">exciton</text>
-            <text x="120" y="290" class="ft">photon</text>
-            <text x="270" y="296" class="ft">σ± ↔ valley K / K′</text>
-          </svg>
-          <figcaption class="platecap"><b>Plate III (live).</b> The cavity's vacuum field oscillates against the TMD sheet while a polariton state slides along the upper branch — photon-like at one end, exciton-like at the other.</figcaption>
-        </figure>
-      </article>
-
-      <!-- CHAPTER IV -->
-      <article class="chap flip rv">
-        <div class="chaptext">
-          <div class="chapnum">Chapter IV</div>
-          <h3>The fractional frontier — anyons &amp; quantum statistics beyond the binary</h3>
-          <div class="prose">
-            <p>Every particle you've ever met is a boson or a fermion. In two dimensions, nature permits a third answer. Moiré platforms have begun hosting fractional quantum anomalous Hall states — fractional Chern insulators at zero magnetic field — whose elementary excitations are anyons: quasiparticles carrying fractional charge and exchange statistics that interpolate between the two familiar families. Swap two of them and the wavefunction picks up a phase that is neither +1 nor −1; their history is braided into their quantum state.</p>
-            <p>This is where my two worlds collide. The same valley and spin degrees of freedom, the same optical probes, the same excitonic sensors I use on Mott physics can be turned on topological states — in work I contributed to, our group read out quantum anomalous Hall order in twisted WSe₂ purely optically, through attractive-polaron spectroscopy (<em>PRX</em>, 2026). The fractional rung of that ladder is the open question: how do anyons scatter, propagate, and respond out of equilibrium? Can an exciton feel fractional charge? The phase diagram of moiré matter is still being written — and the strangest chapters, I suspect, are the unwritten ones.</p>
-          </div>
-          <div class="tagrow"><span class="tag">FQAH states</span><span class="tag">anyons</span><span class="tag">fractional Chern insulators</span><span class="tag">braiding</span></div>
-        </div>
-        <figure class="plate rv">
-          <div class="platehead"><span>Plate IV — exchange, braided</span><b>§ 02.4</b></div>
-          <svg viewBox="0 0 400 330" xmlns="http://www.w3.org/2000/svg">
-            <line x1="52" y1="290" x2="52" y2="40" class="fl2"/>
-            <text x="40" y="34" class="ft">t</text>
-            <path id="p4pa" d="M 110 290 C 110 240 190 240 190 190 C 190 140 110 140 110 90 L 110 50" class="fl"/>
-            <path id="p4pb" d="M 190 290 C 190 240 110 240 110 190 C 110 140 190 140 190 90 L 190 50" class="fa"/>
-            <circle id="p4da" cx="110" cy="290" r="5" class="fdot"/>
-            <circle id="p4db" cx="190" cy="290" r="5" class="fdota"/>
-            <text x="120" y="196" class="fta">braid</text>
-            <text x="60" y="316" class="ft">exchange ⇒ ψ → e^(iθ)ψ, θ ∉ {0, π}</text>
-            <g transform="translate(322 104)">
-              <circle r="24" class="fl2"/>
-              <line x1="0" y1="-24" x2="0" y2="-19" class="fl2"/>
-              <g id="p4n"><line x1="0" y1="0" x2="0" y2="-18" class="fa"/><circle r="2.2" class="fdota"/></g>
-              <text x="-30" y="40" class="ft">θ/exchange = 2π/3</text>
-              <text id="p4t" x="-30" y="53" class="fta">exchanges: 0</text>
-            </g>
-            <line x1="255" y1="290" x2="255" y2="170" class="fl2"/>
-            <line x1="255" y1="290" x2="382" y2="290" class="fl2"/>
-            <text x="240" y="174" class="ft">σxy</text>
-            <text x="372" y="306" class="ft">n</text>
-            <path d="M 258 282 L 285 282 L 295 252 L 322 252 L 332 222 L 360 222" class="fa"/>
-            <line x1="255" y1="252" x2="295" y2="252" class="fl2" stroke-dasharray="2 4"/>
-            <text x="300" y="246" class="fta">ν = ⅔ e²/h</text>
-            <text x="262" y="314" class="ft">FQAH staircase · B = 0</text>
-          </svg>
-          <figcaption class="platecap"><b>Plate IV (live).</b> Two anyons braid in spacetime while the phase dial accumulates 2π/3 per exchange — statistics that are neither +1 nor −1. Right: fractional Hall plateaus at zero field.</figcaption>
-        </figure>
-      </article>
-
+    <div class="rf-scene">
+      <canvas class="fieldcanvas" id="rf-gl" aria-hidden="true"></canvas>
+      <div class="rf-tabs" id="rf-tabs" role="tablist"></div>
+      <div class="rf-tabhint">four threads, one fabric — choose one, or use ← / → keys</div>
+      <div class="rf-shell">
+        <article class="rf-thread rf-fade" id="rf-thread">
+          <div class="rf-num" id="rf-num"></div>
+          <h3 id="rf-title"></h3>
+          <div class="rf-sub" id="rf-sub"></div>
+          <div class="rf-prose" id="rf-prose"></div>
+          <div class="rf-obs" id="rf-obs"></div>
+        </article>
+      </div>
     </div>
 
     <!-- APPENDIX : BEYOND THE LAB -->
@@ -956,7 +795,7 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
       <div class="prose rv">
         <p>This is my <b>journal club</b>: I dig into the history of each phenomenon and try to revive its <b>true meaning</b> — tracing it back to the first works, restoring the <b>forgotten hands</b> the textbooks dropped, and calling out the conflations the literature quietly absorbed.</p>
         <p class="aether">Every dossier is researched and written by <b>AETHER</b> — a research-observatory app I built myself (thanks to Claude).</p>
-        <a class="exenter" href="observatory/">Enter the Observatory <span class="arr">→</span></a>
+        <a class="exenter" href="observatory/index.html">Enter the Observatory <span class="arr">→</span></a>
       </div>
       <figure class="explate rv" style="margin:0">
         <div class="extop"><span>The Observatory</span><b>live</b></div>
@@ -986,67 +825,7 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
     <h2 class="sectitle rv">Publications</h2>
     <p class="secdek rv">Nine peer-reviewed volumes and counting. Pull one off the shelf — each opens to its figure and abstract. The full catalogue lives on <a href="https://scholar.google.com/citations?user=3Z49t-MAAAAJ&hl=en" target="_blank" rel="noopener" style="color:var(--ink);border-bottom:1px solid var(--accent);text-decoration:none">Google Scholar</a>.</p>
 
-    <div class="shelfwrap rv">
-      <div class="shelflabel"><b>Ph.D. research</b><span>· University of Maryland — first author &amp; contributions</span></div>
-      <div class="shelf" style="margin-bottom:0">
-        <button class="vol tall" data-pub="0" style="--cloth:#7E2A23" aria-label="Open: Giant exciton diffusion near an electronic Mott insulator">
-          <span class="vtag">Science</span>
-          <span class="vtitle">Giant exciton diffusion near a Mott insulator</span>
-          <span class="vyear">2026</span>
-        </button>
-        <div class="vdivider" aria-hidden="true"></div>
-        <button class="vol" data-pub="7" style="--cloth:#20584A" aria-label="Open: Excitonic Mott insulator in a Bose-Fermi-Hubbard system">
-          <span class="vtag">Nat Comm</span>
-          <span class="vtitle">Excitonic Mott insulator — Bose–Fermi–Hubbard</span>
-          <span class="vyear">2024</span>
-        </button>
-        <button class="vol" data-pub="8" style="--cloth:#5E3148" aria-label="Open: Probing Quantum Anomalous Hall States in Twisted Bilayer WSe2">
-          <span class="vtag">PRX</span>
-          <span class="vtitle">Optical probe of QAH order in twisted WSe₂</span>
-          <span class="vyear">2026</span>
-        </button>
-      </div>
-      <div class="shelfnote">Left of the rule — first-author work. Right — additional contributions within the Ph.D. (Hafezi group).</div>
-
-      <div class="shelflabel" style="margin-top:64px"><b>Post-undergraduate</b><span>· IIT Madras — 2DMRI research internship</span></div>
-      <div class="shelf" style="margin-bottom:74px">
-        <button class="vol" data-pub="1" style="--cloth:#8A5F28" aria-label="Open: Twist dependent tuning of excitonic emissions in bilayer WSe2">
-          <span class="vtag">ACS</span>
-          <span class="vtitle">Twist-tuned excitons in bilayer WSe₂</span>
-          <span class="vyear">2022</span>
-        </button>
-        <button class="vol" data-pub="2" style="--cloth:#2E4763" aria-label="Open: Layer parity dependent Raman-active modes and crystal symmetry in ReS2">
-          <span class="vtag">PRB</span>
-          <span class="vtitle">Layer-parity Raman modes in ReS₂</span>
-          <span class="vyear">2022</span>
-        </button>
-      </div>
-
-      <div class="shelflabel"><b>Undergraduate</b><span>· IIITDM Jabalpur</span></div>
-      <div class="shelf">
-        <button class="vol" data-pub="3" style="--cloth:#2F5240" aria-label="Open: Ferroelectric Negative Capacitance Assisted Phase-Transition FET">
-          <span class="vtag">IEEE</span>
-          <span class="vtitle">NC-assisted phase-transition FET</span>
-          <span class="vyear">2022</span>
-        </button>
-        <button class="vol" data-pub="4" style="--cloth:#4D3A5E" aria-label="Open: Improved Phase-Transition FinFET Utilizing Negative Capacitance">
-          <span class="vtag">IEEE</span>
-          <span class="vtitle">Phase-transition FinFET with NC</span>
-          <span class="vyear">2021</span>
-        </button>
-        <button class="vol" data-pub="5" style="--cloth:#6E4A2F" aria-label="Open: Operation of negative capacitance FinFET for low power logic">
-          <span class="vtag">MEJ</span>
-          <span class="vtitle">NC FinFET for low-power logic</span>
-          <span class="vyear">2022</span>
-        </button>
-        <button class="vol" data-pub="6" style="--cloth:#3A3F45" aria-label="Open: Threshold Voltage and DIBL in Negative Capacitance FET">
-          <span class="vtag">TEEM</span>
-          <span class="vtitle">V_T &amp; DIBL in NC-FETs</span>
-          <span class="vyear">2021</span>
-        </button>
-      </div>
-      <div class="shelfhint">Pull a volume — tap any spine to open the book</div>
-    </div>
+    <div class="pf-stands" id="pf-stands"></div>
   </div>
 </section>
 
@@ -1238,6 +1017,87 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
 </section>
 <style>
 section[id],#hero{scroll-margin-top:64px}
+
+/* ============================ NEW-VIBE FIELD SCENES ============================ */
+/* theme-aware helper tokens */
+:root[data-theme="paper"]{--scrim:rgba(247,244,238,.66);--glass:rgba(250,247,241,.86);--glassb:rgba(33,30,26,.12);--rf-bg:#efe9df;--veil1:rgba(243,238,228,.84);--veil2:rgba(243,238,228,.30);--stage-top:rgba(228,221,205,.95);--stage-mid:rgba(206,196,174,.9);--stage-edge:rgba(150,138,114,.85);--stage-ring:rgba(120,108,86,.4)}
+:root[data-theme="ink"]{--scrim:rgba(14,16,20,.6);--glass:rgba(28,31,38,.82);--glassb:rgba(233,228,217,.16);--rf-bg:#15171c;--veil1:rgba(16,18,23,.88);--veil2:rgba(16,18,23,.38);--stage-top:rgba(40,44,53,.96);--stage-mid:rgba(54,59,70,.9);--stage-edge:rgba(78,85,100,.85);--stage-ring:rgba(170,182,200,.3)}
+.fieldcanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;display:block;border:0}
+
+/* ---- HERO ---- */
+#hero{position:relative;min-height:100vh;display:grid;align-items:center;overflow:hidden}
+#hero .wrap{position:relative;z-index:2}
+#hero .herogrid{grid-template-columns:1fr;max-width:36em;position:relative}
+#hero .herogrid::before{content:'';position:absolute;inset:-48px -72px;z-index:-1;pointer-events:none;border-radius:48px;background:radial-gradient(110% 120% at 28% 46%,var(--scrim) 0%,var(--scrim) 38%,transparent 74%)}
+#hero .heromast{color:var(--ink-2)}
+#hero h1{text-shadow:0 2px 26px var(--scrim)}
+#hero .herodek{max-width:30em;color:var(--ink-2)}
+.cursorcue{margin-top:26px;display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)}
+.cursorcue .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:cuepulse 2.4s ease-in-out infinite}
+@keyframes cuepulse{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1.3)}}
+
+/* ---- RESEARCH: selectable tabs above a glass card over the live physics ---- */
+.rf-scene{position:relative;min-height:90vh;margin-top:44px;border:1px solid var(--line-soft);border-radius:6px;overflow:hidden;background:var(--rf-bg);display:flex;flex-direction:column}
+.rf-tabs{position:relative;z-index:5;display:flex;justify-content:center;flex-wrap:wrap;gap:9px;padding:clamp(20px,3.2vh,36px) 18px 4px}
+.rf-tab{display:flex;align-items:center;gap:10px;padding:10px 17px;border:1px solid var(--glassb);border-radius:99px;background:var(--glass);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);cursor:pointer;transition:border-color .25s,background .25s,transform .25s}
+.rf-tab b{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--accent);font-weight:500}
+.rf-tab .nm{font-family:var(--serif);font-size:14px;letter-spacing:-.01em;color:var(--ink)}
+.rf-tab:hover{border-color:var(--accent);transform:translateY(-2px)}
+.rf-tab.on{background:var(--accent);border-color:var(--accent)}
+.rf-tab.on b,.rf-tab.on .nm{color:#FBF7EF}
+.rf-tabhint{position:relative;z-index:5;text-align:center;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);padding:8px 0 0}
+.rf-shell{position:relative;z-index:3;flex:1;display:flex;align-items:center;padding:clamp(20px,3.4vw,52px)}
+.rf-thread{width:min(560px,56%);max-height:64vh;overflow-y:auto;background:var(--glass);-webkit-backdrop-filter:blur(20px) saturate(1.06);backdrop-filter:blur(20px) saturate(1.06);border:1px solid var(--glassb);border-radius:4px;padding:clamp(24px,2.5vw,38px);box-shadow:0 34px 70px -34px rgba(0,0,0,.45)}
+.rf-thread::-webkit-scrollbar{width:6px}.rf-thread::-webkit-scrollbar-thumb{background:var(--glassb);border-radius:99px}
+.rf-num{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.2em;display:flex;align-items:center;gap:12px;margin-bottom:15px}
+.rf-num::after{content:'';height:1px;flex:1;background:var(--accent);opacity:.32}
+.rf-thread h3{font-weight:400;font-size:clamp(25px,2.9vw,40px);line-height:1.04;letter-spacing:-.02em;margin:0;border:0;padding:0;color:var(--ink)}
+.rf-sub{font-family:var(--text);font-style:italic;color:var(--accent);font-size:clamp(16px,1.6vw,20px);line-height:1.35;margin:11px 0 20px}
+.rf-prose p{font-family:var(--text);font-size:16px;line-height:1.7;color:var(--ink-2);margin-bottom:13px}
+.rf-prose em{font-style:italic;color:var(--ink)}
+.rf-obs{display:flex;gap:7px;flex-wrap:wrap;margin-top:20px}
+.rf-obs span{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--glassb);border-radius:99px;padding:6px 11px}
+.rf-fade{transition:opacity .42s ease,transform .42s cubic-bezier(.2,.7,.2,1)}
+.rf-fade.out{opacity:0;transform:translateY(10px)}
+@media(max-width:820px){.rf-thread{width:auto}.rf-tab .nm{display:none}.rf-tab{padding:10px 14px}}
+
+/* ---- PUBLICATIONS: a turntable on a real circular stage ---- */
+.pf-stand{position:relative;min-height:100vh;display:grid;grid-template-rows:auto 1fr auto;overflow:hidden;border-radius:6px}
+.pf-stand+.pf-stand{margin-top:20px;border-top:1px solid var(--line-soft)}
+.pf-head,.pf-stage,.pf-controls{position:relative;z-index:2}
+.pf-head{text-align:center;padding-top:clamp(30px,6vh,60px)}
+.pf-head .n{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.pf-head h3{font-weight:400;font-size:clamp(27px,3.6vw,46px);letter-spacing:-.02em;margin:7px 0 0;border:0;padding:0;color:var(--ink)}
+.pf-head .note{font-family:var(--text);font-style:italic;color:var(--ink-2);font-size:clamp(14px,1.4vw,18px);margin-top:8px}
+.pf-stage{perspective:1500px;perspective-origin:50% 48%;display:grid;place-items:center;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none}
+.pf-stage.drag{cursor:grabbing}
+.pf-veil{position:absolute;width:660px;height:660px;border-radius:50%;background:radial-gradient(closest-side,var(--veil1),var(--veil2) 56%,transparent 72%)}
+.pf-tt{position:relative;width:0;height:0;transform-style:preserve-3d;transform:rotateX(-10deg) rotateY(var(--rot,0deg));transition:transform .05s linear}
+.pf-slot{position:absolute;left:0;top:0;transform-style:preserve-3d}
+.pf-vol{position:absolute;width:148px;height:212px;left:-74px;top:-106px;transform-style:preserve-3d;cursor:pointer;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.pf-face{position:absolute;left:50%;top:50%;backface-visibility:visible}
+.pf-cover{width:148px;height:212px;transform:translate(-50%,-50%) translateZ(18px);border-radius:1px 3px 3px 1px;display:flex;flex-direction:column;justify-content:space-between;padding:15px 13px;box-shadow:inset 0 0 30px rgba(0,0,0,.22)}
+.pf-back{width:148px;height:212px;transform:translate(-50%,-50%) rotateY(180deg) translateZ(18px);border-radius:3px 1px 1px 3px}
+.pf-spine{width:36px;height:212px;transform:translate(-50%,-50%) rotateY(-90deg) translateZ(74px);display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 18px rgba(0,0,0,.3)}
+.pf-edge{width:36px;height:212px;transform:translate(-50%,-50%) rotateY(90deg) translateZ(74px);background:repeating-linear-gradient(90deg,#efe9dc,#efe9dc 1px,#d8d0bd 2px,#efe9dc 3px)}
+.pf-top{width:148px;height:36px;transform:translate(-50%,-50%) rotateX(90deg) translateZ(106px);background:repeating-linear-gradient(0deg,#efe9dc,#efe9dc 1px,#d8d0bd 2px,#efe9dc 3px)}
+.pf-bot{width:148px;height:36px;transform:translate(-50%,-50%) rotateX(-90deg) translateZ(106px);background:#cfc6b2}
+.pf-cover .ctag{font-family:var(--mono);font-size:8px;letter-spacing:.14em;color:var(--foil);opacity:.95}
+.pf-cover .ctitle{font-size:13.5px;font-weight:500;line-height:1.22;color:var(--foil)}
+.pf-cover .cyear{font-family:var(--mono);font-size:8.5px;color:var(--foil);opacity:.88}
+.pf-spine .stext{writing-mode:vertical-rl;transform:rotate(180deg);font-size:10.5px;font-weight:500;color:var(--foil);white-space:nowrap;overflow:hidden;max-height:194px}
+.pf-vol.focus{transform:translateZ(82px) scale(1.05)}
+.pf-vol.focus .pf-cover{box-shadow:inset 0 0 30px rgba(0,0,0,.18),0 30px 60px -20px rgba(20,15,10,.55)}
+/* (stage removed per request — books stand directly in the field) */
+.pf-controls{display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,40px);padding-bottom:clamp(28px,5vh,54px)}
+.pf-arrow{width:62px;height:62px;flex:0 0 auto;border:1.5px solid var(--accent);border-radius:50%;background:var(--elev);color:var(--accent);font-family:Georgia,serif;font-size:26px;line-height:1;display:grid;place-items:center;cursor:pointer;box-shadow:0 12px 28px -12px rgba(0,0,0,.4);transition:background .25s,color .25s,transform .25s}
+.pf-arrow:hover{background:var(--accent);color:#FBF7EF;transform:scale(1.1)}
+.pf-arrow:active{transform:scale(.96)}
+.pf-label{text-align:center;min-width:min(300px,62vw)}
+.pf-label .j{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.pf-label .t{font-family:var(--serif);font-size:clamp(17px,2vw,23px);max-width:22em;margin:8px auto 4px;line-height:1.3;color:var(--ink)}
+.pf-label .h{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+
 </style>
 <script>
 /* ============ THEME ============ */
@@ -1289,11 +1149,12 @@ document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 
 /* ============ MOIRÉ CANVAS ============ */
 const cv = document.getElementById('moire');
-const ctx = cv.getContext('2d');
+const ctx = cv ? cv.getContext('2d') : null;
 const twist = document.getElementById('twist');
 const twistread = document.getElementById('twistread');
 function cssv(n){ return getComputedStyle(root).getPropertyValue(n).trim(); }
 function drawMoire(thOver){
+  if(!cv||!ctx||!twist) return;
   const th = typeof thOver === 'number' ? thOver : parseFloat(twist.value);
   const W = cv.width, H = cv.height, cx = W/2, cy = H/2;
   ctx.clearRect(0,0,W,H);
@@ -1316,8 +1177,8 @@ function drawMoire(thOver){
   twistread.textContent = 'θ = ' + th.toFixed(1) + '° · λ ≈ ' + lam.toFixed(1) + 'a';
 }
 let lastMoire = 0;
-twist.addEventListener('input', ()=>{ lastMoire = performance.now(); drawMoire(); });
-(function(){
+if(twist) twist.addEventListener('input', ()=>{ lastMoire = performance.now(); drawMoire(); });
+if(cv)(function(){
   let dragging = false, lx = 0;
   cv.addEventListener('pointerdown', e=>{ dragging = true; lx = e.clientX; lastMoire = performance.now(); cv.setPointerCapture(e.pointerId); });
   cv.addEventListener('pointermove', e=>{
@@ -1847,6 +1708,234 @@ document.querySelectorAll('.vol').forEach(v=> v.addEventListener('click', ()=> o
 document.getElementById('bookclose').addEventListener('click', closeBook);
 veil.addEventListener('click', e=>{ if(e.target === veil) closeBook(); });
 addEventListener('keydown', e=>{ if(e.key === 'Escape'){ closeBook(); document.body.classList.remove('menuopen'); } });
+
+
+/* ===================== NEW-VIBE SCENES (v2: theme-aware, tabs, stage) ===================== */
+(function(){
+var VS='attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+var SMOKE_FS=`precision highp float;uniform vec2 R;uniform float T;uniform vec2 M;uniform float MA;uniform float D;
+vec3 mod289(vec3 x){return x-floor(x*(1./289.))*289.;}
+vec2 mod289(vec2 x){return x-floor(x*(1./289.))*289.;}
+vec3 permute(vec3 x){return mod289(((x*34.)+1.)*x);}
+float sn(vec2 v){const vec4 C=vec4(0.211324865,0.366025403,-0.577350269,0.024390243);vec2 i=floor(v+dot(v,C.yy));vec2 x0=v-i+dot(i,C.xx);vec2 i1=(x0.x>x0.y)?vec2(1.,0.):vec2(0.,1.);vec4 x12=x0.xyxy+C.xxzz;x12.xy-=i1;i=mod289(i);vec3 p=permute(permute(i.y+vec3(0.,i1.y,1.))+i.x+vec3(0.,i1.x,1.));vec3 m=max(0.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.);m=m*m;m=m*m;vec3 x=2.*fract(p*C.www)-1.;vec3 h=abs(x)-0.5;vec3 ox=floor(x+0.5);vec3 a0=x-ox;m*=1.79284291-0.85373472*(a0*a0+h*h);vec3 g;g.x=a0.x*x0.x+h.x*x0.y;g.yz=a0.yz*x12.xz+h.yz*x12.yw;return 130.*dot(m,g);}
+float fbm(vec2 p){float s=0.,a=0.5;for(int i=0;i<6;i++){s+=a*sn(p);p*=2.02;a*=0.5;}return s;}
+void main(){
+ vec2 p=(gl_FragCoord.xy-0.5*R)/R.y; vec2 mp=(M-0.5*R)/R.y; float t=T*0.05;
+ vec2 q=vec2(fbm(p*1.5+vec2(0.,t)),fbm(p*1.5+vec2(5.2,-t)));
+ float md=length(p-mp); float infl=MA*exp(-md*md*3.0);
+ vec2 warp=1.8*q+infl*1.3*normalize(p-mp+1e-4);
+ vec2 r=vec2(fbm(p*1.5+warp+vec2(1.7,9.2)+0.12*t),fbm(p*1.5+warp+vec2(8.3,2.8)-0.10*t));
+ float f=fbm(p*1.6+1.9*r+t*0.15); f=0.5+0.5*f; float dens=smoothstep(0.5,0.98,f);
+ vec3 paperL=vec3(0.969,0.953,0.922),inkL=vec3(0.10,0.093,0.078),crimL=vec3(0.62,0.17,0.15),goldL=vec3(0.58,0.46,0.23);
+ vec3 smokeL=mix(inkL,crimL,smoothstep(0.55,0.92,f));
+ vec3 colL=mix(paperL,smokeL,dens*0.5);
+ colL=mix(colL,goldL,smoothstep(0.46,0.55,f)*(1.-smoothstep(0.55,0.72,f))*0.10);
+ colL=mix(colL,crimL,infl*0.10);
+ vec3 paperD=vec3(0.066,0.073,0.086),crimD=vec3(0.82,0.36,0.33),goldD=vec3(0.82,0.66,0.36);
+ vec3 glowD=mix(crimD,goldD,smoothstep(0.5,0.92,f));
+ vec3 colD=mix(paperD,glowD,dens*0.42); colD=mix(colD,crimD,infl*0.20);
+ vec3 col=mix(colL,colD,D);
+ float vig=smoothstep(1.35,0.25,length(p)); col*=mix(0.92,1.0,vig);
+ float gr=fract(sin(dot(gl_FragCoord.xy,vec2(12.9898,78.233))+T*0.5)*43758.5453); col+=(gr-0.5)*(0.014*(1.0-0.4*D));
+ gl_FragColor=vec4(col,1.0);
+}`;
+var RES_FS=`
+precision highp float;
+uniform vec2 R; uniform float T; uniform vec2 M; uniform float MA; uniform vec4 W; uniform float D;
+vec3 PAPER=vec3(0.945,0.925,0.888); vec3 INK=vec3(0.10,0.093,0.078); vec3 CRIM=vec3(0.62,0.17,0.15); vec3 GOLD=vec3(0.60,0.47,0.22);
+mat2 rot(float a){return mat2(cos(a),-sin(a),sin(a),cos(a));}
+float triLat(vec2 p,float th){vec2 r=rot(th)*p;float a=cos(dot(r,vec2(6.2832,0.0)));float b=cos(dot(r,vec2(-3.1416,5.4414)));float c=cos(dot(r,vec2(-3.1416,-5.4414)));return (a+b+c)/3.0;}
+vec3 mod289(vec3 x){return x-floor(x*(1./289.))*289.;}vec2 mod289(vec2 x){return x-floor(x*(1./289.))*289.;}vec3 permute(vec3 x){return mod289(((x*34.)+1.)*x);}
+float sn(vec2 v){const vec4 C=vec4(0.211324865,0.366025403,-0.577350269,0.024390243);vec2 i=floor(v+dot(v,C.yy));vec2 x0=v-i+dot(i,C.xx);vec2 i1=(x0.x>x0.y)?vec2(1.,0.):vec2(0.,1.);vec4 x12=x0.xyxy+C.xxzz;x12.xy-=i1;i=mod289(i);vec3 p=permute(permute(i.y+vec3(0.,i1.y,1.))+i.x+vec3(0.,i1.x,1.));vec3 m=max(0.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.);m=m*m;m=m*m;vec3 x=2.*fract(p*C.www)-1.;vec3 h=abs(x)-0.5;vec3 ox=floor(x+0.5);vec3 a0=x-ox;m*=1.79284291-0.85373472*(a0*a0+h*h);vec3 g;g.x=a0.x*x0.x+h.x*x0.y;g.yz=a0.yz*x12.xz+h.yz*x12.yw;return 130.*dot(m,g);}
+
+/* I — moiré: two triangular lattices at twist θ; cursor opens θ */
+vec3 modeMoire(vec2 p,float t,float infl){
+  float th=0.085+infl*0.12+0.012*sin(t*0.2);
+  float l1=triLat(p*9.0,-th*0.5), l2=triLat(p*9.0,th*0.5);
+  float fine=0.5+0.5*(l1+l2)*0.5;                  /* fine lattice; its envelope = the moiré beat */
+  float beat=0.5+0.5*triLat(p*9.0*th,0.0);          /* the superlattice itself */
+  vec3 col=mix(PAPER,INK,smoothstep(0.30,0.92,fine)*0.55);
+  col=mix(col,CRIM,smoothstep(0.62,0.98,beat)*smoothstep(0.4,0.9,fine)*0.55); /* AA supercell centers glow */
+  return col;
+}
+/* II — correlated lattice (faint sites) with interlayer-exciton dipoles diffusing; hole hops */
+vec3 modeExciton(vec2 p,vec2 mp,float t,float infl){
+  float site=smoothstep(0.80,0.97,0.5+0.5*triLat(p*7.5,0.0));
+  vec3 col=mix(PAPER,vec3(0.30,0.28,0.25),site*0.42);   /* faint, crisp correlated lattice — one electron per site */
+  float e=0.0,h=0.0;
+  for(int i=0;i<5;i++){float fi=float(i);
+    vec2 c=vec2(sin(t*0.22+fi*1.7)*1.0+0.45*sin(t*0.06+fi*2.3), cos(t*0.18+fi*2.1)*0.62);
+    float hop=floor(t*0.5+fi); vec2 off=vec2(0.09,-0.1)+0.04*vec2(sin(hop*3.1),cos(hop*2.7));
+    float de=length(p-c); e+=exp(-de*de*50.0);        /* electron lobe */
+    float dh=length(p-(c+off)); h+=exp(-dh*dh*50.0);  /* hole lobe — the interlayer dipole */
+  }
+  col=mix(col,INK,clamp(e,0.,1.));
+  col=mix(col,CRIM,clamp(h,0.,1.));
+  col=mix(col,CRIM,infl*0.08);
+  return col;
+}
+/* III — coherent optical wavefronts dressing the lattice; cursor = drive */
+vec3 modeLight(vec2 p,vec2 mp,float t,float infl){
+  vec2 dir=normalize(vec2(1.0,0.34));
+  float k=15.0,w=2.0+infl*2.2;
+  float wave=cos(dot(p,dir)*k - t*w);
+  float band=smoothstep(0.25,1.0,0.5+0.5*wave);
+  vec3 col=mix(PAPER,GOLD,band*0.34);
+  float site=smoothstep(0.62,0.98,0.5+0.5*triLat(p*3.4,0.0));
+  col=mix(col,mix(GOLD,CRIM,0.45),site*band*0.55);            /* sites light up under crests */
+  float wave2=cos(dot(p,dir)*k*0.5 + t*w*0.55);
+  col=mix(col,CRIM,smoothstep(0.85,1.0,0.5+0.5*wave2)*0.10);
+  return col;
+}
+/* IV — braiding anyon vortices (spiral phase winding) + faint chiral edge */
+vec3 modeFrac(vec2 p,vec2 mp,float t,float infl){
+  vec3 col=vec3(0.93,0.91,0.875);
+  float edge=smoothstep(0.03,0.0,abs(length(p)-1.18));
+  col=mix(col,INK,edge*0.10);
+  float spiral=0.0,core=0.0;
+  for(int i=0;i<3;i++){float fi=float(i);
+    float ang=t*0.45+fi*2.0944;
+    vec2 c=vec2(cos(ang),sin(ang))*0.5*(0.7+0.3*sin(t*0.3+fi));
+    vec2 d=p-c; float r=length(d); float th=atan(d.y,d.x);
+    spiral+=exp(-r*r*3.2)*(0.5+0.5*sin(th*5.0 - r*18.0 + t*1.3));
+    core+=exp(-r*r*42.0);
+  }
+  col=mix(col,INK,clamp(spiral*0.6,0.,1.));
+  col=mix(col,CRIM,clamp(core*0.75,0.,1.));
+  col=mix(col,CRIM,infl*0.10);
+  return col;
+}
+void main(){
+  vec2 p=(gl_FragCoord.xy-0.5*R)/R.y;
+  vec2 mp=(M-0.5*R)/R.y;
+  float md=length(p-mp); float infl=MA*exp(-md*md*2.6);
+  vec3 col=modeMoire(p,T,infl)*W.x + modeExciton(p,mp,T,infl)*W.y + modeLight(p,mp,T,infl)*W.z + modeFrac(p,mp,T,infl)*W.w;
+  /* dark mode: keep the exact pattern, recolour to glow-on-ink */
+  float lum=dot(col,vec3(0.299,0.587,0.114));
+  float darkness=clamp((0.92-lum)/0.6,0.0,1.0);
+  float warm=clamp((col.r-col.b)*1.6,0.0,1.0);
+  vec3 dbg=vec3(0.060,0.067,0.080);
+  vec3 glow=mix(vec3(0.80,0.66,0.36),vec3(0.86,0.40,0.37),warm);
+  col=mix(col,mix(dbg,glow,darkness),D);
+  float vig=smoothstep(1.38,0.25,length(p)); col*=mix(0.93,1.0,vig);
+  float gr=fract(sin(dot(gl_FragCoord.xy,vec2(12.9898,78.233))+T*0.5)*43758.5453); col+=(gr-0.5)*(0.012*(1.0-0.4*D));
+  gl_FragColor=vec4(col,1.0);
+}`;
+function curDark(){return document.documentElement.getAttribute('data-theme')==='ink'?1.0:0.0;}
+function boot(canvas, fs){
+  var gl=canvas.getContext('webgl',{antialias:true,premultipliedAlpha:false});
+  if(!gl){canvas.style.background='radial-gradient(120% 120% at 30% 20%,#f7f2e8,#e7dfd2)';return null;}
+  function mk(t,src){var sh=gl.createShader(t);gl.shaderSource(sh,src);gl.compileShader(sh);if(!gl.getShaderParameter(sh,gl.COMPILE_STATUS))console.error('shader',gl.getShaderInfoLog(sh));return sh;}
+  var pr=gl.createProgram();gl.attachShader(pr,mk(gl.VERTEX_SHADER,VS));gl.attachShader(pr,mk(gl.FRAGMENT_SHADER,fs));gl.linkProgram(pr);gl.useProgram(pr);
+  var bf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,bf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+  var lo=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(lo);gl.vertexAttribPointer(lo,2,gl.FLOAT,false,0,0);
+  var uR=gl.getUniformLocation(pr,'R'),uT=gl.getUniformLocation(pr,'T'),uM=gl.getUniformLocation(pr,'M'),uMA=gl.getUniformLocation(pr,'MA'),uW=gl.getUniformLocation(pr,'W'),uD=gl.getUniformLocation(pr,'D');
+  var DPR=Math.min(1.4,window.devicePixelRatio||1);
+  function rs(){var r=canvas.getBoundingClientRect();var cw=Math.max(2,r.width||window.innerWidth),ch=Math.max(2,r.height||window.innerHeight);canvas.width=cw*DPR;canvas.height=ch*DPR;gl.viewport(0,0,canvas.width,canvas.height);}
+  window.addEventListener('resize',rs); rs();
+  var mx=canvas.width*0.5,my=canvas.height*0.5,tx=mx,ty=my,ma=0,tma=0;
+  var host=canvas.parentNode;
+  host.addEventListener('pointermove',function(e){var r=canvas.getBoundingClientRect();tx=(e.clientX-r.left)*DPR;ty=(r.height-(e.clientY-r.top))*DPR;tma=1;});
+  host.addEventListener('pointerleave',function(){tma=0;});
+  var w=[1,0,0,0],wt=[1,0,0,0],t0=null;
+  function fr(ts){if(t0===null)t0=ts;var t=(ts-t0)*0.001;
+    for(var i=0;i<4;i++)w[i]+=(wt[i]-w[i])*0.05;
+    mx+=(tx-mx)*0.07;my+=(ty-my)*0.07;ma+=(tma-ma)*0.05;
+    gl.uniform2f(uR,canvas.width,canvas.height);gl.uniform1f(uT,t);gl.uniform2f(uM,mx,my);gl.uniform1f(uMA,ma);
+    if(uW)gl.uniform4f(uW,w[0],w[1],w[2],w[3]); if(uD)gl.uniform1f(uD,curDark());
+    gl.drawArrays(gl.TRIANGLES,0,3);requestAnimationFrame(fr);}
+  requestAnimationFrame(fr);
+  return {setMode:function(i){wt=[0,0,0,0];wt[i]=1;}};
+}
+
+/* HERO field */
+var hf=document.getElementById('hf-gl'); if(hf) boot(hf, SMOKE_FS);
+
+/* RESEARCH field + selectable tabs */
+var THREADS=[
+ {key:'moire',n:'01',name:'Moiré quantum matter',
+  title:'Moiré quantum matter',sub:'flat bands, Mott physics &amp; electron crystals.',
+  paras:['Stack two atomically thin semiconductors with a deliberate twist and an emergent superlattice appears, hundreds of times larger than the atomic spacing. That single knob does something profound: it flattens the electronic bands. When the kinetic energy <em>W</em> collapses below the Coulomb repulsion <em>U</em>, electrons stop behaving like a gas and start behaving like a society — they localize, order, and organize.',
+   'Moiré TMD heterostructures are, in effect, a quantum simulator of the Hubbard model that you can tune in a single device: bandwidth by twist angle, filling by a gate voltage, interactions by the dielectric environment. Sweep the filling factor and a whole zoo of correlated states walks by — Mott insulators at one electron per site, generalized Wigner crystals at fractional fillings, charge-density waves, and stripe phases. These are the textbook hard problems of condensed matter, realized in a flake of semiconductor you can hold on a chip.'],
+  obs:['Hubbard simulator','Mott insulator','Wigner crystals','flat bands'],
+  hud:'twist your cursor — the bands flatten'},
+ {key:'exciton',n:'02',name:'Excitons & Bose–Fermi mixtures',
+  title:'Excitons &amp; Bose–Fermi mixtures',sub:'when bosons live on a correlated lattice.',
+  paras:['Shine light on these stacks and you create interlayer excitons: an electron in one layer bound to a hole in the other. They are long-lived, carry a permanent electric dipole, and wander the moiré landscape as interacting bosons. But calling them "bosons" undersells them — they are composite particles, and their fermionic insides leak into everything: their interactions, their statistics, their dynamics.',
+   'The regime I find irresistible is the Bose–Fermi Hubbard mixture: a dilute gas of excitons threading a correlated electron lattice, each species reshaping the other. In our recent work (<em>Science</em>, 2026) we watched exciton diffusion grow by orders of magnitude precisely at the Mott state — an insulator, of all places — because the exciton\'s hole stops being monogamous to a single electron and starts hopping freely among many. It builds on our group\'s earlier demonstration of an excitonic Mott insulator in the same platform (<em>Nat. Commun.</em>, 2024), where the bosons themselves jam into incompressibility. Transport, valley polarization, and nonequilibrium response of these dressed bosons are exactly the observables where correlation physics announces itself.'],
+  obs:['interlayer excitons','Bose–Fermi Hubbard','exciton transport','polaron physics'],
+  hud:'the hole hops between sites'},
+ {key:'light',n:'03',name:'Light-induced phases',
+  title:'Light-induced phases',sub:'quantum optics as a knob on matter.',
+  paras:['Light is usually the probe. I want it to be the control. Strong spin–orbit coupling in TMDs locks spin to valley, and the two valleys answer to opposite circular polarizations — so a beam of light can address a pseudospin natively, no magnets required. Drive coherently and you can dress bands, split valleys via the optical Stark effect, and steer magnetic order on femtosecond timescales: Floquet engineering with a purpose.',
+   'Push further and you don\'t even need the drive. Place the crystal in an optical cavity and the vacuum itself — the mere possibility of a photon — hybridizes with excitons to form polaritons, part light, part matter. Cavity-dressed correlated states and polariton fluids riding on Mott insulators are where this field is heading, and I follow that frontier closely. My own work lives one step before it: using light to create, probe, and steer Bose–Fermi mixtures out of equilibrium — pumping bosons into a fermionic lattice, driving the balance between them, and watching transport and order respond in real time.'],
+  obs:['nonequilibrium dynamics','optical control','Floquet engineering','valley optics'],
+  hud:'the cursor drives the field'},
+ {key:'frontier',n:'04',name:'The fractional frontier',
+  title:'The fractional frontier',sub:'anyons &amp; quantum statistics beyond the binary.',
+  paras:['Every particle you\'ve ever met is a boson or a fermion. In two dimensions, nature permits a third answer. Moiré platforms have begun hosting fractional quantum anomalous Hall states — fractional Chern insulators at zero magnetic field — whose elementary excitations are anyons: quasiparticles carrying fractional charge and exchange statistics that interpolate between the two familiar families. Swap two of them and the wavefunction picks up a phase that is neither +1 nor −1; their history is braided into their quantum state.',
+   'This is where my two worlds collide. The same valley and spin degrees of freedom, the same optical probes, the same excitonic sensors I use on Mott physics can be turned on topological states — in work I contributed to, our group read out quantum anomalous Hall order in twisted WSe₂ purely optically, through attractive-polaron spectroscopy (<em>PRX</em>, 2026). The fractional rung of that ladder is the open question: how do anyons scatter, propagate, and respond out of equilibrium? Can an exciton feel fractional charge? The phase diagram of moiré matter is still being written — and the strangest chapters, I suspect, are the unwritten ones.'],
+  obs:['FQAH states','anyons','fractional Chern insulators','braiding'],
+  hud:'move slowly — the anyons braid'}
+];;
+var SHORTS=['Moiré matter','Excitons','Light-induced','Fractional'];
+var rfc=document.getElementById('rf-gl');
+var rfField=rfc?boot(rfc,RES_FS):null;
+var cur=0, RF={};
+['rf-thread','rf-title','rf-sub','rf-prose','rf-obs','rf-num','rf-tabs'].forEach(function(k){RF[k]=document.getElementById(k);});
+function rfTabs(){RF['rf-tabs'].innerHTML=THREADS.map(function(t,i){return '<button class="rf-tab'+(i===cur?' on':'')+'" data-i="'+i+'"><b>'+t.n+'</b><span class="nm">'+(SHORTS[i]||t.name)+'</span></button>';}).join('');RF['rf-tabs'].querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){rfGo(+b.dataset.i);});});}
+function rfPaint(){var t=THREADS[cur];RF['rf-num'].innerHTML=t.n+' — thread of four';RF['rf-title'].innerHTML=t.title;RF['rf-sub'].innerHTML='— '+t.sub;RF['rf-prose'].innerHTML=t.paras.map(function(p){return '<p>'+p+'</p>';}).join('');RF['rf-obs'].innerHTML=t.obs.map(function(o){return '<span>'+o+'</span>';}).join('');RF['rf-thread'].scrollTop=0;}
+function rfGo(i){i=(i+THREADS.length)%THREADS.length;if(i===cur)return;cur=i;RF['rf-thread'].classList.add('out');setTimeout(function(){rfPaint();rfTabs();RF['rf-thread'].classList.remove('out');if(rfField)rfField.setMode(cur);},280);}
+if(RF['rf-thread']){rfTabs();rfPaint();
+  window.addEventListener('keydown',function(e){var sc=document.querySelector('.rf-scene');if(!sc)return;var r=sc.getBoundingClientRect();if(r.bottom<window.innerHeight*0.4||r.top>window.innerHeight*0.6)return;if(e.key==='ArrowRight')rfGo(cur+1);else if(e.key==='ArrowLeft')rfGo(cur-1);});
+}
+
+/* PUBLICATIONS — three rotating stands on a circular stage, wired to the book modal */
+function dk(hex,fct){var n=parseInt(hex.slice(1),16),r=(n>>16)&255,g=(n>>8)&255,b=n&255;return 'rgb('+[r,g,b].map(function(x){return Math.round(x*fct);}).join(',')+')';}
+function lt(hex,fct){var n=parseInt(hex.slice(1),16),r=(n>>16)&255,g=(n>>8)&255,b=n&255;return 'rgb('+[r,g,b].map(function(x){return Math.round(x+(255-x)*fct);}).join(',')+')';}
+var STANDS=[
+ {label:'Ph.D. research',note:'Moiré quantum matter — first-author &amp; contributions',books:[0,7,8]},
+ {label:'Post-undergraduate',note:'Twisted 2D semiconductors',books:[1,2]},
+ {label:'Undergraduate',note:'Negative-capacitance devices &amp; TCAD',books:[3,4,5,6]}
+];
+var standsEl=document.getElementById('pf-stands');
+if(standsEl && typeof PUBS!=='undefined'){
+STANDS.forEach(function(st,si){
+  var sec=document.createElement('section'); sec.className='pf-stand';
+  sec.innerHTML='<canvas class="fieldcanvas" aria-hidden="true"></canvas>'+
+    '<div class="pf-head"><div class="n">§ 04 · stand '+(si+1)+' / '+STANDS.length+'</div><h3>'+st.label+'</h3><div class="note">'+st.note+'</div></div>'+
+    '<div class="pf-stage"><div class="pf-veil"></div><div class="pf-tt"></div></div>'+
+    '<div class="pf-controls"><button class="pf-arrow prev" aria-label="Previous volume">&#8249;</button><div class="pf-label"></div><button class="pf-arrow next" aria-label="Next volume">&#8250;</button></div>';
+  standsEl.appendChild(sec);
+  boot(sec.querySelector('canvas'), SMOKE_FS);
+  var tt=sec.querySelector('.pf-tt'),fl=sec.querySelector('.pf-label'),stage=sec.querySelector('.pf-stage');
+  var idxs=st.books,N=idxs.length,STEP=360/N,Rr=(N<=2?200:(N===3?235:262));
+  tt.innerHTML=idxs.map(function(bi,i){var d=PUBS[bi];
+    var cloth='linear-gradient(100deg,'+dk(d.cloth,.7)+' 0%,'+d.cloth+' 9%,'+d.cloth+' 86%,'+lt(d.cloth,.18)+' 97%,'+dk(d.cloth,.62)+' 100%)';
+    var sg='linear-gradient(90deg,'+dk(d.cloth,.65)+','+d.cloth+' 50%,'+dk(d.cloth,.7)+')';
+    return '<div class="pf-slot" style="transform:rotateY('+(i*STEP)+'deg) translateZ('+Rr+'px)"><div class="pf-vol" data-i="'+bi+'">'+
+      '<div class="pf-face pf-cover" style="background:'+cloth+'"><div class="ctag">'+d.tag+'</div><div class="ctitle">'+d.title+'</div><div class="cyear">'+d.year+'</div></div>'+
+      '<div class="pf-face pf-back" style="background:'+cloth+'"></div>'+
+      '<div class="pf-face pf-spine" style="background:'+sg+'"><div class="stext">'+d.title+'</div></div>'+
+      '<div class="pf-face pf-edge"></div><div class="pf-face pf-top"></div><div class="pf-face pf-bot"></div>'+
+    '</div></div>';
+  }).join('');
+  var vols=[].slice.call(tt.querySelectorAll('.pf-vol'));
+  var rot=0,target=0;
+  function snap(){target=Math.round(target/STEP)*STEP;}
+  function tick(){if(!isFinite(rot))rot=0;if(!isFinite(target))target=0;rot+=(target-rot)*0.12;tt.style.setProperty('--rot',(-rot)+'deg');var front=((Math.round(rot/STEP))%N+N)%N;vols.forEach(function(v,i){v.classList.toggle('focus',i===front);});var d=PUBS[idxs[front]];fl.innerHTML='<div class="j">'+d.tag+' · '+d.year+'</div><div class="t">'+d.title+'</div><div class="h">'+(N>1?'drag or use the arrows · click to open':'click the volume to open')+'</div>';requestAnimationFrame(tick);}
+  tick();
+  var dragging=false,dragged=false,sx=0,srot=0;
+  stage.addEventListener('pointerdown',function(e){dragging=true;dragged=false;sx=e.clientX;srot=target;stage.classList.add('drag');});
+  window.addEventListener('pointermove',function(e){if(!dragging)return;if(Math.abs(e.clientX-sx)>4)dragged=true;target=srot+(sx-e.clientX)*0.5;});
+  window.addEventListener('pointerup',function(){if(!dragging)return;dragging=false;stage.classList.remove('drag');snap();});
+  sec.querySelector('.prev').addEventListener('click',function(){snap();target-=STEP;});
+  sec.querySelector('.next').addEventListener('click',function(){snap();target+=STEP;});
+  vols.forEach(function(v){v.addEventListener('click',function(){if(dragged){dragged=false;return;}openBook(+v.dataset.i);});});
+});
+}
+})();
+
 </script>
 </body>
 </html>
