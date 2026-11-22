@@ -483,6 +483,52 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
   .vol.tall{width:54px; height:243px}
   .bpage{padding:30px 24px 34px}
 }
+
+/* ===== group affiliations band ===== */
+.affil{border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft); background:var(--page)}
+.affil .wrap{padding-top:28px; padding-bottom:28px}
+.affil-inner{display:flex; flex-wrap:wrap; align-items:stretch; gap:26px 44px}
+.affil-kick{font-family:var(--mono); font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:11px}
+.affil-group{display:flex; flex-direction:column; justify-content:center; text-decoration:none; border:1px solid var(--line); border-left:2.5px solid var(--accent); border-radius:5px; padding:13px 22px; background:var(--elev); transition:border-color .3s, transform .3s, box-shadow .3s}
+.affil-group:hover{transform:translateY(-2px); box-shadow:var(--shadow); border-color:var(--accent)}
+.affil-group-name{font-family:var(--serif); font-weight:500; font-size:22px; color:var(--ink); letter-spacing:-.01em; line-height:1.1}
+.affil-group-sub{font-family:var(--mono); font-size:10.5px; color:var(--muted); margin-top:5px; letter-spacing:.02em}
+.affil-group:hover .affil-group-sub{color:var(--accent)}
+.affil-insts{flex:1 1 300px; min-width:0; display:flex; flex-direction:column; justify-content:center}
+.affil-chips{display:flex; flex-wrap:wrap; gap:9px}
+.affil-chip{display:flex; flex-direction:column; text-decoration:none; border:1px solid var(--line); border-radius:5px; padding:8px 15px; background:var(--elev); transition:border-color .3s, transform .3s}
+.affil-chip:hover{transform:translateY(-2px); border-color:var(--accent)}
+.affil-chip b{font-family:var(--mono); font-weight:500; font-size:13px; letter-spacing:.05em; color:var(--ink); transition:color .3s}
+.affil-chip:hover b{color:var(--accent)}
+.affil-chip i{font-family:var(--mono); font-style:normal; font-size:8.5px; letter-spacing:.02em; color:var(--muted); margin-top:3px; white-space:nowrap}
+@media(max-width:760px){
+  .affil-inner{flex-direction:column; gap:20px}
+  .affil-group{align-self:flex-start}
+  .affil-group-name{font-size:20px}
+  .affil-chip i{white-space:normal}
+}
+
+/* ===== talks & seminars ===== */
+.talks-grid{display:grid; grid-template-columns:1fr 1fr; gap:46px; margin-top:6px}
+.talks-h{font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); display:flex; align-items:center; gap:13px; margin-bottom:4px}
+.talks-h::after{content:""; height:1px; flex:1; background:var(--line-soft)}
+.talks-h span{color:var(--muted); letter-spacing:.1em}
+.talk-list{border-top:1px solid var(--line-soft)}
+.talk{display:grid; grid-template-columns:92px 1fr; gap:18px; padding:17px 0; border-bottom:1px solid var(--line-soft); align-items:start}
+.talk-when{font-family:var(--mono); font-size:9.5px; letter-spacing:.04em; color:var(--muted); line-height:1.55; padding-top:4px}
+.talk-when b{display:block; color:var(--ink-2); font-weight:500; font-size:11px; margin-bottom:2px}
+.talk-main{min-width:0}
+.talk-venue{font-family:var(--serif); font-size:18px; font-weight:500; color:var(--ink); line-height:1.25; text-decoration:none; border-bottom:1px solid transparent; transition:color .3s, border-color .3s}
+a.talk-venue:hover{color:var(--accent); border-bottom-color:var(--accent)}
+.talk-venue .ext{font-family:var(--mono); font-size:10px; color:var(--muted); vertical-align:1px; margin-left:3px}
+a.talk-venue:hover .ext{color:var(--accent)}
+.talk-detail{font-size:13.5px; color:var(--ink-2); margin-top:5px; line-height:1.5}
+.talk-badges{margin-top:9px; display:flex; flex-wrap:wrap; gap:7px}
+.talk-badge{font-family:var(--mono); font-size:8.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); border:1px solid var(--line-soft); border-radius:99px; padding:4px 10px}
+.talk-badge.accent{color:var(--accent); border-color:var(--accent-soft); background:var(--accent-soft)}
+.talk-badge.gold{color:var(--gold); border-color:var(--gold); opacity:.85}
+@media(max-width:860px){ .talks-grid{grid-template-columns:1fr; gap:36px} }
+@media(max-width:520px){ .talk{grid-template-columns:76px 1fr; gap:14px} .talk-venue{font-size:16.5px} }
 </style>
 </head>
 <body>
@@ -494,8 +540,9 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
       <a class="tab" href="#research" data-sec="research"><i>02</i>Research Interests</a>
       <a class="tab" href="observatory/index.html" data-sec="excavations"><i>03</i>Excavations ↗</a>
       <a class="tab" href="#publications" data-sec="publications"><i>04</i>Publications</a>
-      <a class="tab" href="#phd" data-sec="phd"><i>05</i>Ph.D. Guide</a>
-      <a class="tab" href="#contact" data-sec="contact"><i>06</i>Contact</a>
+      <a class="tab" href="#talks" data-sec="talks"><i>05</i>Talks</a>
+      <a class="tab" href="#phd" data-sec="phd"><i>06</i>Ph.D. Guide</a>
+      <a class="tab" href="#contact" data-sec="contact"><i>07</i>Contact</a>
     </nav>
     <div class="hbtns">
       <button class="themebtn" id="themebtn" aria-label="Toggle theme" title="Paper / Ink">
@@ -512,8 +559,9 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
   <a class="mitem" href="#research" style="transition-delay:.1s"><b>02</b>Research Interests</a>
   <a class="mitem" href="observatory/index.html" style="transition-delay:.15s"><b>03</b>Excavations ↗</a>
   <a class="mitem" href="#publications" style="transition-delay:.2s"><b>04</b>Publications</a>
-  <a class="mitem" href="#phd" style="transition-delay:.25s"><b>05</b>Ph.D. Guide</a>
-  <a class="mitem" href="#contact" style="transition-delay:.3s"><b>06</b>Contact</a>
+  <a class="mitem" href="#talks" style="transition-delay:.25s"><b>05</b>Talks &amp; Seminars</a>
+  <a class="mitem" href="#phd" style="transition-delay:.3s"><b>06</b>Ph.D. Guide</a>
+  <a class="mitem" href="#contact" style="transition-delay:.35s"><b>07</b>Contact</a>
   <div class="mfoot">College Park, Maryland · est. 2022</div>
 </div>
 
@@ -538,6 +586,30 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
           <a class="chip" href="https://www.linkedin.com/in/pranshoo-upadhyay/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
         <div class="cursorcue rv"><span class="dot"></span>move your cursor — the field responds</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GROUP & AFFILIATIONS ============ -->
+<section class="affil" id="affil">
+  <div class="wrap">
+    <div class="affil-inner">
+      <div class="affil-lead">
+        <span class="affil-kick">Research group</span>
+        <a class="affil-group" href="https://groups.jqi.umd.edu/hafezi" target="_blank" rel="noopener">
+          <span class="affil-group-name">Hafezi Group</span>
+          <span class="affil-group-sub">Prof. Mohammad Hafezi · Univ. of Maryland ↗</span>
+        </a>
+      </div>
+      <div class="affil-insts">
+        <span class="affil-kick">Affiliated with — visit the institutes</span>
+        <div class="affil-chips">
+          <a class="affil-chip" href="https://jqi.umd.edu/" target="_blank" rel="noopener"><b>JQI</b><i>Joint Quantum Institute</i></a>
+          <a class="affil-chip" href="https://qtc.umd.edu/" target="_blank" rel="noopener"><b>QTC</b><i>Quantum Technology Center</i></a>
+          <a class="affil-chip" href="https://rqs.umd.edu/" target="_blank" rel="noopener"><b>RQS</b><i>Robust Quantum Simulation</i></a>
+          <a class="affil-chip" href="https://ireap.umd.edu/" target="_blank" rel="noopener"><b>IREAP</b><i>Electronics &amp; Applied Physics</i></a>
+        </div>
       </div>
     </div>
   </div>
@@ -823,7 +895,7 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
   <div class="wrap">
     <div class="seclabel rv">§ 04 · The library</div>
     <h2 class="sectitle rv">Publications</h2>
-    <p class="secdek rv">Nine peer-reviewed volumes and counting. Pull one off the shelf — each opens to its figure and abstract. The full catalogue lives on <a href="https://scholar.google.com/citations?user=3Z49t-MAAAAJ&hl=en" target="_blank" rel="noopener" style="color:var(--ink);border-bottom:1px solid var(--accent);text-decoration:none">Google Scholar</a>.</p>
+    <p class="secdek rv">Nine peer-reviewed volumes and a fresh preprint. Pull one off the shelf — each opens to its figure and abstract. The full catalogue lives on <a href="https://scholar.google.com/citations?user=3Z49t-MAAAAJ&hl=en" target="_blank" rel="noopener" style="color:var(--ink);border-bottom:1px solid var(--accent);text-decoration:none">Google Scholar</a>.</p>
 
     <div class="pf-stands" id="pf-stands"></div>
   </div>
@@ -837,10 +909,118 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
   </div>
 </div>
 
+<!-- ============ TALKS & SEMINARS ============ -->
+<section class="sec" id="talks">
+  <div class="wrap">
+    <div class="seclabel rv">§ 05 · On the road</div>
+    <h2 class="sectitle rv">Talks &amp; Seminars</h2>
+    <p class="secdek rv">The talks I give in person — at conferences and symposia, and as invited seminars at universities and institutes across the field.</p>
+    <div class="rule"></div>
+    <div class="talks-grid">
+
+      <div class="talks-col rv">
+        <div class="talks-h">Conference &amp; symposium talks <span>— 5</span></div>
+        <div class="talk-list">
+
+          <div class="talk">
+            <div class="talk-when"><b>Mar 2025</b>Anaheim, USA</div>
+            <div class="talk-main">
+              <a class="talk-venue" href="https://summit.aps.org/" target="_blank" rel="noopener">APS Global Physics Summit 2025<span class="ext">↗</span></a>
+              <div class="talk-detail">The largest gathering in physics — the joint APS March &amp; April Meeting.</div>
+              <div class="talk-badges"><span class="talk-badge">Talk</span></div>
+            </div>
+          </div>
+
+          <div class="talk">
+            <div class="talk-when"><b>Aug 2026</b>Cargèse, France</div>
+            <div class="talk-main">
+              <a class="talk-venue" href="https://metaquantm.ijs.si/" target="_blank" rel="noopener">MetaQuantM 2026<span class="ext">↗</span></a>
+              <div class="talk-detail">Creation &amp; manipulation of new states of metastable quantum matter, Corsica.</div>
+              <div class="talk-badges"><span class="talk-badge">Talk</span></div>
+            </div>
+          </div>
+
+          <div class="talk">
+            <div class="talk-when"><b>Oct 2026</b>Munich, Germany</div>
+            <div class="talk-main">
+              <a class="talk-venue" href="https://www.mcqst.de/quantum-talents-munich/quantum-talents-finalists-2026.html" target="_blank" rel="noopener">Quantum Talents Symposium<span class="ext">↗</span></a>
+              <div class="talk-detail">Selected finalist among early-career quantum researchers — invited to present at MPQ, Munich.</div>
+              <div class="talk-badges"><span class="talk-badge accent">Finalist</span><span class="talk-badge">Invited speaker</span></div>
+            </div>
+          </div>
+
+          <div class="talk">
+            <div class="talk-when"><b>Dec 2026</b>Boston, USA</div>
+            <div class="talk-main">
+              <a class="talk-venue" href="https://www.mrs.org/meetings-events/annual-meetings/2026-mrs-fall-meeting" target="_blank" rel="noopener">MRS Fall Meeting 2026<span class="ext">↗</span></a>
+              <div class="talk-detail">Giving two talks at the Materials Research Society Fall Meeting &amp; Exhibit.</div>
+              <div class="talk-badges"><span class="talk-badge">Two talks</span></div>
+            </div>
+          </div>
+
+          <div class="talk">
+            <div class="talk-when"><b>Dec 2026</b>Boston, USA</div>
+            <div class="talk-main">
+              <a class="talk-venue" href="https://www.mrs.org/meetings-events/annual-meetings/2026-mrs-fall-meeting/meeting-events/awards/graduate-student-awards-special-talk-session-2" target="_blank" rel="noopener">MRS Graduate Student Award<span class="ext">↗</span></a>
+              <div class="talk-detail">Graduate Student Award finalist — award talk at the MRS Fall Meeting.</div>
+              <div class="talk-badges"><span class="talk-badge gold">Award talk</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="talks-col rv">
+        <div class="talks-h">Invited seminars <span>— 4</span></div>
+        <div class="talk-list">
+
+          <div class="talk">
+            <div class="talk-when"><b>14 May 2026</b>College Park, USA</div>
+            <div class="talk-main">
+              <a class="talk-venue" href="https://rqs.umd.edu/events/rqs-seminar-giant-enhancement-exciton-diffusion-near-electronic-mott-insulator" target="_blank" rel="noopener">University of Maryland · RQS Seminar<span class="ext">↗</span></a>
+              <div class="talk-detail">Robust Quantum Simulation (RQS) seminar series.</div>
+              <div class="talk-badges"><span class="talk-badge accent">Invited</span></div>
+            </div>
+          </div>
+
+          <div class="talk">
+            <div class="talk-when"><b>29 Oct 2026</b>Garching, Germany</div>
+            <div class="talk-main">
+              <a class="talk-venue" href="https://www.professoren.tum.de/en/tum-junior-fellows/dirnberger-florian" target="_blank" rel="noopener">TU Munich · Center for Quantum Engineering<span class="ext">↗</span></a>
+              <div class="talk-detail">ZQE seminar — hosted by Prof. Florian Dirnberger.</div>
+              <div class="talk-badges"><span class="talk-badge accent">Invited</span></div>
+            </div>
+          </div>
+
+          <div class="talk">
+            <div class="talk-when"><b>4 Nov 2026</b>Hamburg, Germany</div>
+            <div class="talk-main">
+              <a class="talk-venue" href="https://www.mpsd.mpg.de/events/47239/2736" target="_blank" rel="noopener">Max Planck (MPSD) · QCMD Seminar<span class="ext">↗</span></a>
+              <div class="talk-detail">Quantum Condensed Matter Dynamics — hosted by Prof. Andrea Cavalleri.</div>
+              <div class="talk-badges"><span class="talk-badge accent">Invited</span></div>
+            </div>
+          </div>
+
+          <div class="talk">
+            <div class="talk-when"><b>4 Dec 2026</b>New York, USA</div>
+            <div class="talk-main">
+              <a class="talk-venue" href="https://chem.columbia.edu/content/xiaoyang-zhu" target="_blank" rel="noopener">Columbia University<span class="ext">↗</span></a>
+              <div class="talk-detail">Department seminar — hosted by Prof. Xiaoyang Zhu.</div>
+              <div class="talk-badges"><span class="talk-badge accent">Invited</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ============ PHD ============ -->
 <section class="sec" id="phd">
   <div class="wrap">
-    <div class="seclabel rv">§ 05 · Field notes</div>
+    <div class="seclabel rv">§ 06 · Field notes</div>
     <h2 class="sectitle rv">The Ph.D. Guide</h2>
     <p class="secdek rv">Sharing what I know — a genuine description of what goes into a Ph.D. application, written for the student I used to be.</p>
     <div class="phdintro rv"><strong>Disclaimer:</strong> here I try to provide a genuine description of what goes into a Ph.D. application and what needs to be known. Please keep your mind open and unbiased before reading further. Thanks!</div>
@@ -993,7 +1173,7 @@ footer{border-top:1px solid var(--line); padding:26px 0 34px}
   <div class="wrap">
     <div class="cgrid">
       <div>
-        <div class="seclabel rv">§ 06 · Correspondence</div>
+        <div class="seclabel rv">§ 07 · Correspondence</div>
         <h2 class="big rv">Inquisitive mind?<br><em>Write to me.</em></h2>
         <p class="rv" style="color:var(--ink-2); max-width:480px; margin-bottom:30px">I hope to meet, discuss, and work with inquisitive and analytical minds — about moiré physics, a Ph.D. question, or a theory of consciousness you can't put down.</p>
         <a class="mailline rv" href="mailto:upranshoo9c@gmail.com">upranshoo9c [at] gmail [dot] com</a>
@@ -1133,7 +1313,7 @@ document.querySelectorAll('#mmenu a').forEach(a=> a.addEventListener('click', ()
 /* ============ SCROLL: PROGRESS + SPY ============ */
 const progress = document.getElementById('progress');
 const tabs = [...document.querySelectorAll('.tab')];
-const secs = ['about','research','excavations','publications','phd','contact'].map(id=>document.getElementById(id));
+const secs = ['about','research','excavations','publications','talks','phd','contact'].map(id=>document.getElementById(id));
 function onScroll(){
   const h = document.documentElement;
   const max = h.scrollHeight - innerHeight;
@@ -1404,6 +1584,56 @@ mott: `<svg viewBox="0 0 380 300" xmlns="http://www.w3.org/2000/svg">
 <circle cx="203" cy="218" r="4" class="fdota"><animate attributeName="r" values="3;7;3" dur="2.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;.25;1" dur="2.2s" repeatCount="indefinite"/></circle>
 <text x="214" y="216" class="fta">×10³ — giant diffusion</text>
 </svg>`,
+crsbr: `<svg viewBox="0 0 380 300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<text x="20" y="15" class="ft">(a) CrSBr bilayer — intralayer ferromagnetic, interlayer antiferromagnetic</text>
+<line x1="38" y1="52" x2="212" y2="52" class="fl2"/>
+<line x1="38" y1="94" x2="212" y2="94" class="fl2"/>
+<g><line x1="62" y1="59" x2="62" y2="45" class="fl"/><polygon points="59,48 65,48 62,41" class="fdot"/><animateTransform attributeName="transform" type="rotate" values="0 62 59;6 62 59;0 62 59;-6 62 59;0 62 59" dur="3.6s" begin="0s" repeatCount="indefinite"/></g>
+<g><line x1="96" y1="59" x2="96" y2="45" class="fl"/><polygon points="93,48 99,48 96,41" class="fdot"/><animateTransform attributeName="transform" type="rotate" values="0 96 59;6 96 59;0 96 59;-6 96 59;0 96 59" dur="3.6s" begin="0.2s" repeatCount="indefinite"/></g>
+<g><line x1="130" y1="59" x2="130" y2="45" class="fl"/><polygon points="127,48 133,48 130,41" class="fdot"/><animateTransform attributeName="transform" type="rotate" values="0 130 59;6 130 59;0 130 59;-6 130 59;0 130 59" dur="3.6s" begin="0.4s" repeatCount="indefinite"/></g>
+<g><line x1="164" y1="59" x2="164" y2="45" class="fl"/><polygon points="161,48 167,48 164,41" class="fdot"/><animateTransform attributeName="transform" type="rotate" values="0 164 59;6 164 59;0 164 59;-6 164 59;0 164 59" dur="3.6s" begin="0.6s" repeatCount="indefinite"/></g>
+<g><line x1="198" y1="59" x2="198" y2="45" class="fl"/><polygon points="195,48 201,48 198,41" class="fdot"/><animateTransform attributeName="transform" type="rotate" values="0 198 59;6 198 59;0 198 59;-6 198 59;0 198 59" dur="3.6s" begin="0.8s" repeatCount="indefinite"/></g>
+<g><line x1="62" y1="87" x2="62" y2="101" class="fl"/><polygon points="59,98 65,98 62,105" class="fdot"/><animateTransform attributeName="transform" type="rotate" values="0 62 87;-6 62 87;0 62 87;6 62 87;0 62 87" dur="3.6s" begin="0s" repeatCount="indefinite"/></g>
+<g><line x1="96" y1="87" x2="96" y2="101" class="fl"/><polygon points="93,98 99,98 96,105" class="fdot"/><animateTransform attributeName="transform" type="rotate" values="0 96 87;-6 96 87;0 96 87;6 96 87;0 96 87" dur="3.6s" begin="0.2s" repeatCount="indefinite"/></g>
+<g><line x1="130" y1="87" x2="130" y2="101" class="fl"/><polygon points="127,98 133,98 130,105" class="fdot"/><animateTransform attributeName="transform" type="rotate" values="0 130 87;-6 130 87;0 130 87;6 130 87;0 130 87" dur="3.6s" begin="0.4s" repeatCount="indefinite"/></g>
+<g><line x1="164" y1="87" x2="164" y2="101" class="fl"/><polygon points="161,98 167,98 164,105" class="fdot"/><animateTransform attributeName="transform" type="rotate" values="0 164 87;-6 164 87;0 164 87;6 164 87;0 164 87" dur="3.6s" begin="0.6s" repeatCount="indefinite"/></g>
+<g><line x1="198" y1="87" x2="198" y2="101" class="fl"/><polygon points="195,98 201,98 198,105" class="fdot"/><animateTransform attributeName="transform" type="rotate" values="0 198 87;-6 198 87;0 198 87;6 198 87;0 198 87" dur="3.6s" begin="0.8s" repeatCount="indefinite"/></g>
+<line x1="130" y1="62" x2="130" y2="84" class="fad"/>
+<text x="135" y="76" class="fta">J⊥ &lt; 0</text>
+<text x="222" y="50" class="ft">top layer · Cr ↑</text>
+<text x="222" y="74" class="ft">S = 3/2 · Néel order</text>
+<text x="222" y="98" class="ft">bottom layer · Cr ↓</text>
+<text x="20" y="122" class="ft">(b) two-magnon Raman — one photon in, two magnons out</text>
+<line x1="118" y1="160" x2="118" y2="146" class="fl"/><polygon points="115,149 121,149 118,142" class="fdot"/>
+<line x1="146" y1="144" x2="146" y2="158" class="fl"/><polygon points="143,155 149,155 146,162" class="fdot"/>
+<g><line x1="174" y1="160" x2="174" y2="146" class="fa"/><polygon points="171,149 177,149 174,142" class="fdota"/><animateTransform attributeName="transform" type="rotate" values="0 174 160;14 174 160;0 174 160;-14 174 160;0 174 160" dur="1.5s" repeatCount="indefinite"/></g>
+<g><line x1="202" y1="144" x2="202" y2="158" class="fa"/><polygon points="199,155 205,155 202,162" class="fdota"/><animateTransform attributeName="transform" type="rotate" values="0 202 144;-14 202 144;0 202 144;14 202 144;0 202 144" dur="1.5s" repeatCount="indefinite"/></g>
+<line x1="230" y1="160" x2="230" y2="146" class="fl"/><polygon points="227,149 233,149 230,142" class="fdot"/>
+<path d="M34,136 Q58,136 76,144 T112,152" class="fa" fill="none"/>
+<text x="30" y="131" class="fta">ω_in</text>
+<path d="M236,152 Q268,158 298,168" class="fa" fill="none"/>
+<polygon points="293,162 301,166 294,170" class="fdota"/>
+<text x="286" y="150" class="fta">ω_out</text>
+<path id="b-ph" d="M34,136 Q58,136 76,144 T112,152 L236,152 Q268,158 298,168" fill="none" stroke="none"/>
+<circle r="3.6" class="fdota"><animateMotion dur="3.4s" repeatCount="indefinite"><mpath xlink:href="#b-ph"/></animateMotion></circle>
+<text x="150" y="178" class="fta">2 magnons</text>
+<text x="238" y="178" class="ft">red-shift = magnon-pair energy</text>
+<text x="30" y="192" class="ft">appears only in the AF phase · ×10 near the exciton resonance</text>
+<text x="20" y="210" class="ft">(c) a magnetic field drives AF → FM — the two-magnon signal switches off</text>
+<line x1="56" y1="220" x2="56" y2="288" class="fl2"/>
+<line x1="56" y1="288" x2="330" y2="288" class="fl2"/>
+<text x="34" y="226" class="ft">I₂ₘ</text>
+<text x="334" y="292" class="ft">B</text>
+<line x1="186" y1="288" x2="186" y2="228" class="fad"/>
+<text x="172" y="238" class="fta">B_c</text>
+<text x="150" y="250" class="ft">AF → FM</text>
+<path id="c-curve" d="M62,236 L150,237 Q176,239 186,252 Q192,266 200,284 L326,285" class="fa" fill="none"/>
+<circle r="4.2" class="fdota"><animateMotion dur="5s" repeatCount="indefinite"><mpath xlink:href="#c-curve"/></animateMotion><animate attributeName="opacity" values="1;1;.12;.12;1" keyTimes="0;.42;.56;.96;1" dur="5s" repeatCount="indefinite"/></circle>
+<text x="246" y="226" class="ft">AF</text>
+<g><line x1="252" y1="246" x2="252" y2="236" class="fl"/><polygon points="249.5,238 254.5,238 252,232" class="fdot"/><line x1="266" y1="232" x2="266" y2="242" class="fl"/><polygon points="263.5,240 268.5,240 266,246" class="fdot"/><animate attributeName="opacity" values="1;1;.14;.14;1" keyTimes="0;.42;.56;.96;1" dur="5s" repeatCount="indefinite"/></g>
+<text x="296" y="226" class="ft">FM</text>
+<g><line x1="300" y1="246" x2="300" y2="236" class="fl"/><polygon points="297.5,238 302.5,238 300,232" class="fdot"/><line x1="314" y1="246" x2="314" y2="236" class="fl"/><polygon points="311.5,238 316.5,238 314,232" class="fdot"/><animate attributeName="opacity" values=".14;.14;1;1;.14" keyTimes="0;.42;.56;.96;1" dur="5s" repeatCount="indefinite"/></g>
+</svg>`,
 twist: `<svg viewBox="0 0 380 300" xmlns="http://www.w3.org/2000/svg">
 <text x="20" y="18" class="ft">(a) twisted bilayer WSe₂</text>
 <g class="fl">
@@ -1666,7 +1896,8 @@ const PUBS = [
 {tag:'MICROELEC. J.', cloth:'#6E4A2F', year:'2022', title:'Insights into the operation of negative capacitance FinFET for low power logic applications', ref:'Microelectronics Journal 119, 105321 (2022)', doi:'https://doi.org/10.1016/j.mejo.2021.105321', fig:FIG.mej, figcap:'Fig. — (a) a negative series capacitance amplifies the surface potential; (b) the resulting sub-60 mV/dec transfer; (c) the channel barrier collapsing under NC action.', abstract:'Analytical and simulation-based insights into the operation of negative capacitance FinFET are provided for low-power logic applications. The study examines the interplay between ferroelectric negative capacitance and conventional device physics, revealing important design guidelines for achieving sub-60 mV/decade sub-threshold swing while maintaining adequate on-current and minimizing short-channel effects.'},
 {tag:'TRANS. EEM', cloth:'#3A3F45', year:'2021', title:'Insight into Threshold Voltage and Drain Induced Barrier Lowering in Negative Capacitance FET', ref:'Trans. Electr. Electron. Mater. 22, 267–273 (2021)', doi:'https://doi.org/10.1007/s42341-020-00230-y', fig:FIG.teem, figcap:'Fig. — transfer curves at three drain biases; the threshold shift ΔV_T quantifies drain-induced barrier lowering in NC-FETs.', abstract:'A detailed analysis of threshold voltage behavior and drain-induced barrier lowering (DIBL) in negative capacitance field-effect transistors is presented. The study provides physical insights into how the ferroelectric negative capacitance layer modifies the threshold voltage characteristics and short-channel behavior, offering practical guidelines for device optimization in low-power digital circuit applications.'},
 {tag:'NAT COMMUN', cloth:'#20584A', year:'2024', title:'Excitonic Mott insulator in a Bose–Fermi–Hubbard system of moiré WS₂/WSe₂ heterobilayer', ref:'Nat. Commun. 15, 2305 (2024) · contributing author', doi:'https://doi.org/10.1038/s41467-024-46616-x', fig:FIG.natcomm, figcap:'Fig. — (a) interlayer excitons fill the moiré lattice one per site; adding a second to a site costs U_XX ≈ 30 meV, so the extra boson bounces off; (b) diffusion is suppressed as pumping rises — the bosons jam into an incompressible excitonic Mott state; (c) electrons and excitons compete for the same sites.', abstract:'A strongly correlated state in which the optical excitations themselves become incompressible. In a moiré WS₂/WSe₂ device where the electronic filling (set by a gate) and the excitonic population (set by optical pumping) are tuned independently, interlayer excitons are driven into a Mott-insulating state of bosons: exciton diffusion is suppressed with increasing pump intensity — the opposite of a weakly interacting Bose gas. Single- and double-occupancy exciton states (X₁, X₂) are split by an on-site repulsion of roughly 30 meV, and doped electrons compete with excitons for the same moiré sites — a Bose–Fermi–Hubbard system realized in a semiconductor heterobilayer.'},
-{tag:'PHYS REV X', cloth:'#5E3148', year:'2026', title:'Probing Quantum Anomalous Hall States in Twisted Bilayer WSe₂ via Attractive Polaron Spectroscopy', ref:'Phys. Rev. X 16, 021037 (2026) · contributing author', doi:'https://doi.org/10.1103/PhysRevX.16.021037', fig:FIG.prx, figcap:'Fig. — (a) a dual-gated 2° twisted WSe₂ homobilayer; (b) polarization-resolved attractive-polaron spectroscopy: the σ⁺/σ⁻ responses split at hole filling ν = 1 — spontaneous time-reversal-symmetry breaking; (c) Streda analysis identifies the state as topological (C = 1), and a displacement field switches it between QAH ferromagnet and antiferromagnet.', abstract:'The first direct optical evidence of quantum anomalous Hall states in twisted bilayer WSe₂ with spontaneous ferromagnetism. Polarization-resolved attractive-polaron spectroscopy on a dual-gated, 2° twisted WSe₂ homobilayer reveals direct signatures of spontaneous time-reversal symmetry breaking at hole filling ν = 1. Together with a Chern-number measurement via Streda-formula analysis, the magnetized state is identified as topological, with C = 1. The topological and magnetic properties are tunable via a displacement field, between a QAH ferromagnetic state and an antiferromagnetic state — establishing twisted WSe₂ as an optically addressable platform for topological order and strong correlations.'}
+{tag:'PHYS REV X', cloth:'#5E3148', year:'2026', title:'Probing Quantum Anomalous Hall States in Twisted Bilayer WSe₂ via Attractive Polaron Spectroscopy', ref:'Phys. Rev. X 16, 021037 (2026) · contributing author', doi:'https://doi.org/10.1103/PhysRevX.16.021037', fig:FIG.prx, figcap:'Fig. — (a) a dual-gated 2° twisted WSe₂ homobilayer; (b) polarization-resolved attractive-polaron spectroscopy: the σ⁺/σ⁻ responses split at hole filling ν = 1 — spontaneous time-reversal-symmetry breaking; (c) Streda analysis identifies the state as topological (C = 1), and a displacement field switches it between QAH ferromagnet and antiferromagnet.', abstract:'The first direct optical evidence of quantum anomalous Hall states in twisted bilayer WSe₂ with spontaneous ferromagnetism. Polarization-resolved attractive-polaron spectroscopy on a dual-gated, 2° twisted WSe₂ homobilayer reveals direct signatures of spontaneous time-reversal symmetry breaking at hole filling ν = 1. Together with a Chern-number measurement via Streda-formula analysis, the magnetized state is identified as topological, with C = 1. The topological and magnetic properties are tunable via a displacement field, between a QAH ferromagnetic state and an antiferromagnetic state — establishing twisted WSe₂ as an optically addressable platform for topological order and strong correlations.'},
+{tag:'ARXIV', cloth:'#2A3C66', year:'2026', title:'Optical observation of interlayer spin correlation', ref:'arXiv:2609.38825 (2026) · contributing author', doi:'https://arxiv.org/abs/2609.38825', fig:FIG.crsbr, figcap:'Fig. — (a) CrSBr bilayer: spins order ferromagnetically within each layer and antiferromagnetically between layers; (b) two-magnon Raman — one photon creates two magnons, so the scattered light is red-shifted; the signal lives only in the AF state and grows ×10 on the exciton resonance; (c) a magnetic field cants the layers into alignment (AF → FM) and the two-magnon intensity switches off.', abstract:'We report a direct optical probe of interlayer spin correlations in the van der Waals antiferromagnet CrSBr. Using two-magnon Raman scattering, we resolve a signal that matches a parameter-free microscopic spin-wave model and appears only in the antiferromagnetic state — it vanishes once a magnetic field drives the crystal into the ferromagnetic phase. Tuning the laser onto the exciton resonance enhances the two-magnon response by roughly an order of magnitude, revealing strong exciton–magnon coupling. The method extends naturally to twisted bilayers and proximity-coupled heterostructures, offering an all-optical window into magnetic order in two dimensions.'}
 ];
 
 /* ============ BOOK MODAL ============ */
@@ -1827,7 +2058,10 @@ void main(){
   gl_FragColor=vec4(col,1.0);
 }`;
 function curDark(){return document.documentElement.getAttribute('data-theme')==='ink'?1.0:0.0;}
-var MOBILE=(matchMedia('(pointer:coarse)').matches||matchMedia('(max-width:820px)').matches);
+/* Disable WebGL fields only on genuine touch devices (prevents phone crashes),
+   never on a merely-narrow desktop window — otherwise a desktop loaded narrow
+   loses its animations until reload. */
+var MOBILE=(matchMedia('(pointer:coarse)').matches||(matchMedia('(hover:none)').matches&&matchMedia('(max-width:820px)').matches));
 if(MOBILE)document.documentElement.classList.add('nofield');
 function boot(canvas, fs){
   var gl=canvas.getContext('webgl',{antialias:true,premultipliedAlpha:false});
@@ -1904,7 +2138,7 @@ if(RF['rf-thread']){rfTabs();rfPaint();
 function dk(hex,fct){var n=parseInt(hex.slice(1),16),r=(n>>16)&255,g=(n>>8)&255,b=n&255;return 'rgb('+[r,g,b].map(function(x){return Math.round(x*fct);}).join(',')+')';}
 function lt(hex,fct){var n=parseInt(hex.slice(1),16),r=(n>>16)&255,g=(n>>8)&255,b=n&255;return 'rgb('+[r,g,b].map(function(x){return Math.round(x+(255-x)*fct);}).join(',')+')';}
 var STANDS=[
- {label:'Ph.D. research',note:'Moiré quantum matter — first-author &amp; contributions',books:[0,7,8]},
+ {label:'Ph.D. research',note:'Moiré &amp; magnetic quantum matter — first-author &amp; contributions',books:[0,7,8,9]},
  {label:'Post-undergraduate',note:'Twisted 2D semiconductors',books:[1,2]},
  {label:'Undergraduate',note:'Negative-capacitance devices &amp; TCAD',books:[3,4,5,6]}
 ];
